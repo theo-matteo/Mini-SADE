@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "treceita.h": "c",
+        "tdadospessoais.h": "c",
+        "stdlib.h": "c"
+    }
+}
