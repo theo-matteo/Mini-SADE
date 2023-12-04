@@ -7,7 +7,7 @@ struct tFila {
     int qtdDocumentos;
 };
 
-tFila *criaFila() {
+tFila* criaFila() {
 
     tFila* fila = (tFila *) malloc(sizeof(tFila));
     if (fila == NULL) {
@@ -35,7 +35,10 @@ void desalocaFila(tFila *f) {
     free(f);
 }
 
-void insereDocumentoFila(tFila *f, void *dado, func_ptr_imprimeNaTela imprimeNaTela, func_ptr_imprimeEmArquivo ImprimeEmArquivo, func_ptr_desaloca desaloca) {
+void insereDocumentoFila(tFila *f, void *dado, func_ptr_imprimeNaTela imprimeNaTela,
+                         func_ptr_imprimeEmArquivo ImprimeEmArquivo,
+                         func_ptr_desaloca desaloca) 
+{
     f->qtdDocumentos++;
     f->documentos = realloc(f->documentos, f->qtdDocumentos * sizeof(tDocumento *));
     f->documentos[f->qtdDocumentos - 1] = criaDocumento(dado, imprimeNaTela, ImprimeEmArquivo, desaloca);

@@ -1,15 +1,14 @@
 #include "tMedico.h"
-#include <stdio.h>
-#include <stdlib.h>
+#define TAM_CRM 12
 
 struct tMedico {
     tDadosPessoais* dadosPessoais;
-    char user[TAM_NOME_USER];
-    char senha[TAM_MAX_SENHA];
+    tCredenciaisAcesso* credenciaisAcesso;
     char CRM[TAM_CRM];
 };
 
-tMedico* CriaMedico () {
+
+tMedico* CadastraMedico() {
 
     tMedico* medico = (tMedico *) malloc(sizeof(tMedico));
     if (medico == NULL) {
@@ -17,31 +16,75 @@ tMedico* CriaMedico () {
         exit(EXIT_FAILURE);
     }
 
-    medico->dadosPessoais = CriaDadosPessoais();
+    memset(medico->CRM, '\0', TAM_CRM);
+
+    printf("#################### CADASTRO MEDICO #######################\n");
+    medico->dadosPessoais = LeDadosPessoais();
+    printf("CRM: ");
+    scanf("%s", medico->CRM);
+    medico->credenciaisAcesso = LeCredenciaisAcesso();
+    
+    return medico;
+}
+
+tMedico* CriaMedico (tDadosPessoais* d, tCredenciaisAcesso* c, char* CRM) {
+
+    tMedico* medico = (tMedico *) malloc(sizeof(tMedico));
+    if (medico == NULL) {
+        printf("Falha na Alocacao do Medico\n");
+        exit(EXIT_FAILURE);
+    }
+
+    memset(medico->CRM, '\0', TAM_CRM);
+
+    medico->credenciaisAcesso = c;
+    medico->dadosPessoais = d;
+    strcpy(medico->CRM, CRM);
 
     return medico;
 }
 
-tMedico* CadastraMedico() {
 
-    tMedico* medico = CriaMedico();
 
-    printf("#################### CADASTRO MEDICO #######################\n");
-    LeDadosPessoais(medico->dadosPessoais);
-
-    printf("\nCRM: ");
-    scanf("%s", medico->CRM);
-
-    printf("\nNOME DE USUARIO: ");
-    scanf("%s", medico->user);
-
-    printf("\nSENHA: ");
-    scanf("%s", medico->senha);
-
+void SalvaMedicoArquivoBinario (tMedico* s, FILE* file) {
+    SalvaDadosPessoaisArquivoBinario(s->dadosPessoais, file);
+    fwrite(s->CRM, sizeof(char), TAM_CRM, file);
+    SalvaCredenciaisArqvBinario(s->credenciaisAcesso, file);
 }
 
-void DesalocaMedico(tMedico* m) {
+tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file) {
+
+    tMedico* m = NULL;
+
+    while (!feof(file)) {
+
+        char CRM[TAM_CRM];
+        tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
+        if (!d) return NULL;
+
+        fread(CRM, sizeof(char), TAM_CRM, file);
+
+        tCredenciaisAcesso* c = ObtemCredenciaisArquivoBinario(file);
+
+        if (CrediciaisSaoIguais(user, senha, c)) {
+            m = CriaMedico(d, c, CRM);
+        }
+
+        DesalocaDadosPessoais(d);
+        DesalocaCredenciais(c);
+    }
+
+    // Retorna o ponteiro do arquivo para o inicio
+    rewind(file);
+    return m;
+}
+
+void DesalocaMedico(void* m) {
+
     if (m == NULL) return;
-    DesalocaDadosPessoais(m->dadosPessoais);
-    free(m);
+
+    tMedico* med = (tMedico*) m;
+    DesalocaDadosPessoais(med->dadosPessoais);
+    DesalocaCredenciais(med->credenciaisAcesso);
+    free(med);
 }

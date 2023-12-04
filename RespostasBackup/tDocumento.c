@@ -9,7 +9,10 @@ struct tDocumento {
     func_ptr_desaloca desaloca;
 };
 
-tDocumento *criaDocumento(void *dado, func_ptr_imprimeNaTela imprimeNaTela, func_ptr_imprimeEmArquivo ImprimeEmArquivo, func_ptr_desaloca desaloca) {
+tDocumento *criaDocumento (void *dado, func_ptr_imprimeNaTela imprimeNaTela,
+                          func_ptr_imprimeEmArquivo ImprimeEmArquivo,
+                          func_ptr_desaloca desaloca) 
+{
 
     tDocumento* doc = (tDocumento *) malloc(sizeof(tDocumento));
     if (doc == NULL) {
@@ -23,7 +26,7 @@ tDocumento *criaDocumento(void *dado, func_ptr_imprimeNaTela imprimeNaTela, func
     doc->desaloca = desaloca;
 
     return doc;
-}   
+}
 
 void desalocaDocumento(tDocumento *doc) {
     doc->desaloca(doc->dado);

@@ -2,6 +2,8 @@
     "files.associations": {
         "treceita.h": "c",
         "tdadospessoais.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "tsistema.h": "c",
+        "string.h": "c"
     }
 }
