@@ -9,9 +9,9 @@
 
 typedef struct tSecretario tSecretario;
 
-/// @brief Cadastra novo Secretario a partir da entrada padrao (teclado)
+/// @brief Cadastra novo Secretario a partir da entrada padrao (teclado) e salva no banco de dados
 /// @return retorna um ponteiro da estrutura secretario
-tSecretario* CadastraSecretario ();
+void CadastraSecretario (FILE*);
 
 
 /// @brief Salva informacoes de um secretario em um arquivo binario
@@ -39,12 +39,6 @@ int EhSecretarioADMIN (tSecretario*);
 /// @brief Desaloca memoria da estrutura assumindo que o ponteiro eh do tipo tSecretario
 /// @param  secretario
 void DesalocaSecretario(void*);
-
-
-
-
-
-
 
 
 #endif

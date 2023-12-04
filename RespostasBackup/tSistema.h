@@ -7,12 +7,14 @@
 #include "tMedico.h"
 #include "tSecretario.h"
 #include "tUsuarioSistema.h"
+#include "tCadastroAtores.h"
+#include "tDatabase.h"
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
 
-#define TAM_MAX_DIRETORIO 250
 typedef struct tSistema tSistema;
 
 
@@ -21,30 +23,27 @@ typedef struct tSistema tSistema;
 /// @return retorna ponteiro para estrutura tSistema
 tSistema* CriaSistema (char* path);
 
-
-/// @brief Verifica se os arquivos binarios medicos e secretarios estao vazios, caracterizando primeiro acesso
-/// @param  sistema
-/// @return true or false
-bool EhPrimeiroAcessoSistema (tSistema*);
-
-/// @brief Cadastra um novo usuario e configura o ambiente do sistema em caso de primeiro acesso
-/// @param  sistema
-void ConfiguraPrimeiroAcessoSistema(tSistema*);
-
-
 /// @brief Acessa sistema com base nas credenciais fornecidas pela entrada padrao
 /// @param  sistema
 /// @return retorna true se o login foi realizado com sucesso, senao retorna false
 bool AcessaSistemaUsuario (tSistema*);
 
-void SalvaAtorArquivoBinario (FILE* file, userType tipoUsuario);
 
-void LogaSecretarioSistema (tSecretario*, tSistema*);
+/// @brief Inicia o sistema, disponibilizando acoes para o usuario
+/// @param  s
+void IniciaSistema (tSistema*);
 
-void LogaMedicoSistema (tMedico*, tSistema*);
+
+/// @brief Obtem usuario que esta logado no sistema
+/// @param s 
+/// @return usuario
+tUsuarioSistema* ObtemUsuario (tSistema* s);
+
+tDatabase* ObtemBaseDadosSistema (tSistema* s);
+
 
 void DesalocaSistema (tSistema*);
 
-void IniciaSistema (tSistema*);
+
 
 #endif

@@ -24,7 +24,7 @@ tSecretario* CriaSecretario (tDadosPessoais* d, tCredenciaisAcesso* c, char* niv
     return s;
 }
 
-tSecretario* CadastraSecretario () {
+void CadastraSecretario (FILE* file) {
 
     tSecretario* s = (tSecretario*) malloc(sizeof(tSecretario));
     if (s == NULL) {
@@ -32,15 +32,20 @@ tSecretario* CadastraSecretario () {
         exit(EXIT_FAILURE);
     }
 
+    // Inicializa string com '\0'
     memset(s->nivelAcesso, '\0', TAM_MAX_NIVEL_ACESSO);
 
+    /* Realiza Leitura da Entrada Padrao */
     printf("#################### CADASTRO SECRETARIO #######################\n");
     s->dadosPessoais = LeDadosPessoais();
     s->credenciaisAcesso = LeCredenciaisAcesso();
     printf("NIVEL DE ACESSO: ");
     scanf("%s", s->nivelAcesso);
 
-    return s;
+    /* Salva Secretario no Banco de Dados*/
+    SalvaSecretarioArquivoBinario(s, file);
+    DesalocaSecretario(s);
+
 }
 
 void SalvaSecretarioArquivoBinario (tSecretario* s, FILE* file) {
@@ -76,8 +81,6 @@ tSecretario* ObtemSecretarioArqvBinario (char* user, char* senha, FILE* file) {
         DesalocaCredenciais(c);
     }
 
-    // Retorna o ponteiro do arquivo para o inicio
-    fseek(file, 0, SEEK_SET);   
     return s;
 }
 

@@ -4,6 +4,7 @@
         "tdadospessoais.h": "c",
         "stdlib.h": "c",
         "tsistema.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "cstdlib": "c"
     }
 }

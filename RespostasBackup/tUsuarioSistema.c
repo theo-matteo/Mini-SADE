@@ -33,3 +33,19 @@ void DesalocaUsuarioSistema (tUsuarioSistema* user) {
 userType ObtemTipoUsuarioSistema(tUsuarioSistema* user) {
     return user->tipoUser;
 }
+
+void ImprimeMenuPrincipalUsuario (tUsuarioSistema* user) {
+    user->telaImp();
+}
+
+bool UsuarioEscolheuOpcaoValida (tUsuarioSistema* user, int opcao) {
+
+    if (ObtemTipoUsuarioSistema(user) == S_USER) {
+        if (opcao == 1 || opcao == 4) return false;
+    }
+    else if (ObtemTipoUsuarioSistema(user) == MEDICO) {
+        if (opcao < 4) return false;
+    }
+
+    return true;
+}

@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct tUsuarioSistema tUsuarioSistema;
 typedef void (*telaImpressao)(void);
@@ -35,5 +36,12 @@ void DesalocaUsuarioSistema (tUsuarioSistema*);
 /// @return tipo do usuario
 userType ObtemTipoUsuarioSistema(tUsuarioSistema*);
 
+
+/// @brief Imprime o menu principal baseado no tipo de usuario
+/// @param  Usuario
+void ImprimeMenuPrincipalUsuario (tUsuarioSistema*);
+
+
+bool UsuarioEscolheuOpcaoValida (tUsuarioSistema*, int);
 
 #endif

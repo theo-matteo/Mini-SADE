@@ -74,8 +74,6 @@ tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file) {
         DesalocaCredenciais(c);
     }
 
-    // Retorna o ponteiro do arquivo para o inicio
-    rewind(file);
     return m;
 }
 
