@@ -97,7 +97,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
- - Resultado para o saida.txt: Ok! Peso: 0.0
+ - Resultado para o saida.txt: Incorreto!
  - Pasta tFila / Caso 2:
  - Arquivo de output gerado: Resultados/TheoMatteo/tFila/Casos/2/result_valgrind.txt.
  - Valgrind: Ok! allocs: 116, frees: 116, errors: 0 | Desconto do valgrind: 0.0%
@@ -106,7 +106,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
- - Resultado para o saida.txt: Ok! Peso: 0.0
+ - Resultado para o saida.txt: Incorreto!
  - Pasta tFila / Caso 3:
  - Arquivo de output gerado: Resultados/TheoMatteo/tFila/Casos/3/result_valgrind.txt.
  - Valgrind: Ok! allocs: 141, frees: 141, errors: 0 | Desconto do valgrind: 0.0%
@@ -115,7 +115,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
- - Resultado para o saida.txt: Ok! Peso: 0.0
+ - Resultado para o saida.txt: Incorreto!
  - Pasta tDocumento / Caso 1:
  - Arquivo de output gerado: Resultados/TheoMatteo/tDocumento/Casos/1/result_valgrind.txt.
  - Valgrind: Ok! allocs: 72, frees: 72, errors: 0 | Desconto do valgrind: 0.0%
@@ -124,7 +124,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
- - Resultado para o saida.txt: Ok! Peso: 0.0
+ - Resultado para o saida.txt: Incorreto!
  - Pasta tDocumento / Caso 2:
  - Arquivo de output gerado: Resultados/TheoMatteo/tDocumento/Casos/2/result_valgrind.txt.
  - Valgrind: Ok! allocs: 116, frees: 116, errors: 0 | Desconto do valgrind: 0.0%
@@ -133,7 +133,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
- - Resultado para o saida.txt: Ok! Peso: 0.0
+ - Resultado para o saida.txt: Incorreto!
  - Pasta tDocumento / Caso 3:
  - Arquivo de output gerado: Resultados/TheoMatteo/tDocumento/Casos/3/result_valgrind.txt.
  - Valgrind: Ok! allocs: 141, frees: 141, errors: 0 | Desconto do valgrind: 0.0%
@@ -142,7 +142,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
- - Resultado para o saida.txt: Ok! Peso: 0.0
+ - Resultado para o saida.txt: Incorreto!
  - Pasta tReceita / Caso 1:
  - Arquivo de output gerado: Resultados/TheoMatteo/tReceita/Casos/1/result_valgrind.txt.
  - Valgrind: Ok! allocs: 71, frees: 71, errors: 0 | Desconto do valgrind: 0.0%
@@ -151,7 +151,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
- - Resultado para o saida.txt: Ok! Peso: 0.0
+ - Resultado para o saida.txt: Incorreto!
  - Pasta tReceita / Caso 2:
  - Arquivo de output gerado: Resultados/TheoMatteo/tReceita/Casos/2/result_valgrind.txt.
  - Valgrind: Ok! allocs: 115, frees: 115, errors: 0 | Desconto do valgrind: 0.0%
@@ -160,7 +160,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
- - Resultado para o saida.txt: Ok! Peso: 0.0
+ - Resultado para o saida.txt: Incorreto!
  - Pasta tReceita / Caso 3:
  - Arquivo de output gerado: Resultados/TheoMatteo/tReceita/Casos/3/result_valgrind.txt.
  - Valgrind: Ok! allocs: 139, frees: 139, errors: 0 | Desconto do valgrind: 0.0%
@@ -169,7 +169,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
  - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
- - Resultado para o saida.txt: Ok! Peso: 0.0
+ - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 1:
  - Valgrind: Incorreto! Verifique se o binário prog foi gerado corretamente. Ou se o Valgrind está instalado.
  - O aluno não gerou o arquivo de saída Resultados/TheoMatteo/completo/Casos/1/saida/biopsia.txt, considerando resultado incorreto!
@@ -234,9 +234,9 @@ Nome 0: TheoMatteo
  - Valgrinds Corretos completo: 0 valgrinds corretos de 3 (teve desconto na nota para a pasta completo, olhar detalhamento nos prints acima!)
  - Valgrinds Corretos main: 0 valgrinds corretos de 3 (teve desconto na nota para a pasta main, olhar detalhamento nos prints acima!)
  - Cômputo final das Notas:
- - Pasta tFila (peso 1.0): 18 resultados corretos de 18 / Nota 1.00
- - Pasta tDocumento (peso 1.0): 18 resultados corretos de 18 / Nota 1.00
- - Pasta tReceita (peso 0.5): 18 resultados corretos de 18 / Nota .50
+ - Pasta tFila (peso 1.0): 15 resultados corretos de 18 / Nota 1.00
+ - Pasta tDocumento (peso 1.0): 15 resultados corretos de 18 / Nota 1.00
+ - Pasta tReceita (peso 0.5): 15 resultados corretos de 18 / Nota .50
  - Pasta completo (peso 0.0): 0 resultados corretos de 18 / Nota 0
  - Pasta main (peso 7.5): 0 resultados corretos de 18 / Nota 0
  - Nota Final TheoMatteo: 2.50

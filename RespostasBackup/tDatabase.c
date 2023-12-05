@@ -57,7 +57,7 @@ tUsuarioSistema* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabas
 void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo) {
 
     // Verifica se o cadastro foi bem sucedido
-    void* ator;
+    void* ator = NULL;
 
     // Obtem o arquivo de acordo com o ator que sera cadastrado
     FILE* file =  ObtemArquivoTipoAtor (d, tipo);
@@ -65,41 +65,52 @@ void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo) {
     // Coloca o ponteiro no final do arquivo binario
     fseek(file, 0, SEEK_END);
 
-    // Cadastra um novo ator (MEDICO, SECRETARIO OU PACIENTE)
-    if (tipo == MEDICO) {
-        
-        tMedico* medico = CadastraMedico();
 
-        if (VerificaMesmoCPFBD(tipo, file, ObtemCPFDadosP(ObtemDPMedico(medico)))) {
-            printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
-            DesalocaMedico(medico);
-            return;
-        }
+    ObtemCPFPessoaFunc obtemCPFfunc = ObtemFuncaoObterCPFPessoa(tipo);
+    SalvaPessoaArqvFunc salvaPessoaArqv = ObtemFuncaoSalvaPessoaArqv(tipo);
+    DesalocaPessoaFunc desalocaPessoaFunc = ObtemFuncaoDesalocarPessoa(tipo);
 
-        SalvaMedicoArquivoBinario(medico, file);
-        DesalocaMedico(medico);
+
+    if (tipo == MEDICO) ator = CadastraMedico();
+    else if (tipo == SECRETARIO) ator = CadastraSecretario();
+
+
+    if (VerificaMesmoCPFBD(tipo, file, obtemCPFfunc(ator))) {
+        printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
+        desalocaPessoaFunc(ator);
+        return;
     }
 
-    else if (tipo == SECRETARIO) {
-
-        tSecretario* sec = CadastraSecretario();
-        if (VerificaMesmoCPFBD(tipo, file, ObtemCPFDadosP(ObtemDPSecretario(sec)))) {
-            printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
-            DesalocaSecretario(sec);
-            return;
-        }
-
-        SalvaSecretarioArquivoBinario(sec, file);
-        DesalocaSecretario(sec);
-    }   
-
+    salvaPessoaArqv(ator, file);
+    desalocaPessoaFunc(ator);
     
+    /* Aguarda o usuario digitar uma tecla para retornar ao menu principal */
     char c;
     printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
     scanf("%c%*c", &c);
     printf("###############################################################\n");
 
 }
+
+
+ObtemCPFPessoaFunc ObtemFuncaoObterCPFPessoa (TipoAtor tipo) {
+    if (tipo == MEDICO) return ObtemCPFMedico;
+    else if (tipo == SECRETARIO) return ObtemCPFSecretario;
+    else return NULL;
+}
+
+SalvaPessoaArqvFunc ObtemFuncaoSalvaPessoaArqv (TipoAtor tipo) {
+    if (tipo == SECRETARIO) return SalvaSecretarioArquivoBinario;
+    else if (tipo == MEDICO) return SalvaMedicoArquivoBinario;
+    else return NULL;
+}
+
+DesalocaPessoaFunc ObtemFuncaoDesalocarPessoa (TipoAtor tipo) {
+    if (tipo == SECRETARIO) return DesalocaSecretario;
+    else if (tipo == MEDICO) return DesalocaMedico;
+    else return NULL;
+}
+
 
 bool VerificaMesmoCPFBD (TipoAtor tipo, FILE* file, char* cpf) {
 

@@ -45,10 +45,14 @@ tMedico* CriaMedico (tDadosPessoais* d, tCredenciaisAcesso* c, char* CRM) {
 }
 
 
-void SalvaMedicoArquivoBinario (tMedico* s, FILE* file) {
-    SalvaDadosPessoaisArquivoBinario(s->dadosPessoais, file);
-    SalvaCredenciaisArqvBinario(s->credenciaisAcesso, file);
-    fwrite(s->CRM, sizeof(char), TAM_CRM, file);
+void SalvaMedicoArquivoBinario (void* m, FILE* file) {
+
+    tMedico* medico = (tMedico*) m;
+
+    SalvaDadosPessoaisArquivoBinario(medico->dadosPessoais, file);
+    SalvaCredenciaisArqvBinario(medico->credenciaisAcesso, file);
+    fwrite(medico->CRM, sizeof(char), TAM_CRM, file);
+
 }
 
 tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file) {
@@ -78,8 +82,9 @@ tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file) {
     return m;
 }
 
-tDadosPessoais* ObtemDPMedico (tMedico* m) {
-    return m->dadosPessoais;
+char* ObtemCPFMedico (void* m) {
+    tMedico* medico = (tMedico*) m;
+    return ObtemCPFDadosP(medico->dadosPessoais);
 }
 
 void DesalocaMedico(void* m) {

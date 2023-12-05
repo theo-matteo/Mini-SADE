@@ -45,7 +45,10 @@ tSecretario* CadastraSecretario () {
 }
 
 
-void SalvaSecretarioArquivoBinario (tSecretario* s, FILE* file) {
+void SalvaSecretarioArquivoBinario (void* sec, FILE* file) {
+
+    tSecretario* s = (tSecretario*) sec;
+
     SalvaDadosPessoaisArquivoBinario(s->dadosPessoais, file);
     SalvaCredenciaisArqvBinario(s->credenciaisAcesso, file);
     fwrite(s->nivelAcesso, sizeof(char), TAM_MAX_NIVEL_ACESSO, file);
@@ -89,8 +92,9 @@ int EhSecretarioADMIN (tSecretario* sec) {
     return (!strcmp(ObtemNivelAcessoSecretario(sec), "ADMIN"));
 }
 
-tDadosPessoais* ObtemDPSecretario (tSecretario* s) {
-    return s->dadosPessoais;
+char* ObtemCPFSecretario (void* sec) {
+    tSecretario* s = (tSecretario*) sec;
+    return ObtemCPFDadosP(s->dadosPessoais);
 }
 
 

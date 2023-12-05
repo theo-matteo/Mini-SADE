@@ -18,6 +18,11 @@ typedef enum {
 } TipoAtor;
 
 
+typedef char* (*ObtemCPFPessoaFunc) (void *);
+typedef void (*SalvaPessoaArqvFunc)(void *, FILE*);
+typedef void (*DesalocaPessoaFunc)(void *);
+
+
 typedef struct tDatabase tDatabase;
 
 tDatabase* CriaBancodeDados (char* path);
@@ -40,6 +45,13 @@ bool VerificaMesmoCPFBD (TipoAtor tipo, FILE* file, char* cpf);
 void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo);
 
 FILE* ObtemArquivoTipoAtor (tDatabase*, TipoAtor tipo);
+
+ObtemCPFPessoaFunc ObtemFuncaoObterCPFPessoa (TipoAtor tipo);
+
+SalvaPessoaArqvFunc ObtemFuncaoSalvaPessoaArqv (TipoAtor tipo);
+
+DesalocaPessoaFunc ObtemFuncaoDesalocarPessoa (TipoAtor tipo);
+
 
 FILE* ObtemArquivoSecretarios (tDatabase*);
 

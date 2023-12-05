@@ -75,6 +75,7 @@ void imprimeEmArquivoReceita(void *dado, char *path) {
     // Concatenacao do caminho + nome arquivo
     sprintf(pathDoc, "%s/%s", path, NOME_ARQUIVO_RECEITA);
 
+    // Dados sao adicionados no fim do arquivo no modo 'a'
     FILE* file = fopen(pathDoc, "a");
 
     if (file == NULL) {
@@ -84,10 +85,8 @@ void imprimeEmArquivoReceita(void *dado, char *path) {
 
     fprintf(file, "RECEITUARIO\n");
     fprintf(file, "NOME: %s\n\n", r->nomePaciente);
-
     if (r->tipoUso == ORAL) fprintf(file, "USO ORAL\n\n");
     else fprintf(file, "USO TOPICO\n\n");
-
     fprintf(file, "%s\n", r->nomeMedicamento);
     fprintf(file, "%d %s\n\n", r->qtd, r->tipoMedicamento);
     fprintf(file, "%s\n\n", r->instrucoes);

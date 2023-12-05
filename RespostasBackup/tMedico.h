@@ -20,13 +20,12 @@ tMedico* CriaMedico (tDadosPessoais*, tCredenciaisAcesso*, char* CRM);
 /// @brief Salva dados do medico em  um arquivo binario, assumindo que o arquivo ja esta aberto
 /// @param  tMedico
 /// @param  arquivo
-void SalvaMedicoArquivoBinario (tMedico*, FILE*);
+void SalvaMedicoArquivoBinario (void* m, FILE* file);
 
 
 tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file);
 
-tDadosPessoais* ObtemDPMedico (tMedico*);
-
+char* ObtemCPFMedico (void* m);
 
 /// @brief Desaloca um medico assumindo que o ponteiro recebido por parametro eh do tipo tMedico
 /// @param  tMedico pointer

@@ -19,7 +19,7 @@ tSecretario* CadastraSecretario ();
 /// @brief Salva informacoes de um secretario em um arquivo binario
 /// @param  secretario
 /// @param  arquivo
-void SalvaSecretarioArquivoBinario (tSecretario*, FILE*);
+void SalvaSecretarioArquivoBinario (void*, FILE*);
 
 
 
@@ -37,8 +37,7 @@ tSecretario* ObtemSecretarioArqvBinario (char* user, char* senha, FILE* file);
 char* ObtemNivelAcessoSecretario (tSecretario*);
 
 
-tDadosPessoais* ObtemDPSecretario (tSecretario* s);
-
+char* ObtemCPFSecretario (void* sec);
 
 int EhSecretarioADMIN (tSecretario*);
 
