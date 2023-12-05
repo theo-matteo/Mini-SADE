@@ -54,13 +54,13 @@ tUsuarioSistema* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabas
     return NULL;
 }
 
-void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo) {
+void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo) {
 
     // Verifica se o cadastro foi bem sucedido
-    void* ator = NULL;
+    void* pessoa = NULL;
 
-    // Obtem o arquivo de acordo com o ator que sera cadastrado
-    FILE* file =  ObtemArquivoTipoAtor (d, tipo);
+    // Obtem o arquivo de acordo com o pessoa que sera cadastrado
+    FILE* file =  ObtemArquivoTipoPessoa (d, tipo);
 
     // Coloca o ponteiro no final do arquivo binario
     fseek(file, 0, SEEK_END);
@@ -70,19 +70,20 @@ void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo) {
     SalvaPessoaArqvFunc salvaPessoaArqv = ObtemFuncaoSalvaPessoaArqv(tipo);
     DesalocaPessoaFunc desalocaPessoaFunc = ObtemFuncaoDesalocarPessoa(tipo);
 
+    // Cadastra uma nova pessoa baseado no tipo
+    if (tipo == MEDICO) pessoa = CadastraMedico();
+    else if (tipo == SECRETARIO) pessoa = CadastraSecretario();
+    else pessoa = CadastraPaciente();
 
-    if (tipo == MEDICO) ator = CadastraMedico();
-    else if (tipo == SECRETARIO) ator = CadastraSecretario();
-
-
-    if (VerificaMesmoCPFBD(tipo, file, obtemCPFfunc(ator))) {
+    /* Verifica se ha um mesmo cpf cadastrado */
+    if (VerificaMesmoCPFBD(tipo, file, obtemCPFfunc(pessoa))) {
         printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
-        desalocaPessoaFunc(ator);
+        desalocaPessoaFunc(pessoa);
         return;
     }
 
-    salvaPessoaArqv(ator, file);
-    desalocaPessoaFunc(ator);
+    salvaPessoaArqv(pessoa, file);
+    desalocaPessoaFunc(pessoa);
     
     /* Aguarda o usuario digitar uma tecla para retornar ao menu principal */
     char c;
@@ -93,26 +94,26 @@ void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo) {
 }
 
 
-ObtemCPFPessoaFunc ObtemFuncaoObterCPFPessoa (TipoAtor tipo) {
+ObtemCPFPessoaFunc ObtemFuncaoObterCPFPessoa (tipoPessoa tipo) {
     if (tipo == MEDICO) return ObtemCPFMedico;
     else if (tipo == SECRETARIO) return ObtemCPFSecretario;
-    else return NULL;
+    else return ObtemCPFPaciente;
 }
 
-SalvaPessoaArqvFunc ObtemFuncaoSalvaPessoaArqv (TipoAtor tipo) {
+SalvaPessoaArqvFunc ObtemFuncaoSalvaPessoaArqv (tipoPessoa tipo) {
     if (tipo == SECRETARIO) return SalvaSecretarioArquivoBinario;
     else if (tipo == MEDICO) return SalvaMedicoArquivoBinario;
-    else return NULL;
+    else return SalvaPacienteArquivoBinario;
 }
 
-DesalocaPessoaFunc ObtemFuncaoDesalocarPessoa (TipoAtor tipo) {
+DesalocaPessoaFunc ObtemFuncaoDesalocarPessoa (tipoPessoa tipo) {
     if (tipo == SECRETARIO) return DesalocaSecretario;
     else if (tipo == MEDICO) return DesalocaMedico;
-    else return NULL;
+    else return DesalocaPaciente;
 }
 
 
-bool VerificaMesmoCPFBD (TipoAtor tipo, FILE* file, char* cpf) {
+bool VerificaMesmoCPFBD (tipoPessoa tipo, FILE* file, char* cpf) {
 
     rewind(file);
     int qtdBytesCredenciais = ObtemQtdBytesCredenciais();
@@ -123,9 +124,10 @@ bool VerificaMesmoCPFBD (TipoAtor tipo, FILE* file, char* cpf) {
         tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
         if (!d) return false;
 
-        fread(bufferCredenciais, qtdBytesCredenciais, 1, file);
+        // Consome as credenciais se caso nao for do tipo paciente
+        if (tipo != PACIENTE) fread(bufferCredenciais, qtdBytesCredenciais, 1, file);
 
-        // Descarta informacoes irrelevantes
+        // Descarta informacoes irrelevantes no buffer
         if (tipo == MEDICO) {
             char bufferCRM[TAM_CRM];
             fread(bufferCRM, sizeof(char), TAM_CRM, file);
@@ -152,7 +154,7 @@ bool EhPrimeiroAcessoSistema (tDatabase* database) {
     return (ArquivoEstaVazio(database->arqvSecretarios) && ArquivoEstaVazio(database->arqvMedicos));
 }
 
-FILE*  ObtemArquivoTipoAtor  (tDatabase* d, TipoAtor tipo) {
+FILE*  ObtemArquivoTipoPessoa  (tDatabase* d, tipoPessoa tipo) {
     if (tipo == MEDICO) return d->arqvMedicos;
     else if (tipo == SECRETARIO) return d->arqvSecretarios;
     else return d->arqvPacientes;

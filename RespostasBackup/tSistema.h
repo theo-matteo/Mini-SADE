@@ -6,6 +6,7 @@
 #include "tDadosPessoais.h"
 #include "tMedico.h"
 #include "tSecretario.h"
+#include "tListaBusca.h"
 
 #include "tUsuarioSistema.h"
 #include "tDatabase.h"
@@ -26,12 +27,12 @@ tSistema* CriaSistema (char* path);
 /// @brief Acessa sistema com base nas credenciais fornecidas pela entrada padrao
 /// @param  sistema
 /// @return retorna true se o login foi realizado com sucesso, senao retorna false
-bool AcessaSistemaUsuario (tSistema*);
+bool AcessaSistemaUsuario (tSistema* s);
 
 
 /// @brief Inicia o sistema, disponibilizando acoes para o usuario
 /// @param  s
-void IniciaSistema (tSistema*);
+void IniciaSistema (tSistema* s);
 
 
 /// @brief Obtem usuario que esta logado no sistema

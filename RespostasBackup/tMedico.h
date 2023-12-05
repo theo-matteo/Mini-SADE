@@ -2,7 +2,7 @@
 #define _TMEDICO_H_
 
 #include "tDadosPessoais.h"
-#include "tCredenciaisAcesso.h"
+#include "tCredenciais.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -12,10 +12,9 @@
 typedef struct tMedico tMedico;
 
 
-
 tMedico* CadastraMedico();
 
-tMedico* CriaMedico (tDadosPessoais*, tCredenciaisAcesso*, char* CRM);
+tMedico* CriaMedico (tDadosPessoais* d, tCredenciais* c, char* CRM);
 
 /// @brief Salva dados do medico em  um arquivo binario, assumindo que o arquivo ja esta aberto
 /// @param  tMedico
@@ -29,7 +28,7 @@ char* ObtemCPFMedico (void* m);
 
 /// @brief Desaloca um medico assumindo que o ponteiro recebido por parametro eh do tipo tMedico
 /// @param  tMedico pointer
-void DesalocaMedico(void*);
+void DesalocaMedico(void* m);
 
 
 #endif

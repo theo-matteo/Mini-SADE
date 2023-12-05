@@ -2,7 +2,7 @@
 #define _TSECRETARIO_H_
 
 #include "tDadosPessoais.h"
-#include "tCredenciaisAcesso.h"
+#include "tCredenciais.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -19,7 +19,7 @@ tSecretario* CadastraSecretario ();
 /// @brief Salva informacoes de um secretario em um arquivo binario
 /// @param  secretario
 /// @param  arquivo
-void SalvaSecretarioArquivoBinario (void*, FILE*);
+void SalvaSecretarioArquivoBinario (void* sec, FILE* file);
 
 
 
@@ -34,16 +34,16 @@ tSecretario* ObtemSecretarioArqvBinario (char* user, char* senha, FILE* file);
 /// @brief Obtem o nivel de acesso ao sistema de um usuario
 /// @param  secretario
 /// @return nivel de acesso
-char* ObtemNivelAcessoSecretario (tSecretario*);
+char* ObtemNivelAcessoSecretario (tSecretario* s);
 
 
 char* ObtemCPFSecretario (void* sec);
 
-int EhSecretarioADMIN (tSecretario*);
+int EhSecretarioADMIN (tSecretario* sec);
 
 /// @brief Desaloca memoria da estrutura assumindo que o ponteiro eh do tipo tSecretario
 /// @param  secretario
-void DesalocaSecretario(void*);
+void DesalocaSecretario(void* sec);
 
 
 #endif

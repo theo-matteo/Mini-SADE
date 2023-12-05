@@ -1,9 +1,9 @@
 #include "tDadosPessoais.h"
 #define TAM_NOME 100
-#define TAM_CPF 12
-#define TAM_DATA 16
-#define TAM_TELEFONE 16
-#define TAM_GENERO 12
+#define TAM_CPF 20
+#define TAM_DATA 20
+#define TAM_TELEFONE 20
+#define TAM_GENERO 20
 
 struct tDadosPessoais {
     char nome[TAM_NOME];

@@ -15,15 +15,17 @@ typedef struct tPaciente tPaciente;
 tPaciente* CadastraPaciente ();
 
 
+tPaciente* CriaPaciente (tDadosPessoais* d);
+
+
 /// @brief Salva um paciente no arquivo binario 'pacientes'
 /// @param p 
 /// @param file 
 void SalvaPacienteArquivoBinario (void* p, FILE* file);
 
+char* ObtemCPFPaciente (void* paciente);
 
-
-tPaciente* BuscaPacienteArqvBinario (char* nome, FILE* file);
-
+char* ObtemNomePaciente (void* p);
 
 /// @brief Desaloca memoria de um paciente
 /// @param  paciente

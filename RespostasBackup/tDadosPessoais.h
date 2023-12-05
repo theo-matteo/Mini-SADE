@@ -25,7 +25,7 @@ tDadosPessoais* CriaDadosPessoais (char* nome, char* cpf, char* dtNasc, char* te
 
 /// @brief Desaloca DadosPessoais
 /// @param  DadosPessoais
-void DesalocaDadosPessoais(tDadosPessoais*);
+void DesalocaDadosPessoais(tDadosPessoais* d);
 
 
 /// @brief Salva dados pessoais em um arquivo binario
@@ -37,12 +37,21 @@ void SalvaDadosPessoaisArquivoBinario (tDadosPessoais* d, FILE* file);
 /// @brief Le um arquivo binario contendo informacoes (dados pessoais) e retorna estrutura
 /// @param  arquivo
 /// @return dados pessoais
-tDadosPessoais* ObtemDadosPessoaisArquivoBinario (FILE*);
+tDadosPessoais* ObtemDadosPessoaisArquivoBinario (FILE* file);
 
 
+
+/// @brief Verifica se o cpf eh o mesmo dos dados 
+/// @param cpf 
+/// @param d 
+/// @return true or false
 bool CPFsaoIguais (char* cpf, tDadosPessoais* d);
 
 
+/// @brief Verifica se o nome eh igual ao dos dados
+/// @param nome 
+/// @param d 
+/// @return true or false
 bool NomeSaoIguais (char* nome, tDadosPessoais* d);
 
 

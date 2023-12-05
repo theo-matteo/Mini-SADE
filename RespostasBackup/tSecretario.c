@@ -2,12 +2,12 @@
 
 struct tSecretario {
     tDadosPessoais* dadosPessoais;
-    tCredenciaisAcesso* credenciaisAcesso;
+    tCredenciais* credenciaisAcesso;
     char nivelAcesso[TAM_MAX_NIVEL_ACESSO];
 };
 
 
-tSecretario* CriaSecretario (tDadosPessoais* d, tCredenciaisAcesso* c, char* nivelAcesso) {
+tSecretario* CriaSecretario (tDadosPessoais* d, tCredenciais* c, char* nivelAcesso) {
 
     tSecretario* s = (tSecretario*) malloc(sizeof(tSecretario));
     if (s == NULL) {
@@ -66,7 +66,7 @@ tSecretario* ObtemSecretarioArqvBinario (char* user, char* senha, FILE* file) {
         tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
         if (!d) return NULL;
 
-        tCredenciaisAcesso* c = ObtemCredenciaisArquivoBinario(file);
+        tCredenciais* c = ObtemCredenciaisArquivoBinario(file);
         if (!c) return NULL;
 
         fread(nivelAcesso, sizeof(char), TAM_MAX_NIVEL_ACESSO, file);

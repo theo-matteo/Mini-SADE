@@ -4,6 +4,7 @@
 #include "tUsuarioSistema.h"
 #include "tSecretario.h"
 #include "tMedico.h"
+#include "tPaciente.h"
 #include "utils.h"
 
 #include <stdio.h>
@@ -15,22 +16,21 @@ typedef enum {
     MEDICO,
     SECRETARIO,
     PACIENTE,
-} TipoAtor;
+} tipoPessoa;
 
 
 typedef char* (*ObtemCPFPessoaFunc) (void *);
 typedef void (*SalvaPessoaArqvFunc)(void *, FILE*);
 typedef void (*DesalocaPessoaFunc)(void *);
-
-
 typedef struct tDatabase tDatabase;
+
 
 tDatabase* CriaBancodeDados (char* path);
 
 /// @brief Verifica se os arquivos binarios medicos e secretarios estao vazios, caracterizando primeiro acesso
 /// @param  sistema
 /// @return true or false
-bool EhPrimeiroAcessoSistema (tDatabase*);
+bool EhPrimeiroAcessoSistema (tDatabase* d);
 
 
 /// @brief Obtem um usuario do banco de dados atraves das credenciais de seguranca
@@ -38,35 +38,34 @@ bool EhPrimeiroAcessoSistema (tDatabase*);
 /// @param senha 
 /// @param  database
 /// @return tUsuario
-tUsuarioSistema* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabase*);
-
-bool VerificaMesmoCPFBD (TipoAtor tipo, FILE* file, char* cpf);
-
-void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo);
-
-FILE* ObtemArquivoTipoAtor (tDatabase*, TipoAtor tipo);
-
-ObtemCPFPessoaFunc ObtemFuncaoObterCPFPessoa (TipoAtor tipo);
-
-SalvaPessoaArqvFunc ObtemFuncaoSalvaPessoaArqv (TipoAtor tipo);
-
-DesalocaPessoaFunc ObtemFuncaoDesalocarPessoa (TipoAtor tipo);
+tUsuarioSistema* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabase* d);
 
 
-FILE* ObtemArquivoSecretarios (tDatabase*);
+bool VerificaMesmoCPFBD (tipoPessoa tipo, FILE* file, char* cpf);
 
-FILE* ObtemArquivoMedicos (tDatabase*);
+void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo);
 
-FILE* ObtemArquivoConsultas (tDatabase*);
+FILE* ObtemArquivoTipoPessoa (tDatabase* d, tipoPessoa tipo);
 
-FILE* ObtemArquivoPacientes (tDatabase*);
+ObtemCPFPessoaFunc ObtemFuncaoObterCPFPessoa (tipoPessoa tipo);
 
-FILE* ObtemArquivoLesoes (tDatabase*);
+SalvaPessoaArqvFunc ObtemFuncaoSalvaPessoaArqv (tipoPessoa tipo);
 
+DesalocaPessoaFunc ObtemFuncaoDesalocarPessoa (tipoPessoa tipo);
+
+FILE* ObtemArquivoSecretarios (tDatabase* d);
+
+FILE* ObtemArquivoMedicos (tDatabase* d);
+
+FILE* ObtemArquivoConsultas (tDatabase* d);
+
+FILE* ObtemArquivoPacientes (tDatabase* d);
+
+FILE* ObtemArquivoLesoes (tDatabase* d);
 
 /// @brief Desaloca banco de dados fechando arquivos
 /// @param  
-void DesalocaBancoDados (tDatabase*);
+void DesalocaBancoDados (tDatabase* d);
 
 
 

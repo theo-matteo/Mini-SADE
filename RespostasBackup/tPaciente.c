@@ -5,7 +5,7 @@ struct tPaciente {
 };
 
 
-tPaciente* CadastraPaciente () {
+tPaciente* CriaPaciente (tDadosPessoais* d) {
 
     tPaciente* p = (tPaciente*) malloc(sizeof(tPaciente));
     if (!p) {
@@ -13,10 +13,14 @@ tPaciente* CadastraPaciente () {
         exit(EXIT_FAILURE);
     }
 
-    printf("#################### CADASTRO PACIENTE #######################\n");
-    p->dadosPessoais = LeDadosPessoais();
-
+    p->dadosPessoais = d;
     return p;
+}
+
+tPaciente* CadastraPaciente () {
+    printf("#################### CADASTRO PACIENTE #######################\n");
+    tDadosPessoais* dadosPessoais = LeDadosPessoais();
+    return CriaPaciente(dadosPessoais);
 }
 
 void SalvaPacienteArquivoBinario (void* p, FILE* file) {
@@ -25,15 +29,20 @@ void SalvaPacienteArquivoBinario (void* p, FILE* file) {
 }
 
 
-tPaciente* BuscaPacienteArqvBinario (char* nome, FILE* file) {
-
-    // to do
-
+char* ObtemCPFPaciente (void* paciente) {
+    tPaciente* p = (tPaciente*) paciente;
+    return ObtemCPFDadosP(p->dadosPessoais);
 }
 
+char* ObtemNomePaciente (void* p) {
+    tPaciente* paciente = (tPaciente*) p;
+    return ObtemNomeDadosP(paciente->dadosPessoais);
+}
 
 void DesalocaPaciente (void* p) {
-    if (!p) return;
+    
+    if (p == NULL) return;
+    
     tPaciente* paciente = (tPaciente*) p;
     DesalocaDadosPessoais(paciente->dadosPessoais);
     free(paciente);

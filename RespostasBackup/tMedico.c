@@ -2,7 +2,7 @@
 
 struct tMedico {
     tDadosPessoais* dadosPessoais;
-    tCredenciaisAcesso* credenciaisAcesso;
+    tCredenciais* credenciaisAcesso;
     char CRM[TAM_CRM];
 };
 
@@ -28,7 +28,7 @@ tMedico* CadastraMedico() {
     return medico;
 }
 
-tMedico* CriaMedico (tDadosPessoais* d, tCredenciaisAcesso* c, char* CRM) {
+tMedico* CriaMedico (tDadosPessoais* d, tCredenciais* c, char* CRM) {
 
     tMedico* medico = (tMedico *) malloc(sizeof(tMedico));
     if (medico == NULL) {
@@ -67,7 +67,7 @@ tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file) {
         tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
         if (!d) return NULL;
 
-        tCredenciaisAcesso* c = ObtemCredenciaisArquivoBinario(file);
+        tCredenciais* c = ObtemCredenciaisArquivoBinario(file);
         fread(CRM, sizeof(char), TAM_CRM, file);
 
         if (CrediciaisSaoIguais(user, senha, c)) {

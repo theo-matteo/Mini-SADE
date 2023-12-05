@@ -73,13 +73,23 @@ void IniciaSistema (tSistema* s) {
         }
 
         switch (opcao) {
+            
             case 1:
-                CadastraNovoAtorBD(database, SECRETARIO);
+                CadastraNovaPessoaBD(database, SECRETARIO);
                 break;
             case 2:
-                CadastraNovoAtorBD(database, MEDICO);
+                CadastraNovaPessoaBD(database, MEDICO);
                 break;
-            
+            case 3:
+                CadastraNovaPessoaBD(database, PACIENTE);
+                break;
+            case 4:
+                break;
+            case 5:
+                tListaBusca* lista = BuscaPacientes(ObtemArquivoPacientes(database));
+                if (lista) insereDocumentoFila(s->filaDocs, lista, ImprimeListaBusca, imprimeEmArquivoListaBusca, DesalocaListaBusca);
+            case 6:
+                break;
             default:
                 break;
         }

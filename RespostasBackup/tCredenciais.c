@@ -1,14 +1,14 @@
-#include "tCredenciaisAcesso.h"
+#include "tCredenciais.h"
 
 
-struct tCredenciaisAcesso {
+struct tCredenciais {
     char user[TAM_MAX_USER];
     char senha[TAM_MAX_SENHA];
 };
 
-tCredenciaisAcesso* CriaCredenciaisAcesso(char* user, char* senha) {
+tCredenciais* CriaCredenciaisAcesso(char* user, char* senha) {
 
-    tCredenciaisAcesso* c = (tCredenciaisAcesso *) malloc(sizeof(tCredenciaisAcesso));
+    tCredenciais* c = (tCredenciais *) malloc(sizeof(tCredenciais));
     if (c == NULL) {
         printf("Falha na Alocacao das Credenciais de Acesso ao Sistema\n");
         exit(EXIT_FAILURE);
@@ -25,7 +25,7 @@ tCredenciaisAcesso* CriaCredenciaisAcesso(char* user, char* senha) {
 }
 
 
-tCredenciaisAcesso* LeCredenciaisAcesso () {
+tCredenciais* LeCredenciaisAcesso () {
 
     char user[TAM_MAX_USER], senha[TAM_MAX_SENHA];
 
@@ -38,12 +38,12 @@ tCredenciaisAcesso* LeCredenciaisAcesso () {
 }
 
 
-void SalvaCredenciaisArqvBinario (tCredenciaisAcesso* c, FILE* file) {
+void SalvaCredenciaisArqvBinario (tCredenciais* c, FILE* file) {
     fwrite(c->user, sizeof(char), TAM_MAX_USER, file);
     fwrite(c->senha, sizeof(char), TAM_MAX_SENHA, file);
 }
 
-tCredenciaisAcesso* ObtemCredenciaisArquivoBinario (FILE* file) {
+tCredenciais* ObtemCredenciaisArquivoBinario (FILE* file) {
     
     char user[TAM_MAX_USER], senha[TAM_MAX_SENHA];
 
@@ -54,22 +54,22 @@ tCredenciaisAcesso* ObtemCredenciaisArquivoBinario (FILE* file) {
     return CriaCredenciaisAcesso(user, senha); 
 }
 
-bool CrediciaisSaoIguais (char *user, char* senha, tCredenciaisAcesso* c) {
+bool CrediciaisSaoIguais (char *user, char* senha, tCredenciais* c) {
     return (!strcmp(user, ObtemUserCredenciais(c)))  && (!strcmp(senha, ObtemSenhaCredenciais(c)));
 }
 
 int ObtemQtdBytesCredenciais () {
-    return sizeof(tCredenciaisAcesso);
+    return sizeof(tCredenciais);
 }
 
-char* ObtemUserCredenciais (tCredenciaisAcesso* c) {
+char* ObtemUserCredenciais (tCredenciais* c) {
     return c->user;
 }
 
-char* ObtemSenhaCredenciais (tCredenciaisAcesso* c) {
+char* ObtemSenhaCredenciais (tCredenciais* c) {
     return c->senha;
 }
 
-void DesalocaCredenciais (tCredenciaisAcesso* c) {
+void DesalocaCredenciais (tCredenciais* c) {
     if (c) free(c);
 }
