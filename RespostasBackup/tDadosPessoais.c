@@ -86,6 +86,10 @@ bool CPFsaoIguais (char* cpf, tDadosPessoais* d) {
     return (!strcmp(cpf, ObtemCPFDadosP(d)));
 }
 
+bool NomeSaoIguais (char* nome, tDadosPessoais* d) {
+    return (!strcmp(nome, ObtemNomeDadosP(d)));
+}
+
 char* ObtemNomeDadosP(tDadosPessoais* d) {
     return d->nome;
 }

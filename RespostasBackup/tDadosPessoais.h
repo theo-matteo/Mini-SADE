@@ -42,6 +42,10 @@ tDadosPessoais* ObtemDadosPessoaisArquivoBinario (FILE*);
 
 bool CPFsaoIguais (char* cpf, tDadosPessoais* d);
 
+
+bool NomeSaoIguais (char* nome, tDadosPessoais* d);
+
+
 /// @brief Obtem nome da pessoa
 /// @param  dadosPessoais
 /// @return retorna ponteiro do nome da pessoa
