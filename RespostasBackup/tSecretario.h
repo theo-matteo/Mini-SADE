@@ -7,11 +7,13 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
+#define TAM_MAX_NIVEL_ACESSO 10
+
 typedef struct tSecretario tSecretario;
 
 /// @brief Cadastra novo Secretario a partir da entrada padrao (teclado) e salva no banco de dados
 /// @return retorna um ponteiro da estrutura secretario
-int CadastraSecretario (FILE*);
+tSecretario* CadastraSecretario ();
 
 
 /// @brief Salva informacoes de um secretario em um arquivo binario
@@ -19,8 +21,6 @@ int CadastraSecretario (FILE*);
 /// @param  arquivo
 void SalvaSecretarioArquivoBinario (tSecretario*, FILE*);
 
-
-bool VerificaMesmoCPFSecretarioBD (FILE* file, char* cpf);
 
 
 /// @brief Obtem um secretario com as credenciais informadas, se houver retorna ponteiro, senao retorna NULL
@@ -35,6 +35,9 @@ tSecretario* ObtemSecretarioArqvBinario (char* user, char* senha, FILE* file);
 /// @param  secretario
 /// @return nivel de acesso
 char* ObtemNivelAcessoSecretario (tSecretario*);
+
+
+tDadosPessoais* ObtemDPSecretario (tSecretario* s);
 
 
 int EhSecretarioADMIN (tSecretario*);

@@ -50,7 +50,9 @@ void IniciaSistema (tSistema* s) {
     tDatabase* database = ObtemBDSistema(s);
     
     if (EhPrimeiroAcessoSistema(database)) {
-        CadastraSecretario(ObtemArquivoSecretarios(database));
+        tSecretario* secretario = CadastraSecretario(ObtemArquivoSecretarios(database));
+        SalvaSecretarioArquivoBinario(secretario, ObtemArquivoSecretarios(database));
+        DesalocaSecretario(secretario);
     } 
     
     // Repete a tela de acesso enquanto o usuario nao conseguir logar

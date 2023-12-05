@@ -1,5 +1,4 @@
 #include "tMedico.h"
-#define TAM_CRM 12
 
 struct tMedico {
     tDadosPessoais* dadosPessoais;
@@ -8,7 +7,7 @@ struct tMedico {
 };
 
 
-void CadastraMedico(FILE* file) {
+tMedico* CadastraMedico() {
 
     tMedico* medico = (tMedico *) malloc(sizeof(tMedico));
     if (medico == NULL) {
@@ -26,10 +25,7 @@ void CadastraMedico(FILE* file) {
     scanf("%s%*c", medico->CRM);
     medico->credenciaisAcesso = LeCredenciaisAcesso();
     
-    // Salva Medico no Banco de Dados 
-    SalvaMedicoArquivoBinario(medico, file);
-    DesalocaMedico(medico);
-
+    return medico;
 }
 
 tMedico* CriaMedico (tDadosPessoais* d, tCredenciaisAcesso* c, char* CRM) {
@@ -51,8 +47,8 @@ tMedico* CriaMedico (tDadosPessoais* d, tCredenciaisAcesso* c, char* CRM) {
 
 void SalvaMedicoArquivoBinario (tMedico* s, FILE* file) {
     SalvaDadosPessoaisArquivoBinario(s->dadosPessoais, file);
-    fwrite(s->CRM, sizeof(char), TAM_CRM, file);
     SalvaCredenciaisArqvBinario(s->credenciaisAcesso, file);
+    fwrite(s->CRM, sizeof(char), TAM_CRM, file);
 }
 
 tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file) {
@@ -67,8 +63,8 @@ tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file) {
         tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
         if (!d) return NULL;
 
-        fread(CRM, sizeof(char), TAM_CRM, file);
         tCredenciaisAcesso* c = ObtemCredenciaisArquivoBinario(file);
+        fread(CRM, sizeof(char), TAM_CRM, file);
 
         if (CrediciaisSaoIguais(user, senha, c)) {
             m = CriaMedico(d, c, CRM);
@@ -82,28 +78,8 @@ tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file) {
     return m;
 }
 
-
-bool VerificaMesmoCPFMedicoBD (FILE* file, char* cpf) {
-
-    int qtdBytesCredenciais = ObtemQtdBytesCredenciais();
-    char bufferCRM[TAM_CRM], bufferCredenciais[qtdBytesCredenciais];
-    
-
-    while (!feof(file)) {
-        
-        tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
-        if (!d) return false;
-
-        fread(bufferCRM, sizeof(char), TAM_CRM, file);
-        fread(bufferCredenciais, qtdBytesCredenciais, 1, file);
-        
-        
-
-    }
-
-
-
-    return false;
+tDadosPessoais* ObtemDPMedico (tMedico* m) {
+    return m->dadosPessoais;
 }
 
 void DesalocaMedico(void* m) {

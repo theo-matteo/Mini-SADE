@@ -35,7 +35,7 @@ bool EhPrimeiroAcessoSistema (tDatabase*);
 /// @return tUsuario
 tUsuarioSistema* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabase*);
 
-void* ObtemAtorPorCPF (char* CPF, tDatabase*, TipoAtor tipo);
+bool VerificaMesmoCPFBD (TipoAtor tipo, FILE* file, char* cpf);
 
 void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo);
 

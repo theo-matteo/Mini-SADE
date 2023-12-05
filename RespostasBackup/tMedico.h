@@ -7,16 +7,15 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#define TAM_CRM 12
 
 typedef struct tMedico tMedico;
 
 
 
-void CadastraMedico(FILE* file);
-
+tMedico* CadastraMedico();
 
 tMedico* CriaMedico (tDadosPessoais*, tCredenciaisAcesso*, char* CRM);
-
 
 /// @brief Salva dados do medico em  um arquivo binario, assumindo que o arquivo ja esta aberto
 /// @param  tMedico
@@ -25,6 +24,8 @@ void SalvaMedicoArquivoBinario (tMedico*, FILE*);
 
 
 tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file);
+
+tDadosPessoais* ObtemDPMedico (tMedico*);
 
 
 /// @brief Desaloca um medico assumindo que o ponteiro recebido por parametro eh do tipo tMedico

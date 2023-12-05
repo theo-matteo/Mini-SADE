@@ -57,7 +57,7 @@ tUsuarioSistema* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabas
 void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo) {
 
     // Verifica se o cadastro foi bem sucedido
-    int status = 0;
+    void* ator;
 
     // Obtem o arquivo de acordo com o ator que sera cadastrado
     FILE* file =  ObtemArquivoTipoAtor (d, tipo);
@@ -65,24 +65,76 @@ void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo) {
     // Coloca o ponteiro no final do arquivo binario
     fseek(file, 0, SEEK_END);
 
-    
     // Cadastra um novo ator (MEDICO, SECRETARIO OU PACIENTE)
     if (tipo == MEDICO) {
-        CadastraMedico(file);
-    }
-    else if (tipo == SECRETARIO) status = CadastraSecretario(file);
-    
-    if (status == 0) {
-        printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
-        return;
+        
+        tMedico* medico = CadastraMedico();
+
+        if (VerificaMesmoCPFBD(tipo, file, ObtemCPFDadosP(ObtemDPMedico(medico)))) {
+            printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
+            DesalocaMedico(medico);
+            return;
+        }
+
+        SalvaMedicoArquivoBinario(medico, file);
+        DesalocaMedico(medico);
     }
 
+    else if (tipo == SECRETARIO) {
+
+        tSecretario* sec = CadastraSecretario();
+        if (VerificaMesmoCPFBD(tipo, file, ObtemCPFDadosP(ObtemDPSecretario(sec)))) {
+            printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
+            DesalocaSecretario(sec);
+            return;
+        }
+
+        SalvaSecretarioArquivoBinario(sec, file);
+        DesalocaSecretario(sec);
+    }   
+
+    
     char c;
     printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
     scanf("%c%*c", &c);
     printf("###############################################################\n");
 
 }
+
+bool VerificaMesmoCPFBD (TipoAtor tipo, FILE* file, char* cpf) {
+
+    rewind(file);
+    int qtdBytesCredenciais = ObtemQtdBytesCredenciais();
+    char bufferCredenciais[qtdBytesCredenciais];
+
+    while (!feof(file)) {
+
+        tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
+        if (!d) return false;
+
+        fread(bufferCredenciais, qtdBytesCredenciais, 1, file);
+
+        // Descarta informacoes irrelevantes
+        if (tipo == MEDICO) {
+            char bufferCRM[TAM_CRM];
+            fread(bufferCRM, sizeof(char), TAM_CRM, file);
+        }
+        else if (tipo == SECRETARIO) {
+            char bufferNivelAcesso[TAM_MAX_NIVEL_ACESSO];
+            fread(bufferNivelAcesso, sizeof(char), TAM_MAX_NIVEL_ACESSO, file);
+        }
+
+        // Verifica se os CPF's se coincidem
+        if (CPFsaoIguais(cpf, d)) {
+            DesalocaDadosPessoais(d);
+            return true;
+        }
+
+        DesalocaDadosPessoais(d);
+    }
+
+    return false;
+}   
 
 
 bool EhPrimeiroAcessoSistema (tDatabase* database) {
