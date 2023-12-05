@@ -11,9 +11,9 @@ typedef void (*DesalocaUsuario)(void *);
 
 
 typedef enum {
-    MEDICO,
-    S_ADMIN,
-    S_USER,
+    MED, // Medico
+    S_ADMIN, // Secretario ADM
+    S_USER, // Secreatario USER
 } userType;
 
 

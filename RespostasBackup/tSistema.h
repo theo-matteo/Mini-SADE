@@ -6,8 +6,8 @@
 #include "tDadosPessoais.h"
 #include "tMedico.h"
 #include "tSecretario.h"
+
 #include "tUsuarioSistema.h"
-#include "tCadastroAtores.h"
 #include "tDatabase.h"
 
 #include <stdio.h>
@@ -39,7 +39,7 @@ void IniciaSistema (tSistema*);
 /// @return usuario
 tUsuarioSistema* ObtemUsuario (tSistema* s);
 
-tDatabase* ObtemBaseDadosSistema (tSistema* s);
+tDatabase* ObtemBDSistema (tSistema* s);
 
 
 void DesalocaSistema (tSistema*);

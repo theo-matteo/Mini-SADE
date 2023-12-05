@@ -11,13 +11,16 @@ typedef struct tSecretario tSecretario;
 
 /// @brief Cadastra novo Secretario a partir da entrada padrao (teclado) e salva no banco de dados
 /// @return retorna um ponteiro da estrutura secretario
-void CadastraSecretario (FILE*);
+int CadastraSecretario (FILE*);
 
 
 /// @brief Salva informacoes de um secretario em um arquivo binario
 /// @param  secretario
 /// @param  arquivo
 void SalvaSecretarioArquivoBinario (tSecretario*, FILE*);
+
+
+bool VerificaMesmoCPFSecretarioBD (FILE* file, char* cpf);
 
 
 /// @brief Obtem um secretario com as credenciais informadas, se houver retorna ponteiro, senao retorna NULL

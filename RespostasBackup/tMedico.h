@@ -10,9 +10,9 @@
 
 typedef struct tMedico tMedico;
 
-/// @brief Cadastra um novo medico a partir da entrada padrao
-/// @return retorna um ponteiro para estrutura tMedico
-tMedico* CadastraMedico();
+
+
+void CadastraMedico(FILE* file);
 
 
 tMedico* CriaMedico (tDadosPessoais*, tCredenciaisAcesso*, char* CRM);

@@ -58,6 +58,10 @@ bool CrediciaisSaoIguais (char *user, char* senha, tCredenciaisAcesso* c) {
     return (!strcmp(user, ObtemUserCredenciais(c)))  && (!strcmp(senha, ObtemSenhaCredenciais(c)));
 }
 
+int ObtemQtdBytesCredenciais () {
+    return sizeof(tCredenciaisAcesso);
+}
+
 char* ObtemUserCredenciais (tCredenciaisAcesso* c) {
     return c->user;
 }

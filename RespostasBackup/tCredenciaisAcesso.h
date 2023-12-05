@@ -36,12 +36,11 @@ tCredenciaisAcesso* ObtemCredenciaisArquivoBinario (FILE*);
 /// @return 
 bool CrediciaisSaoIguais (char *user, char* senha, tCredenciaisAcesso* c);
 
-
 char* ObtemUserCredenciais (tCredenciaisAcesso*);
-
 
 char* ObtemSenhaCredenciais (tCredenciaisAcesso*);
 
+int ObtemQtdBytesCredenciais ();
 
 /// @brief Salva informacoes das credenciais em um arquivo binario
 /// @param  credenciais

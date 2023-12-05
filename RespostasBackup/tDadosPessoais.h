@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 
 typedef struct tDadosPessoais tDadosPessoais;
 
@@ -38,6 +39,8 @@ void SalvaDadosPessoaisArquivoBinario (tDadosPessoais* d, FILE* file);
 /// @return dados pessoais
 tDadosPessoais* ObtemDadosPessoaisArquivoBinario (FILE*);
 
+
+bool CPFsaoIguais (char* cpf, tDadosPessoais* d);
 
 /// @brief Obtem nome da pessoa
 /// @param  dadosPessoais

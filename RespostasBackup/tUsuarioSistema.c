@@ -43,7 +43,7 @@ bool UsuarioEscolheuOpcaoValida (tUsuarioSistema* user, int opcao) {
     if (ObtemTipoUsuarioSistema(user) == S_USER) {
         if (opcao == 1 || opcao == 4) return false;
     }
-    else if (ObtemTipoUsuarioSistema(user) == MEDICO) {
+    else if (ObtemTipoUsuarioSistema(user) == MED) {
         if (opcao < 4) return false;
     }
 

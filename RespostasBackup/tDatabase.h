@@ -9,11 +9,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
 #define TAM_MAX_DIRETORIO 250
 
-typedef struct tDatabase tDatabase;
+typedef enum {
+    MEDICO,
+    SECRETARIO,
+    PACIENTE,
+} TipoAtor;
 
+
+typedef struct tDatabase tDatabase;
 
 tDatabase* CriaBancodeDados (char* path);
 
@@ -30,11 +35,11 @@ bool EhPrimeiroAcessoSistema (tDatabase*);
 /// @return tUsuario
 tUsuarioSistema* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabase*);
 
-void CadastraNovoSecretarioBD (tDatabase*);
+void* ObtemAtorPorCPF (char* CPF, tDatabase*, TipoAtor tipo);
 
-void CadastraNovoMedicoBD (tDatabase*);
+void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo);
 
-void CadastraNovoPacienteSistemaBD (tDatabase*);
+FILE* ObtemArquivoTipoAtor (tDatabase*, TipoAtor tipo);
 
 FILE* ObtemArquivoSecretarios (tDatabase*);
 

@@ -47,9 +47,10 @@ tSistema* CriaSistema (char* path) {
 
 void IniciaSistema (tSistema* s) {
 
+    tDatabase* database = ObtemBDSistema(s);
     
-    if (EhPrimeiroAcessoSistema(s)) {
-        CadastraSecretario(ObtemArquivoSecretarios(ObtemBaseDadosSistema(s)));
+    if (EhPrimeiroAcessoSistema(database)) {
+        CadastraSecretario(ObtemArquivoSecretarios(database));
     } 
     
     // Repete a tela de acesso enquanto o usuario nao conseguir logar
@@ -61,23 +62,31 @@ void IniciaSistema (tSistema* s) {
 
         int opcao = -1;
         ImprimeMenuPrincipalUsuario(ObtemUsuario(s));
-        scanf("%d %*c", &opcao);
+        scanf("%d", &opcao);
+        scanf("%*c");
 
         if (!UsuarioEscolheuOpcaoValida(ObtemUsuario(s), opcao)) {
             printf("OPCAO INVALIDA!\n");
             continue;
         }
 
-        if (opcao == 1) {
-            CadastraNovoSecretarioSistema(ObtemArquivoSecretarios(s));
-        }
-        else if (opcao == 2) {
-            CadastraNovoMedicoSistema(ObtemArquivoMedicos(s));
-        }
-        else if (opcao == 3) {
-            CadastraNovoPacienteSistema(ObtemArquivoPacientes(s));
+        switch (opcao) {
+            case 1:
+                CadastraNovoAtorBD(database, SECRETARIO);
+                break;
+            case 2:
+                CadastraNovoAtorBD(database, MEDICO);
+                break;
+            
+            default:
+                break;
         }
 
+        if (opcao == 1) {
+            
+        }
+
+        else if (opcao == 8) break;
 
     }
 }
@@ -94,9 +103,8 @@ bool AcessaSistemaUsuario (tSistema* s) {
     scanf("%s", senha);
     printf("###############################################################\n");
 
-    tUsuarioSistema* user = ObtemUsuariocomCredenciaisBD(user, senha, s->database);
-    if (user) s->usuario = user;
-    else return false;
+    s->usuario = ObtemUsuariocomCredenciaisBD(user, senha, ObtemBDSistema(s));
+    if (s->usuario == NULL) return false;
 
     return true;
 }
@@ -105,7 +113,7 @@ tUsuarioSistema* ObtemUsuario (tSistema* s) {
     return s->usuario;
 }
 
-tDatabase* ObtemBaseDadosSistema (tSistema* s) {
+tDatabase* ObtemBDSistema (tSistema* s) {
     return s->database;
 }
 

@@ -48,21 +48,35 @@ tUsuarioSistema* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabas
     }
 
     tMedico* med = ObtemMedicoArquivoBinario(user, senha, database->arqvMedicos);
-    if (med) return CriaUsuarioSistema(med, TelaImpressaoMedico, DesalocaMedico, MEDICO);
+    if (med) return CriaUsuarioSistema(med, TelaImpressaoMedico, DesalocaMedico, MED);
 
 
     return NULL;
 }
 
-void CadastraNovoSecretarioSistema (FILE* file) {
+void CadastraNovoAtorBD (tDatabase* d, TipoAtor tipo) {
+
+    // Verifica se o cadastro foi bem sucedido
+    int status = 0;
+
+    // Obtem o arquivo de acordo com o ator que sera cadastrado
+    FILE* file =  ObtemArquivoTipoAtor (d, tipo);
 
     // Coloca o ponteiro no final do arquivo binario
     fseek(file, 0, SEEK_END);
 
-    // Cadastra um novo secretario no banco de dados
-    CadastraSecretario(file);
+    
+    // Cadastra um novo ator (MEDICO, SECRETARIO OU PACIENTE)
+    if (tipo == MEDICO) {
+        CadastraMedico(file);
+    }
+    else if (tipo == SECRETARIO) status = CadastraSecretario(file);
+    
+    if (status == 0) {
+        printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
+        return;
+    }
 
-    // Aguarda o usuario digitar um caractere para continuar
     char c;
     printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
     scanf("%c%*c", &c);
@@ -70,8 +84,15 @@ void CadastraNovoSecretarioSistema (FILE* file) {
 
 }
 
+
 bool EhPrimeiroAcessoSistema (tDatabase* database) {
     return (ArquivoEstaVazio(database->arqvSecretarios) && ArquivoEstaVazio(database->arqvMedicos));
+}
+
+FILE*  ObtemArquivoTipoAtor  (tDatabase* d, TipoAtor tipo) {
+    if (tipo == MEDICO) return d->arqvMedicos;
+    else if (tipo == SECRETARIO) return d->arqvSecretarios;
+    else return d->arqvPacientes;
 }
 
 FILE* ObtemArquivoSecretarios (tDatabase* d) {

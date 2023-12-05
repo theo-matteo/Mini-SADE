@@ -24,7 +24,7 @@ tSecretario* CriaSecretario (tDadosPessoais* d, tCredenciaisAcesso* c, char* niv
     return s;
 }
 
-void CadastraSecretario (FILE* file) {
+int CadastraSecretario (FILE* file) {
 
     tSecretario* s = (tSecretario*) malloc(sizeof(tSecretario));
     if (s == NULL) {
@@ -42,11 +42,45 @@ void CadastraSecretario (FILE* file) {
     printf("NIVEL DE ACESSO: ");
     scanf("%s", s->nivelAcesso);
 
+    if (VerificaMesmoCPFSecretarioBD(file, ObtemCPFDadosP(s->dadosPessoais))) {
+        DesalocaSecretario(s);
+        return 0;
+    }
+
     /* Salva Secretario no Banco de Dados*/
     SalvaSecretarioArquivoBinario(s, file);
     DesalocaSecretario(s);
-
+    return 1;
 }
+
+bool VerificaMesmoCPFSecretarioBD (FILE* file, char* cpf) {
+
+    rewind(file);
+
+    int qtdBytesCredenciais = ObtemQtdBytesCredenciais();
+    char bufferCredenciais[qtdBytesCredenciais];
+    char bufferNivelAcesso[TAM_MAX_NIVEL_ACESSO];
+
+    while(!feof(file)) {
+
+        tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
+        if (!d) return false;
+
+        // Consome os dados irrelevantes
+        fread(bufferCredenciais, qtdBytesCredenciais, 1, file);
+        fread(bufferNivelAcesso, sizeof(char), TAM_MAX_NIVEL_ACESSO, file);
+
+        if (CPFsaoIguais(cpf, d)) {
+            DesalocaDadosPessoais(d);
+            return true;
+        }
+
+        DesalocaDadosPessoais(d);
+    }   
+
+    return false;
+}
+
 
 void SalvaSecretarioArquivoBinario (tSecretario* s, FILE* file) {
     SalvaDadosPessoaisArquivoBinario(s->dadosPessoais, file);

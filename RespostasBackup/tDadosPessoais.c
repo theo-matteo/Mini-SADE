@@ -82,6 +82,10 @@ tDadosPessoais* ObtemDadosPessoaisArquivoBinario (FILE* file) {
     return CriaDadosPessoais(nome, cpf, dtNasc, tel, genero);
 }
 
+bool CPFsaoIguais (char* cpf, tDadosPessoais* d) {
+    return (!strcmp(cpf, ObtemCPFDadosP(d)));
+}
+
 char* ObtemNomeDadosP(tDadosPessoais* d) {
     return d->nome;
 }
