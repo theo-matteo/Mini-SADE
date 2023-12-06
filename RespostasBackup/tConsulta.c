@@ -76,7 +76,7 @@ void RealizaConsulta (tUsuarioSistema* user, tDatabase* d, tFila* f) {
                 int qtdLesoes = ObtemQtdLesoesConsulta(consulta);
                 char* data = ObtemDataConsulta(consulta);
                 tBiopsia* biopsia = SolicitaBiopsia(lesoes, qtdLesoes, ObtemNomePaciente(paciente), ObtemCPFPaciente(paciente), nomeMedico, CRM, data);
-                
+                insereDocumentoFila(f, biopsia, imprimeNaTelaBiopsia, imprimeEmArquivoBiopsia, DesalocaBiopsia);
 
             default:
                 break;
@@ -168,6 +168,7 @@ void PrintTelaConsultaMedica() {
     printf("ESCOLHA UMA OPCAO:\n");
     printf("\t(1) CADASTRAR LESAO\n");
     printf("\t(2) GERAR RECEITA MEDICA\n");
+    printf("\t(3) SOLICITACAO DE BIOPSIA\n");
     printf("\t(4) ENCAMINHAMENTO\n");
     printf("\t(5) ENCERRAR CONSULTA\n");
 }

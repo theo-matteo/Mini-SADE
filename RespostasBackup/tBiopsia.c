@@ -33,7 +33,7 @@ tBiopsia* CriaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPacient
     biopsia->qtdLesoes = qtd;
     strcpy(biopsia->nomePaciente, nomePaciente);
     strcpy(biopsia->cpfPaciente, cpfPaciente);
-    strpcy(biopsia->nomeMedico, nomeMedico);
+    strcpy(biopsia->nomeMedico, nomeMedico);
     strcpy(biopsia->CRMmedico, CRM);
     strcpy(biopsia->data, data);
 
@@ -58,10 +58,15 @@ tBiopsia* SolicitaBiopsia (tLesao** lesoes, int qtdLesoes, char* nomePaciente, c
     if (qtdLesoesCirurgicas == 0) {
         printf("#################### CONSULTA MEDICA #######################\n");
         printf("NAO E POSSIVEL SOLICITAR BIOPSIA SEM LESAO CIRURGICA. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
-        char c; scanf("%c%*c");
+        char c; scanf("%c%*c", &c);
         printf("############################################################");
         return NULL;
     }
+
+    printf("#################### CONSULTA MEDICA #######################\n");
+    printf("SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+    char c; scanf("%c%*c", &c);
+    printf("############################################################\n");
 
     tBiopsia* biopsia = CriaBiopsia(lesoesCirurgicas, qtdLesoesCirurgicas, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
     return biopsia;
@@ -86,7 +91,38 @@ void imprimeNaTelaBiopsia(void *dado) {
 
 }
 
-void imprimeEmArquivoBiopsia(void *dado, char *path);
+void imprimeEmArquivoBiopsia(void *dado, char *path) {
+
+    tBiopsia* b = (tBiopsia*) dado;
+    char pathDoc [strlen(path) + strlen("/biopsia.txt") + 1];
+
+    // Concatenacao do caminho + nome arquivo
+    sprintf(pathDoc, "%s/%s", path, "biopsia.txt");
+
+    // Dados sao adicionados no fim do arquivo no modo 'a'
+    FILE* file = fopen(pathDoc, "a");
+
+    if (file == NULL) {
+        printf("Nao foi possivel abrir o arquivo de receita no diretorio: %s\n", pathDoc);
+        exit(EXIT_FAILURE);
+    }
+
+    fprintf(file, "PACIENTE: %s\n", b->nomePaciente);
+    fprintf(file, "CPF: %s\n", b->cpfPaciente);
+    fprintf(file, "SOLICITACAO DE BIOPSIA PARA AS LESOES:\n");
+
+    for (int i = 0; i < b->qtdLesoes; i++) {
+        tLesao* lesao = b->lesoes[i];
+        fprintf(file, "L%d - %s - %s - %dMM\n", i + 1, ObtemDiagnosticoLesao(lesao), ObtemRegiaoCorpoLesao(lesao), ObtemTamanhoLesao(lesao));
+    }
+
+    fprintf(file, "%s (%s)\n", b->nomeMedico, b->CRMmedico);
+    fprintf(file, "%s", b->data);
+    fprintf(file, "\n\n");
+
+
+    fclose(file);
+}
 
 
 void DesalocaBiopsia (void* dado) {
