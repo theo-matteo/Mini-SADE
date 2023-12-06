@@ -1,7 +1,6 @@
 #include "tLesao.h"
 
 struct tLesao {
-    char rotulo[TAM_MAX_ROTULO];
     char diagnostico[TAM_MAX_DIAGNOSTICO];
     char regiao_corpo [TAM_MAX_REGIAO_CORPO];
     int tamanho;
@@ -9,7 +8,7 @@ struct tLesao {
     int enviar_crioterapia;
 }; 
 
-tLesao* CadastraLesao () {
+tLesao* CriaLesao () {
 
     tLesao* lesao = (tLesao*) malloc(sizeof(tLesao));
     if (lesao == NULL) {
@@ -17,9 +16,17 @@ tLesao* CadastraLesao () {
         exit(EXIT_FAILURE);
     }
 
-    memset(lesao->rotulo, '\0', TAM_MAX_ROTULO);
     memset(lesao->diagnostico, '\0', TAM_MAX_DIAGNOSTICO);
     memset(lesao->regiao_corpo, '\0', TAM_MAX_REGIAO_CORPO);
+
+
+    return lesao;
+}
+
+
+tLesao* CadastraLesao () {
+
+    tLesao* lesao = CriaLesao();
 
     printf("#################### CONSULTA MEDICA #######################\n");
     printf("CADASTRO DE LESAO:\n");
@@ -45,6 +52,38 @@ tLesao* CadastraLesao () {
 
     return lesao;
 }
+
+tLesao* ClonaLesao (tLesao* l) {
+
+    tLesao* lesao = CriaLesao();
+
+    strcpy(lesao->diagnostico, l->diagnostico);
+    strcpy(lesao->regiao_corpo, l->regiao_corpo);
+    
+    lesao->tamanho = l->tamanho;
+    lesao->enviar_cirurgia = l->enviar_cirurgia;
+    lesao->enviar_crioterapia = l->enviar_crioterapia;
+
+    return lesao;
+}
+
+char* ObtemDiagnosticoLesao (tLesao* l) {
+    return l->diagnostico;
+}
+
+int ObtemTamanhoLesao (tLesao* l) {
+    return l->tamanho;
+}
+
+char* ObtemRegiaoCorpoLesao (tLesao* l) {
+    return l->regiao_corpo;
+}
+
+
+bool LesaoFoiEncaminhadaPraCirurgia (tLesao* l) {
+    return (l->enviar_cirurgia == 1);
+}
+
 
 void DesalocaLesao (tLesao* l) {
     if (l) free(l);

@@ -71,6 +71,13 @@ void RealizaConsulta (tUsuarioSistema* user, tDatabase* d, tFila* f) {
                 tReceita* receita = PreencheCriaReceitaMedica(ObtemNomePaciente(paciente), CRM, nomeMedico, consulta->data);
                 insereDocumentoFila(f, receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
 
+            case 3:
+                tLesao** lesoes = ObtemLesoesConsulta(consulta);
+                int qtdLesoes = ObtemQtdLesoesConsulta(consulta);
+                char* data = ObtemDataConsulta(consulta);
+                tBiopsia* biopsia = SolicitaBiopsia(lesoes, qtdLesoes, ObtemNomePaciente(paciente), ObtemCPFPaciente(paciente), nomeMedico, CRM, data);
+                
+
             default:
                 break;
         }
@@ -143,7 +150,7 @@ tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMe
     scanf("%[^\n]", instrucoes);
     scanf("%*c");
 
-    printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR");
+    printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);
     printf("############################################################\n");
 
@@ -164,6 +171,19 @@ void PrintTelaConsultaMedica() {
     printf("\t(4) ENCAMINHAMENTO\n");
     printf("\t(5) ENCERRAR CONSULTA\n");
 }
+
+int ObtemQtdLesoesConsulta (tConsulta* c) {
+    return c->qtdLesoes;
+}
+
+tLesao** ObtemLesoesConsulta(tConsulta* c) {
+    return c->lesoes;
+}
+
+char* ObtemDataConsulta (tConsulta* c) {
+    return c->data;
+}
+
 
 void DesalocaConsulta (tConsulta* c) {
 

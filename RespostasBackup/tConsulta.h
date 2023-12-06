@@ -10,6 +10,7 @@
 #include "tPaciente.h"
 #include "tLesao.h"
 #include "tReceita.h"
+#include "tBiopsia.h"
 
 #define TAM_MAX_TIPO_PELE 5
 
@@ -24,6 +25,12 @@ void AdicionaLesaoConsulta (tConsulta* c, tLesao* l);
 void PrintTelaConsultaMedica();
 
 tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data);
+
+int ObtemQtdLesoesConsulta (tConsulta* c);
+
+tLesao** ObtemLesoesConsulta(tConsulta* c);
+
+char* ObtemDataConsulta (tConsulta* c);
 
 void DesalocaConsulta (tConsulta* c);
 
