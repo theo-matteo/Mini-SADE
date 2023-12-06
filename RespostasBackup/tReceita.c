@@ -36,12 +36,8 @@ tReceita *criaReceita(char *nomePaciente, eTipoUso tipoUso, char *nomeMedicament
     strcpy(receita->nomeMedicamento, nomeMedicamento);
     strcpy(receita->tipoMedicamento, tipoMedicamento);
     strcpy(receita->instrucoes, instrucoes);
-
-    if (nomeMedico[0] != '\0') receita->nomeMedico[0] = '\0';
-    else strcpy(receita->nomeMedico, nomeMedico);
-
-    if (CRM[0] != '\0') receita->CRM[0] = '\0';
-    else strcpy(receita->CRM, CRM);
+    strcpy(receita->nomeMedico, nomeMedico);
+    strcpy(receita->CRM, CRM);
     
     
     strcpy(receita->dataStr, dataStr);
@@ -81,7 +77,7 @@ void imprimeEmArquivoReceita(void *dado, char *path) {
     sprintf(pathDoc, "%s/%s", path, NOME_ARQUIVO_RECEITA);
 
     // Dados sao adicionados no fim do arquivo no modo 'a'
-    FILE* file = fopen(pathDoc, "a");
+    FILE* file = fopen(pathDoc, "w");
 
     if (file == NULL) {
         printf("Nao foi possivel abrir o arquivo de receita no diretorio: %s\n", pathDoc);

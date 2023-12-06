@@ -11,6 +11,7 @@
 #include "tLesao.h"
 #include "tReceita.h"
 #include "tBiopsia.h"
+#include "tEncaminhamento.h"
 
 #define TAM_MAX_TIPO_PELE 5
 

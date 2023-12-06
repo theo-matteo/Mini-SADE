@@ -46,7 +46,15 @@ void RealizaConsulta (tUsuarioSistema* user, tDatabase* d, tFila* f) {
     printf("- DATA DE NASCIMENTO: %s\n", ObtemDtNascPaciente(paciente));
     printf("- - -\n");
 
+    // Le informacoes clinicas 
     tConsulta* consulta = LeInformacoesConsulta();  
+
+    // Obtem informacoes da consulta 
+    char* data = ObtemDataConsulta(consulta);
+    tLesao** lesoes = ObtemLesoesConsulta(consulta);
+    int qtdLesoes = ObtemQtdLesoesConsulta(consulta);
+    char* nomePaciente = ObtemNomePaciente(paciente);
+    char* cpfPaciente = ObtemCPFPaciente(paciente);
     
     if (ObtemTipoUsuarioSistema(user) == MED) {
         tMedico* m = (tMedico*) ObtemUsuarioSistema(user);
@@ -68,21 +76,25 @@ void RealizaConsulta (tUsuarioSistema* user, tDatabase* d, tFila* f) {
                 break;
 
             case 2:
-                tReceita* receita = PreencheCriaReceitaMedica(ObtemNomePaciente(paciente), CRM, nomeMedico, consulta->data);
+                tReceita* receita = PreencheCriaReceitaMedica(nomePaciente, CRM, nomeMedico, data);
                 insereDocumentoFila(f, receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
+                break;
 
             case 3:
-                tLesao** lesoes = ObtemLesoesConsulta(consulta);
-                int qtdLesoes = ObtemQtdLesoesConsulta(consulta);
-                char* data = ObtemDataConsulta(consulta);
-                tBiopsia* biopsia = SolicitaBiopsia(lesoes, qtdLesoes, ObtemNomePaciente(paciente), ObtemCPFPaciente(paciente), nomeMedico, CRM, data);
-                insereDocumentoFila(f, biopsia, imprimeNaTelaBiopsia, imprimeEmArquivoBiopsia, DesalocaBiopsia);
+                tBiopsia* biopsia = SolicitaBiopsia(lesoes, qtdLesoes, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
+                if (biopsia) insereDocumentoFila(f, biopsia, imprimeNaTelaBiopsia, imprimeEmArquivoBiopsia, DesalocaBiopsia);
+                break;
+                
+            case 4:
+                tEncaminhamento* encaminhamento = CriaEncaminhamento(ObtemNomePaciente(paciente), ObtemCPFPaciente(paciente), nomeMedico, CRM, data);
+                insereDocumentoFila(f, encaminhamento, ImprimeEncaminhamentoNaTela, ImprimeEncaminhamentoArquivo, DesalocaEncaminhamento);
+                break;
 
             default:
                 break;
         }
 
-        if (op > 2) break;
+        if (op == 5) break;
 
     }
 
