@@ -27,6 +27,8 @@ char* ObtemCPFPaciente (void* paciente);
 
 char* ObtemNomePaciente (void* p);
 
+char* ObtemDtNascPaciente (void *p);
+
 /// @brief Desaloca memoria de um paciente
 /// @param  paciente
 void DesalocaPaciente (void* p);

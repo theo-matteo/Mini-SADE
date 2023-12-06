@@ -16,6 +16,8 @@ typedef struct tSecretario tSecretario;
 tSecretario* CadastraSecretario ();
 
 
+tSecretario* CriaSecretario (tDadosPessoais* d, tCredenciais* c, char* nivelAcesso);
+
 /// @brief Salva informacoes de um secretario em um arquivo binario
 /// @param  secretario
 /// @param  arquivo

@@ -34,6 +34,10 @@ userType ObtemTipoUsuarioSistema(tUsuarioSistema* user) {
     return user->tipoUser;
 }
 
+void* ObtemUsuarioSistema (tUsuarioSistema* user) {
+    return user->userPtr;
+}
+
 void ImprimeMenuPrincipalUsuario (tUsuarioSistema* user) {
     user->telaImp();
 }

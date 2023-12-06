@@ -121,6 +121,7 @@ void imprimeEmArquivoListaBusca(void *dado, char *path) {
     }
 
     fprintf(file, "\n");  
+    fclose(file);
 }
 
 int ObtemQtdPacientesListaBusca (tListaBusca* l) {

@@ -26,6 +26,10 @@ tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file);
 
 char* ObtemCPFMedico (void* m);
 
+char* ObtemCRMMedico (void *m);
+
+char* ObtemNomeMedico (void *m);
+
 /// @brief Desaloca um medico assumindo que o ponteiro recebido por parametro eh do tipo tMedico
 /// @param  tMedico pointer
 void DesalocaMedico(void* m);

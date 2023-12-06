@@ -62,10 +62,6 @@ void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo) {
     // Obtem o arquivo de acordo com o pessoa que sera cadastrado
     FILE* file =  ObtemArquivoTipoPessoa (d, tipo);
 
-    // Coloca o ponteiro no final do arquivo binario
-    fseek(file, 0, SEEK_END);
-
-
     ObtemCPFPessoaFunc obtemCPFfunc = ObtemFuncaoObterCPFPessoa(tipo);
     SalvaPessoaArqvFunc salvaPessoaArqv = ObtemFuncaoSalvaPessoaArqv(tipo);
     DesalocaPessoaFunc desalocaPessoaFunc = ObtemFuncaoDesalocarPessoa(tipo);
@@ -76,13 +72,18 @@ void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo) {
     else pessoa = CadastraPaciente();
 
     /* Verifica se ha um mesmo cpf cadastrado */
-    if (VerificaMesmoCPFBD(tipo, file, obtemCPFfunc(pessoa))) {
+    void* pessoaTemp = ObtemPessoaArquivoBinario(tipo, file, obtemCPFfunc(pessoa));
+    if (pessoaTemp) {
         printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
-        desalocaPessoaFunc(pessoa);
+        desalocaPessoaFunc(pessoaTemp); // Desaloca pessoa temporaria
+        desalocaPessoaFunc(pessoa); // Desaloca pessoa recem cadastrada
         return;
     }
 
+    // Coloca o ponteiro no final do arquivo binario para salvar a pessoa 
+    fseek(file, 0, SEEK_END);
     salvaPessoaArqv(pessoa, file);
+
     desalocaPessoaFunc(pessoa);
     
     /* Aguarda o usuario digitar uma tecla para retornar ao menu principal */
@@ -112,42 +113,38 @@ DesalocaPessoaFunc ObtemFuncaoDesalocarPessoa (tipoPessoa tipo) {
     else return DesalocaPaciente;
 }
 
-
-bool VerificaMesmoCPFBD (tipoPessoa tipo, FILE* file, char* cpf) {
+void* ObtemPessoaArquivoBinario (tipoPessoa tipo, FILE* file, char* cpf) {
 
     rewind(file);
-    int qtdBytesCredenciais = ObtemQtdBytesCredenciais();
-    char bufferCredenciais[qtdBytesCredenciais];
 
-    while (!feof(file)) {
+    void* pessoa = NULL;
+    char bufferCRM[TAM_CRM];
+    char bufferNivelAcesso[TAM_MAX_NIVEL_ACESSO];
+
+    while(!feof(file)) {
 
         tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
-        if (!d) return false;
+        if (!d) break;
 
-        // Consome as credenciais se caso nao for do tipo paciente
-        if (tipo != PACIENTE) fread(bufferCredenciais, qtdBytesCredenciais, 1, file);
+        tCredenciais* c = NULL;
+        if (tipo != PACIENTE) c = ObtemCredenciaisArquivoBinario(file);
 
-        // Descarta informacoes irrelevantes no buffer
-        if (tipo == MEDICO) {
-            char bufferCRM[TAM_CRM];
-            fread(bufferCRM, sizeof(char), TAM_CRM, file);
-        }
-        else if (tipo == SECRETARIO) {
-            char bufferNivelAcesso[TAM_MAX_NIVEL_ACESSO];
-            fread(bufferNivelAcesso, sizeof(char), TAM_MAX_NIVEL_ACESSO, file);
-        }
+        if (tipo == MEDICO) fread(bufferCRM, sizeof(char), TAM_CRM, file);
+        else if (tipo == SECRETARIO) fread(bufferNivelAcesso, sizeof(char), TAM_MAX_NIVEL_ACESSO, file);
 
-        // Verifica se os CPF's se coincidem
         if (CPFsaoIguais(cpf, d)) {
-            DesalocaDadosPessoais(d);
-            return true;
+            if (tipo == MEDICO) return CriaMedico(d, c, bufferCRM);
+            else if (tipo == SECRETARIO) return CriaSecretario(d, c, bufferNivelAcesso);
+            else return CriaPaciente(d);
         }
-
-        DesalocaDadosPessoais(d);
+        else {
+            DesalocaDadosPessoais(d);
+            if (c) DesalocaCredenciais(c);
+        }
     }
 
-    return false;
-}   
+    return NULL;
+}
 
 
 bool EhPrimeiroAcessoSistema (tDatabase* database) {

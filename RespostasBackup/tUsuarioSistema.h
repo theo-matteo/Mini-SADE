@@ -41,6 +41,7 @@ userType ObtemTipoUsuarioSistema(tUsuarioSistema*);
 /// @param  Usuario
 void ImprimeMenuPrincipalUsuario (tUsuarioSistema*);
 
+void* ObtemUsuarioSistema (tUsuarioSistema*);
 
 bool UsuarioEscolheuOpcaoValida (tUsuarioSistema*, int);
 

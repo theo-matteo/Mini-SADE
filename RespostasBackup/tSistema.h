@@ -7,6 +7,7 @@
 #include "tMedico.h"
 #include "tSecretario.h"
 #include "tListaBusca.h"
+#include "tConsulta.h"
 
 #include "tUsuarioSistema.h"
 #include "tDatabase.h"

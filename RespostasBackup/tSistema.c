@@ -84,12 +84,17 @@ void IniciaSistema (tSistema* s) {
                 CadastraNovaPessoaBD(database, PACIENTE);
                 break;
             case 4:
+                RealizaConsulta(s->usuario, database, s->filaDocs);
                 break;
             case 5:
                 tListaBusca* lista = BuscaPacientes(ObtemArquivoPacientes(database));
                 if (lista) insereDocumentoFila(s->filaDocs, lista, ImprimeListaBusca, imprimeEmArquivoListaBusca, DesalocaListaBusca);
             case 6:
                 break;
+            case 7:
+                imprimeFila(s->filaDocs, s->caminhoImprDocs);
+                break;
+
             default:
                 break;
         }

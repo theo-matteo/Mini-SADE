@@ -39,6 +39,11 @@ char* ObtemNomePaciente (void* p) {
     return ObtemNomeDadosP(paciente->dadosPessoais);
 }
 
+char* ObtemDtNascPaciente (void *p) {
+    tPaciente* paciente = (tPaciente*) p;
+    return ObtemDtNascDadosP(paciente->dadosPessoais);
+}
+
 void DesalocaPaciente (void* p) {
     
     if (p == NULL) return;

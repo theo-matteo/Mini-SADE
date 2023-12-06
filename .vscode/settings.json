@@ -5,6 +5,9 @@
         "stdlib.h": "c",
         "tsistema.h": "c",
         "string.h": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "tlesao.h": "c",
+        "tdatabase.h": "c",
+        "tusuariosistema.h": "c"
     }
 }

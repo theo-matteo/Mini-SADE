@@ -43,6 +43,8 @@ tUsuarioSistema* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabas
 
 bool VerificaMesmoCPFBD (tipoPessoa tipo, FILE* file, char* cpf);
 
+void* ObtemPessoaArquivoBinario (tipoPessoa tipo, FILE* file, char* cpf);
+
 void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo);
 
 FILE* ObtemArquivoTipoPessoa (tDatabase* d, tipoPessoa tipo);

@@ -87,6 +87,16 @@ char* ObtemCPFMedico (void* m) {
     return ObtemCPFDadosP(medico->dadosPessoais);
 }
 
+char* ObtemCRMMedico (void *m) {
+    tMedico* medico = (tMedico*) m;
+    return medico->CRM;
+}
+
+char* ObtemNomeMedico (void *m) {
+    tMedico* medico = (tMedico*) m;
+    return ObtemNomeDadosP(medico->dadosPessoais);
+}
+
 void DesalocaMedico(void* m) {
 
     if (m == NULL) return;
