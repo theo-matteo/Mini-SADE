@@ -1,6 +1,7 @@
 #include "tLesao.h"
 
 struct tLesao {
+    char rotulo[TAM_MAX_ROTULO];
     char diagnostico[TAM_MAX_DIAGNOSTICO];
     char regiao_corpo [TAM_MAX_REGIAO_CORPO];
     int tamanho;
@@ -24,12 +25,14 @@ tLesao* CriaLesao () {
 }
 
 
-tLesao* CadastraLesao () {
+tLesao* CadastraLesao (int numRotulo) {
 
     tLesao* lesao = CriaLesao();
 
     printf("#################### CONSULTA MEDICA #######################\n");
     printf("CADASTRO DE LESAO:\n");
+
+    sprintf(lesao->rotulo, "L%d", numRotulo);
 
     printf("DIAGNOSTICO CLINICO: ");
     scanf("%s", lesao->diagnostico);
@@ -55,11 +58,13 @@ tLesao* CadastraLesao () {
 
 tLesao* ClonaLesao (tLesao* l) {
 
+    // Cria um clone
     tLesao* lesao = CriaLesao();
 
     strcpy(lesao->diagnostico, l->diagnostico);
     strcpy(lesao->regiao_corpo, l->regiao_corpo);
-    
+    strcpy(lesao->rotulo, l->rotulo);    
+
     lesao->tamanho = l->tamanho;
     lesao->enviar_cirurgia = l->enviar_cirurgia;
     lesao->enviar_crioterapia = l->enviar_crioterapia;
@@ -82,6 +87,10 @@ char* ObtemRegiaoCorpoLesao (tLesao* l) {
 
 bool LesaoFoiEncaminhadaPraCirurgia (tLesao* l) {
     return (l->enviar_cirurgia == 1);
+}
+
+char* ObtemRotuloLesao (tLesao* l) {
+    return l->rotulo;
 }
 
 

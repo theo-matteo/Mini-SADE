@@ -8,10 +8,11 @@
 
 #define TAM_MAX_DIAGNOSTICO 50
 #define TAM_MAX_REGIAO_CORPO 25
+#define TAM_MAX_ROTULO 5
 
 typedef struct tLesao tLesao;
 
-tLesao* CadastraLesao ();
+tLesao* CadastraLesao (int numRotulo);
 
 bool LesaoFoiEncaminhadaPraCirurgia (tLesao* l);
 
@@ -22,6 +23,8 @@ char* ObtemDiagnosticoLesao (tLesao* l);
 int ObtemTamanhoLesao (tLesao* l);
 
 char* ObtemRegiaoCorpoLesao (tLesao* l);
+
+char* ObtemRotuloLesao (tLesao* l);
 
 void DesalocaLesao (tLesao*);
 

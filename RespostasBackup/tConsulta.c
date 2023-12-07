@@ -21,16 +21,22 @@ struct tConsulta {
 
 void RealizaConsulta (tUsuarioSistema* user, tDatabase* d, tFila* f) {
 
-    char cpf[TAM_MAX_CPF];
+    // Indica o rotulo da lesao cadastrada, eh incrementada toda vez que cadastra uma nova lesao
+    int numRotulo = 0;
+
+    // CPF do paciente
+    char cpfPaciente[TAM_MAX_CPF];
+
+    // Informacoes do medico inicalizadas com string vazia
     char CRM[] = "\0";
     char nomeMedico[] = "\0";
 
     printf("#################### CONSULTA MEDICA #######################\n");
     printf("CPF DO PACIENTE: ");
-    scanf("%s", cpf);
+    scanf("%s", cpfPaciente);
     printf("############################################################\n");
 
-    tPaciente* paciente = ObtemPessoaArquivoBinario(PACIENTE, ObtemArquivoPacientes(d), cpf);
+    tPaciente* paciente = ObtemPessoaArquivoBinario(PACIENTE, ObtemArquivoPacientes(d), cpfPaciente);
     if (!paciente) {
         printf("PACIENTE SEM CADASTRO\n\n");
         printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
@@ -51,11 +57,9 @@ void RealizaConsulta (tUsuarioSistema* user, tDatabase* d, tFila* f) {
 
     // Obtem informacoes da consulta 
     char* data = ObtemDataConsulta(consulta);
-    tLesao** lesoes = ObtemLesoesConsulta(consulta);
-    int qtdLesoes = ObtemQtdLesoesConsulta(consulta);
     char* nomePaciente = ObtemNomePaciente(paciente);
-    char* cpfPaciente = ObtemCPFPaciente(paciente);
     
+    // Verifica se o usuario do sistema eh umm medico e obtem informacoes do medico
     if (ObtemTipoUsuarioSistema(user) == MED) {
         tMedico* m = (tMedico*) ObtemUsuarioSistema(user);
         strcpy(CRM, ObtemCRMMedico(m));
@@ -71,7 +75,7 @@ void RealizaConsulta (tUsuarioSistema* user, tDatabase* d, tFila* f) {
         switch (op) {
 
             case 1:
-                tLesao* lesao = CadastraLesao();
+                tLesao* lesao = CadastraLesao(++numRotulo);
                 AdicionaLesaoConsulta(consulta, lesao);
                 break;
 
@@ -81,6 +85,8 @@ void RealizaConsulta (tUsuarioSistema* user, tDatabase* d, tFila* f) {
                 break;
 
             case 3:
+                tLesao** lesoes = ObtemLesoesConsulta(consulta);
+                int qtdLesoes = ObtemQtdLesoesConsulta(consulta);
                 tBiopsia* biopsia = SolicitaBiopsia(lesoes, qtdLesoes, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
                 if (biopsia) insereDocumentoFila(f, biopsia, imprimeNaTelaBiopsia, imprimeEmArquivoBiopsia, DesalocaBiopsia);
                 break;
@@ -95,7 +101,6 @@ void RealizaConsulta (tUsuarioSistema* user, tDatabase* d, tFila* f) {
         }
 
         if (op == 5) break;
-
     }
 
     DesalocaConsulta(consulta);
@@ -171,7 +176,7 @@ tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMe
 
 void AdicionaLesaoConsulta (tConsulta* c, tLesao* l) {
     c->qtdLesoes++;
-    c->lesoes = realloc(c->lesoes, sizeof(tLesao*) * c->qtdLesoes);
+    c->lesoes = (tLesao**) realloc(c->lesoes, sizeof(tLesao*) * c->qtdLesoes);
     c->lesoes[c->qtdLesoes - 1] = l;
 }
 
