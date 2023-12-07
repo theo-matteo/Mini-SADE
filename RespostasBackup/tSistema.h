@@ -41,9 +41,22 @@ void IniciaSistema (tSistema* s);
 /// @return usuario
 tUsuarioSistema* ObtemUsuario (tSistema* s);
 
+
+/// @brief 
+/// @param s 
+/// @return 
 tDatabase* ObtemBDSistema (tSistema* s);
 
 
+void ExecutaFiladeImpressao (tSistema* s);
+
+tFila* ObtemFilaImprSistema (tSistema* s);
+
+char* ObtemPathImprDocs (tSistema* s);
+
+
+/// @brief 
+/// @param  
 void DesalocaSistema (tSistema*);
 
 

@@ -92,7 +92,7 @@ void IniciaSistema (tSistema* s) {
             case 6:
                 break;
             case 7:
-                imprimeFila(s->filaDocs, s->caminhoImprDocs);
+                ExecutaFiladeImpressao(s);
                 break;
 
             default:
@@ -126,12 +126,46 @@ bool AcessaSistemaUsuario (tSistema* s) {
     return true;
 }
 
+void ExecutaFiladeImpressao (tSistema* s) {
+
+    int op = -1;
+
+    printf("################### FILA DE IMPRESSAO MEDICA #####################\n");
+    printf("ESCOLHA UMA OPCAO:\n");
+    printf("\t(1) EXECUTAR FILA DE IMPRESSAO\n");
+    printf("\t(2) RETORNAR AO MENU ANTERIOR\n");
+    scanf("%d%*c", &op);
+
+    if (op == 2) {
+        printf("############################################################\n");
+        return;
+    }
+
+    printf("################ FILA DE IMPRESSAO MEDICA ##################\n");
+    printf("EXECUTANDO FILA DE IMPRESSAO:\n");
+    imprimeFila(ObtemFilaImprSistema(s), ObtemPathImprDocs(s));
+
+    printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
+    char c; scanf("%c%*c", &c);
+    printf("############################################################\n");
+
+}
+
+
 tUsuarioSistema* ObtemUsuario (tSistema* s) {
     return s->usuario;
 }
 
 tDatabase* ObtemBDSistema (tSistema* s) {
     return s->database;
+}
+
+tFila* ObtemFilaImprSistema (tSistema* s) {
+    return s->filaDocs;
+}
+
+char* ObtemPathImprDocs (tSistema* s) {
+    return s->caminhoImprDocs;
 }
 
 void DesalocaSistema (tSistema* s) {
