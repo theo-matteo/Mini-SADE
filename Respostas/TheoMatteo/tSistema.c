@@ -47,7 +47,7 @@ tSistema* CriaSistema (char* path) {
     printf("################################################\n");
 
     // Realiza concatenacao da string
-    char dirDB[TAM_MAX_DIRETORIO];
+    char dirDB[TAM_MAX_DIRETORIO * 2];
     sprintf(dirDB, "%s/%s", path, pathDB);
 
     // Cria banco de dados
