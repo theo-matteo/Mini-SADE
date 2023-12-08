@@ -1,10 +1,15 @@
 #include "tLesao.h"
-#define TAM_MAX_CPF 20
+#define TAM_MAX_CPF 15
+#define TAM_MAX_DATA 11
+#define TAM_MAX_CRM 12
 
 struct tLesao {
 
-    // Identificacao do Paciente
+    // Informacoes obtidas durante o cadastro da lesao
     char cpfPaciente[TAM_MAX_CPF];
+    char cpfMedico[TAM_MAX_CPF];
+    char CRMmedico[TAM_MAX_CRM];
+    char data[TAM_MAX_DATA];
 
     // Informacoes da Lesao
     char rotulo[TAM_MAX_ROTULO];
@@ -27,13 +32,13 @@ tLesao* CriaLesao () {
     memset(lesao->regiao_corpo, '\0', TAM_MAX_REGIAO_CORPO);
     memset(lesao->rotulo, '\0', TAM_MAX_ROTULO);
     memset(lesao->cpfPaciente, '\0', TAM_MAX_CPF);
-
+    memset(lesao->cpfMedico, '\0', TAM_MAX_CPF);
+    memset(lesao->CRMmedico, '\0', TAM_MAX_CRM);
 
     return lesao;
 }
 
-
-tLesao* CadastraLesao (int numRotulo, char* cpfPaciente) {
+tLesao* CadastraLesao (int numRotulo, char* cpfPaciente, char* cpfMedico, char* CRM, char* data) {
 
     tLesao* lesao = CriaLesao();
 
@@ -42,6 +47,9 @@ tLesao* CadastraLesao (int numRotulo, char* cpfPaciente) {
 
     sprintf(lesao->rotulo, "L%d", numRotulo);
     strcpy(lesao->cpfPaciente, cpfPaciente);
+    strcpy(lesao->cpfMedico, cpfMedico);
+    strcpy(lesao->CRMmedico, CRM);
+    strcpy(lesao->data, data);
 
     printf("DIAGNOSTICO CLINICO: ");
     scanf("%s", lesao->diagnostico);
@@ -70,11 +78,16 @@ tLesao* ClonaLesao (tLesao* l) {
     // Cria um clone
     tLesao* lesao = CriaLesao();
 
+    // Copia os dados da lesao original para o clone
+    strcpy(lesao->cpfPaciente, l->cpfPaciente);  
+    strcpy(lesao->cpfMedico, l->cpfMedico);
+    strcpy(lesao->CRMmedico, l->CRMmedico);
+    strcpy(lesao->data, l->data);
+
     strcpy(lesao->diagnostico, l->diagnostico);
     strcpy(lesao->regiao_corpo, l->regiao_corpo);
     strcpy(lesao->rotulo, l->rotulo);  
-    strcpy(lesao->cpfPaciente, l->cpfPaciente);  
-
+    
     lesao->tamanho = l->tamanho;
     lesao->enviar_cirurgia = l->enviar_cirurgia;
     lesao->enviar_crioterapia = l->enviar_crioterapia;
@@ -111,7 +124,13 @@ void SalvaLesaoArquivoBinario (tLesao* l, FILE* file) {
     
     if (!l) return;
 
+    // Salva informacoes (ancora) da lesao no arquivo
     fwrite(l->cpfPaciente, sizeof(char), TAM_MAX_CPF, file);
+    fwrite(l->cpfMedico, sizeof(char), TAM_MAX_CPF, file);
+    fwrite(l->CRMmedico, sizeof(char), TAM_MAX_CRM, file);
+    fwrite(l->data, sizeof(char), TAM_MAX_DATA, file);
+    
+    // Salva informacoes da lesao no arquivo
     fwrite(l->rotulo, sizeof(char), TAM_MAX_ROTULO, file);
     fwrite(l->diagnostico, sizeof(char), TAM_MAX_DIAGNOSTICO, file);
     fwrite(l->regiao_corpo, sizeof(char), TAM_MAX_REGIAO_CORPO, file);
@@ -124,10 +143,15 @@ void SalvaLesaoArquivoBinario (tLesao* l, FILE* file) {
 tLesao* ObtemLesaoArquivoBinario (FILE* file) {
     
     char cpfPaciente[TAM_MAX_CPF], rotulo[TAM_MAX_ROTULO], diagnostico[TAM_MAX_DIAGNOSTICO];
+    char cpfMedico[TAM_MAX_CPF], CRM[TAM_MAX_CRM], data[TAM_MAX_DATA];
+
     char regiao_corpo [TAM_MAX_REGIAO_CORPO];
     int tamanho, enviar_cirurgia, enviar_crioterapia;
 
     if (fread(cpfPaciente, sizeof(char), TAM_MAX_CPF, file) != TAM_MAX_CPF) return NULL;
+    if (fread(cpfMedico, sizeof(char), TAM_MAX_CPF, file) != TAM_MAX_CPF) return NULL;
+    if (fread(CRM, sizeof(char), TAM_MAX_CRM, file) != TAM_MAX_CRM) return NULL;
+    if (fread(data, sizeof(char), TAM_MAX_DATA, file) != TAM_MAX_DATA) return NULL;
     if (fread(rotulo, sizeof(char), TAM_MAX_ROTULO, file) != TAM_MAX_ROTULO) return NULL;
     if (fread(diagnostico, sizeof(char), TAM_MAX_DIAGNOSTICO, file) != TAM_MAX_DIAGNOSTICO) return NULL;
     if (fread(regiao_corpo, sizeof(char), TAM_MAX_REGIAO_CORPO, file) != TAM_MAX_REGIAO_CORPO) return NULL;
@@ -141,6 +165,9 @@ tLesao* ObtemLesaoArquivoBinario (FILE* file) {
     strcpy(lesao->regiao_corpo, regiao_corpo);
     strcpy(lesao->rotulo, rotulo);  
     strcpy(lesao->cpfPaciente, cpfPaciente); 
+    strcpy(lesao->cpfMedico, cpfMedico);
+    strcpy(lesao->CRMmedico, CRM);
+    strcpy(lesao->data, data);
 
     lesao->tamanho = tamanho;
     lesao->enviar_cirurgia = enviar_cirurgia;
