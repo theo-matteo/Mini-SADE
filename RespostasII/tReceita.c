@@ -77,7 +77,7 @@ void imprimeEmArquivoReceita(void *dado, char *path) {
     sprintf(pathDoc, "%s/%s", path, NOME_ARQUIVO_RECEITA);
 
     // Dados sao adicionados no fim do arquivo no modo 'a'
-    FILE* file = fopen(pathDoc, "w");
+    FILE* file = fopen(pathDoc, "a");
 
     if (file == NULL) {
         printf("Nao foi possivel abrir o arquivo de receita no diretorio: %s\n", pathDoc);
