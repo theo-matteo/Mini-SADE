@@ -52,7 +52,8 @@ tLesao* CadastraLesao (int numRotulo, char* cpfPaciente, char* cpfMedico, char* 
     strcpy(lesao->data, data);
 
     printf("DIAGNOSTICO CLINICO: ");
-    scanf("%s", lesao->diagnostico);
+    scanf("%[^\n]", lesao->diagnostico);
+    scanf("%*c");
 
     printf("REGIAO DO CORPO: ");
     scanf("%s", lesao->regiao_corpo);
