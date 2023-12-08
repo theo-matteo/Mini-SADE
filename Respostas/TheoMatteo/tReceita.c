@@ -38,8 +38,9 @@ tReceita *criaReceita(char *nomePaciente, eTipoUso tipoUso, char *nomeMedicament
     strcpy(receita->instrucoes, instrucoes);
     strcpy(receita->nomeMedico, nomeMedico);
     strcpy(receita->CRM, CRM);
+    
+    
     strcpy(receita->dataStr, dataStr);
-
     return receita;
 }
 
