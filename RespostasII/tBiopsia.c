@@ -1,8 +1,8 @@
 #include "tBiopsia.h"
 #define TAM_MAX_NOME 100
-#define TAM_MAX_CPF 20
-#define TAM_MAX_CRM 20
-#define TAM_MAX_DATA 20
+#define TAM_MAX_CPF 15
+#define TAM_MAX_CRM 12
+#define TAM_MAX_DATA 11
 
 struct tBiopsia {
     char nomePaciente[TAM_MAX_NOME];
