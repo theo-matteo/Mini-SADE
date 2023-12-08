@@ -42,8 +42,7 @@ tSistema* CriaSistema (char* path) {
     char pathDB[TAM_MAX_DIRETORIO];
     printf("################################################\n");
     printf("DIGITE O CAMINHO DO BANCO DE DADOS: ");
-    scanf("%s", pathDB);
-    scanf("%*c"); // Consome o '\n'
+    scanf("%s", pathDB); scanf("%*c");
     printf("################################################\n");
     
     // Cria banco de dados
@@ -92,11 +91,12 @@ void IniciaSistema (tSistema* s) {
                 break;
             case 4:
                 tConsulta* consulta = RealizaConsulta(s->user, database, s->filaDocs);
-                if (consulta) SalvaConsultaSistema(s, consulta); // Salva consulta realizado na estrutura tSistema
+                if (consulta) SalvaConsultaSistema(s, consulta); // Salva consulta na estrutura tSistema
                 break;
             case 5:
                 tListaBusca* lista = BuscaPacientes(ObtemArquivoPacientes(database));
                 if (lista) insereDocumentoFila(s->filaDocs, lista, ImprimeListaBusca, imprimeEmArquivoListaBusca, DesalocaListaBusca);
+                break;
             case 6:
                 ExecutaRelatorio(s);
                 break;
@@ -169,10 +169,16 @@ void ExecutaRelatorio (tSistema* s) {
     printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
     scanf("%d%*c", &op);
 
-    if (op == 1) insereDocumentoFila(s->filaDocs, relatorio, ImprimeRelatorioTela, ImprimeRelatorioArquivo, DesalocaRelatorio);
+    if (op == 1) {
+        insereDocumentoFila(s->filaDocs, relatorio, ImprimeRelatorioTela, ImprimeRelatorioArquivo, DesalocaRelatorio);
+        printf("RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
+        char c; scanf("%c%*c", &c);
+    }
+        
     else DesalocaRelatorio(relatorio);
-
     printf("############################################################\n");
+    
 }
 
 void SalvaConsultaSistema(tSistema* s, tConsulta* c) {
