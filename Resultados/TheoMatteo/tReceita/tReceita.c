@@ -38,9 +38,8 @@ tReceita *criaReceita(char *nomePaciente, eTipoUso tipoUso, char *nomeMedicament
     strcpy(receita->instrucoes, instrucoes);
     strcpy(receita->nomeMedico, nomeMedico);
     strcpy(receita->CRM, CRM);
-    
-    
     strcpy(receita->dataStr, dataStr);
+
     return receita;
 }
 
@@ -97,7 +96,6 @@ void imprimeEmArquivoReceita(void *dado, char *path) {
     fprintf(file, "%d %s\n\n", r->qtd, r->tipoMedicamento);
     fprintf(file, "%s\n\n", r->instrucoes);
     fprintf(file, "%s (%s)\n", r->nomeMedico, r->CRM);
-
 
      // Formatacao da data
     int dia, mes, ano;

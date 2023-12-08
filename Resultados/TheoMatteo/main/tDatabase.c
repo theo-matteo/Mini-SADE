@@ -101,7 +101,6 @@ void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo) {
         return;
     }
 
-    
     salvaPessoaArqv(pessoa, file);
     desalocaPessoaFunc(pessoa);
     

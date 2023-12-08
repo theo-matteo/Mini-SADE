@@ -306,20 +306,20 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 1:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/1/result_valgrind.txt.
- - Valgrind: Incorreto! allocs: 73, frees: 73, errors: 30 | Desconto do valgrind 40.00%
+ - Valgrind: Incorreto! allocs: 73, frees: 73, errors: 22 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
- - Resultado para o receita.txt: Incorreto!
+ - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 2:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/2/result_valgrind.txt.
- - Valgrind: Incorreto! allocs: 117, frees: 117, errors: 30 | Desconto do valgrind 40.00%
+ - Valgrind: Incorreto! allocs: 117, frees: 117, errors: 22 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
- - Resultado para o receita.txt: Incorreto!
+ - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 3:
@@ -342,16 +342,16 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 5:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/5/result_valgrind.txt.
- - Valgrind: Incorreto! allocs: 108, frees: 108, errors: 30 | Desconto do valgrind 40.00%
+ - Valgrind: Incorreto! allocs: 108, frees: 108, errors: 22 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
- - Resultado para o receita.txt: Incorreto!
+ - Resultado para o receita.txt: Ok! Peso: 1.0
  - Resultado para o relatorio_geral.txt: Ok! Peso: 4.0
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 6:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/6/result_valgrind.txt.
- - Valgrind: Incorreto! allocs: 125, frees: 125, errors: 58 | Desconto do valgrind 40.00%
+ - Valgrind: Incorreto! allocs: 125, frees: 125, errors: 50 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -378,8 +378,8 @@ Nome 0: TheoMatteo
  - Pasta tDocumento (peso 1.0): 30 resultados corretos de 36 / Nota 1.00
  - Pasta tReceita (peso 0.5): 30 resultados corretos de 36 / Nota .50
  - Pasta completo (peso 0.0): 30 resultados corretos de 36 / Nota 0
- - Pasta main (peso 7.5): 24 resultados corretos de 36 / Nota 4.05
- - Nota Final TheoMatteo: 6.55
+ - Pasta main (peso 7.5): 27 resultados corretos de 36 / Nota 4.27
+ - Nota Final TheoMatteo: 6.77
 
 ----------------------------------------------------------------------------
 

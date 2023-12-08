@@ -30,9 +30,13 @@ tConsulta* RealizaConsulta (tUsuario* user, tDatabase* d, tFila* f) {
     char cpfPaciente[TAM_MAX_CPF];
 
     // Informacoes do medico inicalizadas com string vazias
-    char CRM[TAM_CRM] = {'\0'};
-    char nomeMedico[TAM_MAX_NOME] = {'\0'};
-    char cpfMedico[TAM_MAX_CPF] = {'\0'};
+    char CRM[TAM_CRM];
+    char nomeMedico[TAM_MAX_NOME];
+    char cpfMedico[TAM_MAX_CPF];
+
+    memset(CRM, '\0', TAM_CRM);
+    memset(nomeMedico, '\0', TAM_MAX_NOME);
+    memset(cpfMedico, '\0', TAM_MAX_CPF);
 
 
     printf("#################### CONSULTA MEDICA #######################\n");
@@ -195,7 +199,8 @@ tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMe
     char c; scanf("%c%*c", &c);
     printf("############################################################\n");
 
-    return criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, nomeMedico, CRM, data);
+    if (nomeMedico[0] == '\0') return criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, "\0", "\0", data);
+    else criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, nomeMedico, CRM, data);
 }
 
 void AdicionaLesaoConsulta (tConsulta* c, tLesao* l) {

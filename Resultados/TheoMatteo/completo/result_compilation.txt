@@ -1,4 +1,8 @@
+tConsulta.c: In function ‘PreencheCriaReceitaMedica’:
+tConsulta.c:204:1: warning: control reaches end of non-void function [-Wreturn-type]
+  204 | }
+      | ^
 tDatabase.c: In function ‘ObtemPessoaArquivoBinario’:
-tDatabase.c:139:11: warning: unused variable ‘pessoa’ [-Wunused-variable]
-  139 |     void* pessoa = NULL;
+tDatabase.c:138:11: warning: unused variable ‘pessoa’ [-Wunused-variable]
+  138 |     void* pessoa = NULL;
       |           ^~~~~~
