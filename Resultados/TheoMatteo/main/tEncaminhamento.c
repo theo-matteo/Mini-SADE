@@ -60,7 +60,11 @@ void ImprimeEncaminhamentoNaTela (void* dado) {
     printf("MOTIVO: %s\n\n", e->motivo);
 
     printf("%s (%s)\n", e->nomeMedico, e->CRMmedico);
-    printf("%s", e->data);
+
+    // Formatacao da data
+    int dia, mes, ano;
+    sscanf(e->data, "%d/%d/%d", &dia, &mes, &ano);
+    printf("%d/%d/%d\n", dia, mes, ano);
     printf("\n\n");
 
 }
@@ -87,7 +91,12 @@ void ImprimeEncaminhamentoArquivo (void* dado, char* path) {
     fprintf(file, "MOTIVO: %s\n\n", e->motivo);
 
     fprintf(file, "%s (%s)\n", e->nomeMedico, e->CRMmedico);
-    fprintf(file, "%s", e->data);
+
+
+    // Formatacao da data
+    int dia, mes, ano;
+    sscanf(e->data, "%d/%d/%d", &dia, &mes, &ano);
+    fprintf(file, "%d/%d/%d\n", dia, mes, ano);
     fprintf(file, "\n\n");
 
     fclose(file);

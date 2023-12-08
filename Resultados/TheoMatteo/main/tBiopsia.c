@@ -87,7 +87,11 @@ void imprimeNaTelaBiopsia(void *dado) {
 
     printf("\n\n");
     printf("%s (%s)\n", b->nomeMedico, b->CRMmedico);
-    printf("%s", b->data);
+
+    // Formatacao da data
+    int dia, mes, ano;
+    sscanf(b->data, "%d/%d/%d", &dia, &mes, &ano);
+    printf("%d/%d/%d\n", dia, mes, ano);
     printf("\n\n");
 
 }
@@ -119,7 +123,11 @@ void imprimeEmArquivoBiopsia(void *dado, char *path) {
 
     fprintf(file, "\n");
     fprintf(file, "%s (%s)\n", b->nomeMedico, b->CRMmedico);
-    fprintf(file, "%s", b->data);
+
+    // Formatacao da data
+    int dia, mes, ano;
+    sscanf(b->data, "%d/%d/%d", &dia, &mes, &ano);
+    fprintf(file, "%d/%d/%d\n", dia, mes, ano);
     fprintf(file, "\n\n");
 
 

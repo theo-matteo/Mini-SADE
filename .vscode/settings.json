@@ -9,6 +9,9 @@
         "tlesao.h": "c",
         "tdatabase.h": "c",
         "tusuariosistema.h": "c",
-        "tsecretario.h": "c"
+        "tsecretario.h": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c"
     }
 }

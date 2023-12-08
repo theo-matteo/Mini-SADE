@@ -1,11 +1,4 @@
 tDatabase.c: In function ‘ObtemPessoaArquivoBinario’:
-tDatabase.c:141:11: warning: unused variable ‘pessoa’ [-Wunused-variable]
-  141 |     void* pessoa = NULL;
+tDatabase.c:139:11: warning: unused variable ‘pessoa’ [-Wunused-variable]
+  139 |     void* pessoa = NULL;
       |           ^~~~~~
-tSistema.c: In function ‘CriaSistema’:
-tSistema.c:51:26: warning: ‘sprintf’ may write a terminating nul past the end of the destination [-Wformat-overflow=]
-   51 |     sprintf(dirDB, "%s/%s", path, pathDB);
-      |                          ^
-tSistema.c:51:5: note: ‘sprintf’ output 2 or more bytes (assuming 251) into a destination of size 250
-   51 |     sprintf(dirDB, "%s/%s", path, pathDB);
-      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

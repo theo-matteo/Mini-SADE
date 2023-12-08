@@ -101,10 +101,8 @@ void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo) {
         return;
     }
 
-    // Coloca o ponteiro no final do arquivo binario para salvar a pessoa 
-    fseek(file, 0, SEEK_END);
+    
     salvaPessoaArqv(pessoa, file);
-
     desalocaPessoaFunc(pessoa);
     
     /* Aguarda o usuario digitar uma tecla para retornar ao menu principal */
