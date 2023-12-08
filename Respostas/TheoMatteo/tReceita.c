@@ -63,7 +63,12 @@ void imprimeNaTelaReceita(void *dado) {
     printf("%d %s\n\n", r->qtd, r->tipoMedicamento);
     printf("%s\n\n", r->instrucoes);
     printf("%s (%s)\n", r->nomeMedico, r->CRM);
-    printf("%s", r->dataStr);
+
+
+    // Formatacao da data
+    int dia, mes, ano;
+    sscanf(r->dataStr, "%d/%d/%d", &dia, &mes, &ano);
+    printf("%d/%d/%d", dia, mes, ano);
     printf("\n\n");
 
 }
@@ -92,7 +97,12 @@ void imprimeEmArquivoReceita(void *dado, char *path) {
     fprintf(file, "%d %s\n\n", r->qtd, r->tipoMedicamento);
     fprintf(file, "%s\n\n", r->instrucoes);
     fprintf(file, "%s (%s)\n", r->nomeMedico, r->CRM);
-    fprintf(file, "%s", r->dataStr);
+
+
+     // Formatacao da data
+    int dia, mes, ano;
+    sscanf(r->dataStr, "%d/%d/%d", &dia, &mes, &ano);
+    fprintf(file, "%d/%d/%d", dia, mes, ano);
     fprintf(file, "\n\n");
     
 
