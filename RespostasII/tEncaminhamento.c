@@ -1,10 +1,11 @@
 #include "tEncaminhamento.h"
+
 #define TAM_MAX_NOME 100
-#define TAM_MAX_CPF 20
+#define TAM_MAX_CPF 15
 #define TAM_MAX_ESPECIALIDADE 50
 #define TAM_MAX_MOTIVO 300
-#define TAM_MAX_CRM 20
-#define TAM_MAX_DATA 20
+#define TAM_MAX_CRM 12
+#define TAM_MAX_DATA 11
 
 struct tEncaminhamento {
     char nomePaciente[TAM_MAX_NOME];
