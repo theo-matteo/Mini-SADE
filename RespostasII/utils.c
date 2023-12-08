@@ -1,7 +1,4 @@
 #include "utils.h"
-#define TAM_MAX_DIRETORIO 250
-
-
 
 void TelaImpressaoSecrADMIN() {
     printf("####################### MENU PRINCIPAL #########################\n");
