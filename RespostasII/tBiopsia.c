@@ -77,14 +77,15 @@ void imprimeNaTelaBiopsia(void *dado) {
     tBiopsia* b = (tBiopsia*) dado;
 
     printf("PACIENTE: %s\n", b->nomePaciente);
-    printf("CPF: %s\n", b->cpfPaciente);
-    printf("SOLICITACAO DE BIOPSIA PARA AS LESOES:\n");
+    printf("CPF: %s\n\n", b->cpfPaciente);
+    printf("SOLICITACAO DE BIOPSIA PARA AS LESOES:\n\n");
 
     for (int i = 0; i < b->qtdLesoes; i++) {
         tLesao* lesao = b->lesoes[i];
         printf("%s - %s - %s - %dMM\n", ObtemRotuloLesao(lesao), ObtemDiagnosticoLesao(lesao), ObtemRegiaoCorpoLesao(lesao), ObtemTamanhoLesao(lesao));
     }
 
+    printf("\n\n");
     printf("%s (%s)\n", b->nomeMedico, b->CRMmedico);
     printf("%s", b->data);
     printf("\n\n");
@@ -108,7 +109,7 @@ void imprimeEmArquivoBiopsia(void *dado, char *path) {
     }
 
     fprintf(file, "PACIENTE: %s\n", b->nomePaciente);
-    fprintf(file, "CPF: %s\n", b->cpfPaciente);
+    fprintf(file, "CPF: %s\n\n", b->cpfPaciente);
     fprintf(file, "SOLICITACAO DE BIOPSIA PARA AS LESOES:\n");
 
     for (int i = 0; i < b->qtdLesoes; i++) {
@@ -116,6 +117,7 @@ void imprimeEmArquivoBiopsia(void *dado, char *path) {
         fprintf(file, "%s - %s - %s - %dMM\n", ObtemRotuloLesao(lesao), ObtemDiagnosticoLesao(lesao), ObtemRegiaoCorpoLesao(lesao), ObtemTamanhoLesao(lesao));
     }
 
+    fprintf(file, "\n");
     fprintf(file, "%s (%s)\n", b->nomeMedico, b->CRMmedico);
     fprintf(file, "%s", b->data);
     fprintf(file, "\n\n");
