@@ -1,6 +1,6 @@
 #include "tConsulta.h"
-#define TAM_MAX_CPF 20
-#define TAM_MAX_DATA 20
+#define TAM_MAX_CPF 15
+#define TAM_MAX_DATA 11
 #define TAM_MAX_NOME 100
 #define TAM_CRM 12
 #define TAM_INSTRUCOES 300
@@ -12,6 +12,7 @@ struct tConsulta {
 
     // Identificacao do Medico
     char cpfMedico[TAM_MAX_CPF];
+    char CRM[TAM_CRM];
 
     // Informacoes que serao obtidas na consulta
     char data[TAM_MAX_DATA];
@@ -33,14 +34,16 @@ tConsulta* RealizaConsulta (tUsuario* user, tDatabase* d, tFila* f) {
     // CPF do paciente
     char cpfPaciente[TAM_MAX_CPF];
 
-    // Informacoes do medico inicalizadas com string vazia
-    char CRM[] = "\0";
-    char nomeMedico[] = "\0";
-    char cpfMedico[] = "\0";
+    // Informacoes do medico inicalizadas com string vazias
+    char CRM[TAM_CRM] = {'\0'};
+    char nomeMedico[TAM_MAX_NOME] = {'\0'};
+    char cpfMedico[TAM_MAX_CPF] = {'\0'};
+
 
     printf("#################### CONSULTA MEDICA #######################\n");
     printf("CPF DO PACIENTE: ");
     scanf("%s", cpfPaciente);
+    scanf("%*c");
     printf("############################################################\n");
 
     tPaciente* paciente = ObtemPessoaArquivoBinario(PACIENTE, ObtemArquivoPacientes(d), cpfPaciente);
@@ -68,7 +71,7 @@ tConsulta* RealizaConsulta (tUsuario* user, tDatabase* d, tFila* f) {
     }
 
     // Le informacoes clinicas 
-    tConsulta* consulta = LeInformacoesConsulta(cpfPaciente, cpfMedico);  
+    tConsulta* consulta = LeInformacoesConsulta(cpfPaciente, cpfMedico, CRM);  
 
     // Obtem informacoes da consulta 
     char* data = ObtemDataConsulta(consulta);
@@ -84,7 +87,7 @@ tConsulta* RealizaConsulta (tUsuario* user, tDatabase* d, tFila* f) {
         switch (op) {
 
             case 1:
-                tLesao* lesao = CadastraLesao(++numRotulo, cpfPaciente);
+                tLesao* lesao = CadastraLesao(++numRotulo, cpfPaciente, cpfMedico, CRM, data);
                 AdicionaLesaoConsulta(consulta, lesao);
                 SalvaLesaoArquivoBinario(lesao, ObtemArquivoLesoes(d));
                 break;
@@ -117,7 +120,7 @@ tConsulta* RealizaConsulta (tUsuario* user, tDatabase* d, tFila* f) {
     return consulta;
 }
 
-tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico) {
+tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) {
 
     tConsulta* consulta = (tConsulta*) malloc(sizeof(tConsulta));
     if (!consulta) {
@@ -132,6 +135,7 @@ tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico) {
     memset(consulta->tipoPele, '\0', TAM_MAX_TIPO_PELE);
     memset(consulta->cpfMedico, '\0', TAM_MAX_CPF);
     memset(consulta->cpfPaciente, '\0', TAM_MAX_CPF);
+    memset(consulta->CRM, '\0', TAM_CRM);
 
     printf("DATA DA CONSULTA: ");
     scanf("%s", consulta->data);
@@ -150,28 +154,39 @@ tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico) {
 
     printf("TIPO DE PELE: ");
     scanf("%s", consulta->tipoPele);
+    scanf("%*c");
 
     strcpy(consulta->cpfPaciente, cpfPaciente);
     strcpy(consulta->cpfMedico, cpfMedico);
+    strcpy(consulta->CRM, CRM);
 
     return consulta;
 }
 
 tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data) {
 
-    int tipoUso, qtd;
+    eTipoUso tipoUsoEnum;
+    int qtd;
+    char tipoUso[10];
     char nomeMedicamento[MAX_TAM_NOME_MEDICAMENTO];
     char tipoMedicamento[MAX_TAM_TIPO_MEDICAMENTO];
     char instrucoes[TAM_INSTRUCOES];
 
-    printf("TIPO DE USO: ");
-    scanf("%d%*c", &tipoUso);
+    printf("TIPO DE USO: "); // ORAL ou TOPICO
+    scanf("%s", tipoUso);
+    scanf("%*c");
 
+    // Converte  para enum
+    if (!strcmp(tipoUso, "ORAL")) tipoUsoEnum = ORAL;
+    else tipoUsoEnum = TOPICO;
+
+    // Nome do Medicamento  
     printf("NOME DO MEDICAMENTO: ");
     scanf("%[^\n]", nomeMedicamento);
     scanf("%*c");
 
-    printf("TIPO DE MEDICAMENTO: ");
+    // Comprimidos ou Pomada 
+    printf("TIPO DE MEDICAMENTO: "); 
     scanf("%s", tipoMedicamento);
 
     printf("QUANTIDADE: ");
@@ -185,7 +200,7 @@ tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMe
     char c; scanf("%c%*c", &c);
     printf("############################################################\n");
 
-    return criaReceita(nomePaciente, tipoUso, nomeMedicamento, tipoMedicamento, instrucoes, qtd, nomeMedico, CRM, data);
+    return criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, nomeMedico, CRM, data);
 }
 
 void AdicionaLesaoConsulta (tConsulta* c, tLesao* l) {
@@ -223,6 +238,7 @@ void SalvaConsultasArquivoBinario (tConsulta** consultas, int qtd, FILE* file) {
     for (int i = 0; i < qtd; i++) {
         fwrite(consultas[i]->cpfPaciente, sizeof(char), TAM_MAX_CPF, file);
         fwrite(consultas[i]->cpfMedico, sizeof(char), TAM_MAX_CPF, file);
+        fwrite(consultas[i]->CRM, sizeof(char), TAM_CRM, file);
         fwrite(consultas[i]->data, sizeof(char), TAM_MAX_DATA, file);
         fwrite(consultas[i]->tipoPele, sizeof(char), TAM_MAX_TIPO_PELE, file);
         fwrite(&consultas[i]->possui_diabetes, sizeof(int), 1, file);
