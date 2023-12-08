@@ -68,7 +68,7 @@ void ImprimeRelatorioTela (void* dado) {
     printf("NUMERO TOTAL DE LESOES: %d\n", r->totalLesoes);
     printf("NUMERO TOTAL DE CIRURGIAS: %d\n", r->totalCirurgias);
     printf("NUMERO TOTAL DE CRIOTERAPIA: %d\n", r->totalCrioterapia);
-    printf("\n\n");
+    printf("\n");
 
 }
 
@@ -96,7 +96,7 @@ void ImprimeRelatorioArquivo (void* dado, char* path) {
     fprintf(file, "NUMERO TOTAL DE LESOES: %d\n", r->totalLesoes);
     fprintf(file, "NUMERO TOTAL DE CIRURGIAS: %d\n", r->totalCirurgias);
     fprintf(file, "NUMERO TOTAL DE CRIOTERAPIA: %d\n", r->totalCrioterapia);
-    fprintf(file, "\n\n");
+    fprintf(file, "\n");
 
 
     fclose(file);

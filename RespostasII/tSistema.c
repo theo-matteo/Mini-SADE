@@ -136,25 +136,27 @@ void ExecutaFiladeImpressao (tSistema* s) {
 
     int op = -1;
 
-    printf("################### FILA DE IMPRESSAO MEDICA #####################\n");
-    printf("ESCOLHA UMA OPCAO:\n");
-    printf("\t(1) EXECUTAR FILA DE IMPRESSAO\n");
-    printf("\t(2) RETORNAR AO MENU ANTERIOR\n");
-    scanf("%d%*c", &op);
+    while (true) {
 
-    if (op == 2) {
-        printf("############################################################\n");
-        return;
-    }
+        printf("################### FILA DE IMPRESSAO MEDICA #####################\n");
+        printf("ESCOLHA UMA OPCAO:\n");
+        printf("\t(1) EXECUTAR FILA DE IMPRESSAO\n");
+        printf("\t(2) RETORNAR AO MENU ANTERIOR\n");
+        scanf("%d%*c", &op);
 
-    printf("################ FILA DE IMPRESSAO MEDICA ##################\n");
-    printf("EXECUTANDO FILA DE IMPRESSAO:\n");
-    imprimeFila(ObtemFilaImprSistema(s), ObtemPathImprDocs(s));
+        if (op == 1) {
+            printf("EXECUTANDO FILA DE IMPRESSAO:\n");
+            imprimeFila(ObtemFilaImprSistema(s), ObtemPathImprDocs(s));
+            printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
+            char c; scanf("%c%*c", &c);
+            printf("############################################################\n");
+            continue;
+        }
 
-    printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
-    char c; scanf("%c%*c", &c);
+        else break;
+    }   
+
     printf("############################################################\n");
-
 }
 
 void ExecutaRelatorio (tSistema* s) {
