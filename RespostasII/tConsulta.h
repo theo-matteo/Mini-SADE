@@ -20,7 +20,7 @@ typedef struct tConsulta tConsulta;
 
 tConsulta* RealizaConsulta(tUsuario* user, tDatabase* d, tFila* f);
 
-tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico);
+tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico, char* CRM);
 
 void AdicionaLesaoConsulta (tConsulta* c, tLesao* l);
 
