@@ -22,7 +22,7 @@ tMedico* CadastraMedico() {
     printf("#################### CADASTRO MEDICO #######################\n");
     medico->dadosPessoais = LeDadosPessoais();
     printf("CRM: ");
-    scanf("%s%*c", medico->CRM);
+    scanf("%s", medico->CRM);
     medico->credenciaisAcesso = LeCredenciaisAcesso();
     
     return medico;
