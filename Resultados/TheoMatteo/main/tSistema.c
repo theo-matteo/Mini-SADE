@@ -57,8 +57,9 @@ tSistema* CriaSistema (char* path) {
 }
 
 void IniciaSistema (tSistema* s) {
-
+    
     tDatabase* database = ObtemBDSistema(s);
+    tFila* fila = ObtemFilaImprSistema(s);
     
     if (EhPrimeiroAcessoSistema(database)) {
         tSecretario* secretario = CadastraSecretario(ObtemArquivoSecretarios(database));
@@ -75,8 +76,7 @@ void IniciaSistema (tSistema* s) {
 
         int opcao = -1;
         ImprimeMenuPrincipalUsuario(ObtemUsuario(s));
-        scanf("%d", &opcao);
-        scanf("%*c");
+        scanf("%d%*c", &opcao);
 
         if (!UsuarioEscolheuOpcaoValida(ObtemUsuario(s), opcao)) {
             printf("OPCAO INVALIDA!\n");
@@ -86,24 +86,23 @@ void IniciaSistema (tSistema* s) {
         switch (opcao) {
             
             case 1:
-                CadastraNovaPessoaBD(database, SECRETARIO);
+                AdicionaPessoaBD(database, SECRETARIO);
                 break;
             case 2:
-                CadastraNovaPessoaBD(database, MEDICO);
+                AdicionaPessoaBD(database, MEDICO);
                 break;
             case 3:
-                CadastraNovaPessoaBD(database, PACIENTE);
+                AdicionaPessoaBD(database, PACIENTE);
                 break;
             case 4:
-                tConsulta* consulta = RealizaConsulta(s->user, database, s->filaDocs);
+                tConsulta* consulta = RealizaConsulta(ObtemUsuario(s), database, fila);
                 if (consulta) {
                     SalvaConsultaArquivoBinario(consulta, ObtemArquivoConsultas(database));
                     SalvaConsultaSistema(s, consulta);
                 }
                 break;
             case 5:
-                tListaBusca* lista = BuscaPacientes(ObtemArquivoPacientes(database));
-                if (lista) insereDocumentoFila(s->filaDocs, lista, ImprimeListaBusca, imprimeEmArquivoListaBusca, DesalocaListaBusca);
+                BuscaPacientes(ObtemArquivoPacientes(database), ObtemFilaImprSistema(s));
                 break;
             case 6:
                 ExecutaRelatorio(s);
@@ -129,9 +128,9 @@ bool AcessaSistemaUsuario (tSistema* s) {
     scanf("%s", user);
     printf("DIGITE SUA SENHA: ");
     scanf("%s", senha);
-    printf("###############################################################\n");
+    ImprimeBarraFinalMenu();
 
-    s->user = ObtemUsuariocomCredenciaisBD(user, senha, ObtemBDSistema(s));
+    s->user = AutenticaUsuario(user, senha, ObtemBDSistema(s));
     if (s->user == NULL) return false;
 
     return true;
@@ -154,7 +153,7 @@ void ExecutaFiladeImpressao (tSistema* s) {
             imprimeFila(ObtemFilaImprSistema(s), ObtemPathImprDocs(s));
             printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
             char c; scanf("%c%*c", &c);
-            printf("############################################################\n");
+            ImprimeBarraFinalMenu();
             continue;
         }
 

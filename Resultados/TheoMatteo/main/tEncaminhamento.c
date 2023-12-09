@@ -45,7 +45,7 @@ tEncaminhamento* CriaEncaminhamento (char* nomePac, char* cpfPac, char* nomeMed,
 
     printf("ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);
-    printf("############################################################\n");
+    ImprimeBarraFinalMenu();
 
     return e;
 }
@@ -62,9 +62,7 @@ void ImprimeEncaminhamentoNaTela (void* dado) {
     printf("%s (%s)\n", e->nomeMedico, e->CRMmedico);
 
     // Formatacao da data
-    int dia, mes, ano;
-    sscanf(e->data, "%d/%d/%d", &dia, &mes, &ano);
-    printf("%d/%d/%d\n", dia, mes, ano);
+    ImprimeDataTela(e->data);
     printf("\n\n");
 
 }
@@ -92,11 +90,8 @@ void ImprimeEncaminhamentoArquivo (void* dado, char* path) {
 
     fprintf(file, "%s (%s)\n", e->nomeMedico, e->CRMmedico);
 
-
     // Formatacao da data
-    int dia, mes, ano;
-    sscanf(e->data, "%d/%d/%d", &dia, &mes, &ano);
-    fprintf(file, "%d/%d/%d\n", dia, mes, ano);
+    ImprimeDataArquivo(e->data, file);
     fprintf(file, "\n\n");
 
     fclose(file);

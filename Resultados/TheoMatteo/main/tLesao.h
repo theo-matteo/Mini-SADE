@@ -7,6 +7,7 @@
 #include <stdbool.h>
 
 #include "tMedico.h"
+#include "utils.h"
 
 
 #define TAM_MAX_DIAGNOSTICO 50

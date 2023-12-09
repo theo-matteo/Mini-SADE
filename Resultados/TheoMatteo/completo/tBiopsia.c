@@ -15,7 +15,7 @@ struct tBiopsia {
 };
 
 
-tBiopsia* CriaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
+tBiopsia* AlocaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
 
     tBiopsia* biopsia = (tBiopsia*) malloc(sizeof(tBiopsia));
     if (biopsia == NULL) {
@@ -23,6 +23,7 @@ tBiopsia* CriaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPacient
         exit(EXIT_FAILURE);
     }
 
+    // Inicializa strings com '\0'
     memset(biopsia->nomePaciente, '\0', TAM_MAX_NOME);
     memset(biopsia->cpfPaciente, '\0', TAM_MAX_CPF);
     memset(biopsia->nomeMedico, '\0', TAM_MAX_NOME);
@@ -56,19 +57,19 @@ tBiopsia* SolicitaBiopsia (tLesao** lesoes, int qtdLesoes, char* nomePaciente, c
     }
 
     if (qtdLesoesCirurgicas == 0) {
-        printf("#################### CONSULTA MEDICA #######################\n");
+        ImprimeBarraConsultaMedica();
         printf("NAO E POSSIVEL SOLICITAR BIOPSIA SEM LESAO CIRURGICA. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
         char c; scanf("%c%*c", &c);
-        printf("############################################################");
+        ImprimeBarraFinalMenu();
         return NULL;
     }
 
-    printf("#################### CONSULTA MEDICA #######################\n");
+    ImprimeBarraConsultaMedica();
     printf("SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);
-    printf("############################################################\n");
+    ImprimeBarraFinalMenu();
 
-    tBiopsia* biopsia = CriaBiopsia(lesoesCirurgicas, qtdLesoesCirurgicas, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
+    tBiopsia* biopsia = AlocaBiopsia(lesoesCirurgicas, qtdLesoesCirurgicas, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
     return biopsia;
 }
 
@@ -87,11 +88,7 @@ void imprimeNaTelaBiopsia(void *dado) {
 
     printf("\n\n");
     printf("%s (%s)\n", b->nomeMedico, b->CRMmedico);
-
-    // Formatacao da data
-    int dia, mes, ano;
-    sscanf(b->data, "%d/%d/%d", &dia, &mes, &ano);
-    printf("%d/%d/%d\n", dia, mes, ano);
+    ImprimeDataTela(b->data);    
     printf("\n\n");
 
 }
@@ -123,11 +120,7 @@ void imprimeEmArquivoBiopsia(void *dado, char *path) {
 
     fprintf(file, "\n");
     fprintf(file, "%s (%s)\n", b->nomeMedico, b->CRMmedico);
-
-    // Formatacao da data
-    int dia, mes, ano;
-    sscanf(b->data, "%d/%d/%d", &dia, &mes, &ano);
-    fprintf(file, "%d/%d/%d\n", dia, mes, ano);
+    ImprimeDataArquivo(b->data, file);
     fprintf(file, "\n\n");
 
 

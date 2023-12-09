@@ -54,7 +54,7 @@ tCredenciais* ObtemCredenciaisArquivoBinario (FILE* file) {
     return CriaCredenciaisAcesso(user, senha); 
 }
 
-bool CrediciaisSaoIguais (char *user, char* senha, tCredenciais* c) {
+bool VerificaCredenciais (char *user, char* senha, tCredenciais* c) {
     return (!strcmp(user, ObtemUserCredenciais(c)))  && (!strcmp(senha, ObtemSenhaCredenciais(c)));
 }
 

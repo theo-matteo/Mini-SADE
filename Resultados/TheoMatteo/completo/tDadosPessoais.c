@@ -21,12 +21,14 @@ tDadosPessoais* CriaDadosPessoais (char* nome, char* cpf, char* dtNasc, char* te
         exit(EXIT_FAILURE);
     }
 
+    // Inicializa strings com 0 
     memset(d->nome, '\0', TAM_NOME);
     memset(d->cpf, '\0', TAM_CPF);
     memset(d->dtNasc, '\0', TAM_DATA);
     memset(d->tel, '\0', TAM_TELEFONE);
     memset(d->genero, '\0', TAM_GENERO);
 
+    // Copia strings para o struct
     strcpy(d->nome, nome);
     strcpy(d->cpf, cpf);
     strcpy(d->dtNasc, dtNasc);
@@ -82,11 +84,11 @@ tDadosPessoais* ObtemDadosPessoaisArquivoBinario (FILE* file) {
     return CriaDadosPessoais(nome, cpf, dtNasc, tel, genero);
 }
 
-bool CPFsaoIguais (char* cpf, tDadosPessoais* d) {
+bool ComparaCPF (char* cpf, tDadosPessoais* d) {
     return (!strcmp(cpf, ObtemCPFDadosP(d)));
 }
 
-bool NomeSaoIguais (char* nome, tDadosPessoais* d) {
+bool ComparaNome (char* nome, tDadosPessoais* d) {
     return (!strcmp(nome, ObtemNomeDadosP(d)));
 }
 

@@ -132,7 +132,6 @@ void PreencheRelatorioDadosPacientes (FILE* file, tRelatorio* r) {
 
     int count = 0;
     int qtdPacientes = 0;
-    int diaRef = 9, mesRef = 11, anoRef = 2023;
 
     while(!feof(file)) {
 
@@ -147,11 +146,7 @@ void PreencheRelatorioDadosPacientes (FILE* file, tRelatorio* r) {
         else r->qtdGeneroOutros++;
 
         // Calcula Media de Idade
-        int dia, mes, ano;
-        sscanf(data, "%d/%d/%d", &dia, &mes, &ano);
-        int idade = anoRef - ano;
-        if (mes > mesRef) idade--;
-        else if (mes == mesRef && dia > diaRef) idade--;
+        int idade = CalculaIdade(data);
         count += idade;
         qtdPacientes++;
 

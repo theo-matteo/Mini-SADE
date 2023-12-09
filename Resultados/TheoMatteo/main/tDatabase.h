@@ -33,7 +33,6 @@ tDatabase* CriaBancodeDados (char* path);
 bool EhPrimeiroAcessoSistema (tDatabase* d);
 
 
-
 /// @brief Abre um arquivo binario (no modo append) dado um caminho e o nome do arquivo
 /// @param path caminho onde o arquivo ficara
 /// @param filename nome do arquivo
@@ -46,18 +45,21 @@ FILE* AbreArquivoBinario(char* path, char* filename);
 /// @return verdadeiro ou falso
 bool ArquivoEstaVazio (FILE* file);
 
+
 /// @brief Obtem um usuario do banco de dados atraves das credenciais de seguranca
 /// @param user 
 /// @param senha 
 /// @param  database
 /// @return tUsuario
-tUsuario* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabase* d);
+tUsuario* AutenticaUsuario (char* user, char* senha, tDatabase* d);
+
+void AdicionaPessoaBD (tDatabase* d, tipoPessoa tipo);
 
 bool VerificaMesmoCPFBD (tipoPessoa tipo, FILE* file, char* cpf);
 
-void* ObtemPessoaArquivoBinario (tipoPessoa tipo, FILE* file, char* cpf);
+void* BuscaPessoaPorCpf (tipoPessoa tipo, FILE* file, char* cpf);
 
-void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo);
+
 
 FILE* ObtemArquivoTipoPessoa (tDatabase* d, tipoPessoa tipo);
 

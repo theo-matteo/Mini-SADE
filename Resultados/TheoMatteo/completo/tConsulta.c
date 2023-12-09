@@ -2,14 +2,14 @@
 
 struct tConsulta {
 
-    // Identificacao do Paciente
+    // Paciente que realizou a consulta
     char cpfPaciente[TAM_MAX_CPF];
 
-    // Identificacao do Medico
+    // Medico que realizou a consulta
     char cpfMedico[TAM_MAX_CPF];
     char CRM[TAM_CRM];
 
-    // Informacoes que serao obtidas na consulta
+    // Informacoes obtidas durante a consulta
     char data[TAM_MAX_DATA];
     tLesao** lesoes;
     int qtdLesoes;
@@ -34,42 +34,42 @@ tConsulta* RealizaConsulta (tUsuario* user, tDatabase* d, tFila* f) {
     char nomeMedico[TAM_MAX_NOME];
     char cpfMedico[TAM_MAX_CPF];
 
+    // Inicializa as strings com '\0'
     memset(CRM, '\0', TAM_CRM);
     memset(nomeMedico, '\0', TAM_MAX_NOME);
     memset(cpfMedico, '\0', TAM_MAX_CPF);
 
-
-    printf("#################### CONSULTA MEDICA #######################\n");
+    // Obtem o cpf do paciente
+    ImprimeBarraConsultaMedica();
     printf("CPF DO PACIENTE: ");
     scanf("%s", cpfPaciente);
     scanf("%*c");
-    printf("############################################################\n");
+    ImprimeBarraFinalMenu();
 
-    tPaciente* paciente = ObtemPessoaArquivoBinario(PACIENTE, ObtemArquivoPacientes(d), cpfPaciente);
+    // Obtem o paciente direto do arquivo binario
+    tPaciente* paciente = BuscaPessoaPorCpf(PACIENTE, ObtemArquivoPacientes(d), cpfPaciente);
+
+    // Caso o paciente nao foi encontrado, encerra consulta
     if (!paciente) {
         printf("PACIENTE SEM CADASTRO\n\n");
         printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
         char c; scanf("%c%*c", &c);
-        printf("############################################################\n");
+        ImprimeBarraFinalMenu();
         return NULL;
     }
 
-    printf("#################### CONSULTA MEDICA #######################\n");
-    printf("CPF DO PACIENTE: %s\n", ObtemCPFPaciente(paciente));
-    printf("- - -\n");
-    printf("- NOME: %s\n", ObtemNomePaciente(paciente));
-    printf("- DATA DE NASCIMENTO: %s\n", ObtemDtNascPaciente(paciente));
-    printf("- - -\n");
+    // Imprime as informacoes do paciente apos ser encontrado 
+    ImprConsultaDadosPaciente(ObtemNomePaciente(paciente), ObtemCPFPaciente(paciente), ObtemDtNascPaciente(paciente));
+    
 
     // Verifica se o usuario do sistema eh umm medico e obtem informacoes do medico
     if (ObtemTipoUsuarioSistema(user) == M) {
-        tMedico* m = (tMedico*) ObtemUsuarioSistema(user);
-        strcpy(CRM, ObtemCRMMedico(m));
-        strcpy(nomeMedico, ObtemNomeMedico(m));
-        strcpy(cpfMedico, ObtemCPFMedico(m));
+        strcpy(CRM, ObtemCRMMedico(ObtemUsuarioSistema(user)));
+        strcpy(nomeMedico, ObtemNomeMedico(ObtemUsuarioSistema(user)));
+        strcpy(cpfMedico, ObtemCPFMedico(ObtemUsuarioSistema(user)));
     }
 
-    // Le informacoes clinicas 
+    // Le informacoes clinicas
     tConsulta* consulta = LeInformacoesConsulta(cpfPaciente, cpfMedico, CRM);  
 
     // Obtem informacoes da consulta 
@@ -80,8 +80,9 @@ tConsulta* RealizaConsulta (tUsuario* user, tDatabase* d, tFila* f) {
     while (true) {
 
         int op;
-        PrintTelaConsultaMedica();
+        ImprTelaConsultaMedica();
         scanf("%d%*c", &op);
+        ImprimeBarraFinalMenu();
 
         switch (op) {
 
@@ -155,6 +156,7 @@ tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) 
     scanf("%s", consulta->tipoPele);
     scanf("%*c");
 
+    // Copia informacoes do medico para dentro da consulta
     strcpy(consulta->cpfPaciente, cpfPaciente);
     strcpy(consulta->cpfMedico, cpfMedico);
     strcpy(consulta->CRM, CRM);
@@ -197,7 +199,7 @@ tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMe
 
     printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);
-    printf("############################################################\n");
+    ImprimeBarraFinalMenu();
 
     if (nomeMedico[0] == '\0') return criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, "\0", "\0", data);
     else criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, nomeMedico, CRM, data);
@@ -207,16 +209,6 @@ void AdicionaLesaoConsulta (tConsulta* c, tLesao* l) {
     c->qtdLesoes++;
     c->lesoes = (tLesao**) realloc(c->lesoes, sizeof(tLesao*) * c->qtdLesoes);
     c->lesoes[c->qtdLesoes - 1] = l;
-}
-
-void PrintTelaConsultaMedica() {
-    printf("#################### CONSULTA MEDICA #######################\n");
-    printf("ESCOLHA UMA OPCAO:\n");
-    printf("\t(1) CADASTRAR LESAO\n");
-    printf("\t(2) GERAR RECEITA MEDICA\n");
-    printf("\t(3) SOLICITACAO DE BIOPSIA\n");
-    printf("\t(4) ENCAMINHAMENTO\n");
-    printf("\t(5) ENCERRAR CONSULTA\n");
 }
 
 int ObtemQtdLesoesConsulta (tConsulta* c) {

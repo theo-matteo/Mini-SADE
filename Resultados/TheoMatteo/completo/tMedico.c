@@ -70,7 +70,7 @@ tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file) {
         tCredenciais* c = ObtemCredenciaisArquivoBinario(file);
         fread(CRM, sizeof(char), TAM_CRM, file);
 
-        if (CrediciaisSaoIguais(user, senha, c)) {
+        if (VerificaCredenciais(user, senha, c)) {
             m = CriaMedico(d, c, CRM);
             break;
         } 

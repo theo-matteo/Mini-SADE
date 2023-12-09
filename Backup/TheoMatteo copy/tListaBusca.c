@@ -6,11 +6,12 @@ struct tListaBusca {
     int qtdPacientes;
 };
 
-void BuscaPacientes (FILE* file, tFila* fila) {
+tListaBusca* BuscaPacientes (FILE* file) {
 
     char nome[TAM_MAX_NOME];
 
-    TelaImprBuscaPacientes1();
+    printf("#################### BUSCAR PACIENTES #######################\n");
+    printf("NOME DO PACIENTE: ");
     scanf("%[^\n]", nome);
     scanf("%*c");
 
@@ -20,57 +21,59 @@ void BuscaPacientes (FILE* file, tFila* fila) {
     if (lista == NULL) {
         printf("NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
         char c; scanf("%c%*c", &c);
-        ImprimeBarraFinalMenu();
-        return;
+        printf("############################################################\n");
+        return NULL;
     }
 
-    // Imprime os pacienes (caso se foi encontrado ao menos um)
     printf("PACIENTES ENCONTRADOS:\n");
     ImprimeListaBusca(lista);
 
-    // Imprime submenu de busca de pacientes
-    TelaImprBuscaPacientes2();
-    int op = -1; scanf("%d%*c", &op);
-    ImprimeBarraFinalMenu();
+    int op = -1;
+    printf("#################### BUSCAR PACIENTES #######################\n");
+    printf("ESCOLHA UMA OPCAO:\n");
+    printf("\t(1) ENVIAR LISTA PARA IMPRESSAO\n");
+    printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
+    scanf("%d%*c", &op);
+    printf("############################################################\n");
 
-    // Insere lista busca na fila de impressao (opcao 1)
     if (op == 1) {
         printf("LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL\n");
-        getchar();
-        ImprimeBarraFinalMenu();
-        insereDocumentoFila(fila, lista, ImprimeListaBusca, imprimeEmArquivoListaBusca, DesalocaListaBusca);
-        return;
+        char c; scanf("%c%*c", &c);
+        printf("############################################################\n");
+        return lista;
     }
-    else DesalocaListaBusca(lista); // retorna menu principal (opcao 2)
+
+    // Desaloca lista de busca o usuario nao queira enviar para a fila de impressao
+    if (lista) DesalocaListaBusca(lista);
+    return NULL;
 
 }   
 
-tListaBusca* BuscaPessoaNomeArqv (char* nome, FILE* file) {
+tListaBusca* BuscaPessoasArqvBinario (char* nome, FILE* file) {
 
     // Retorna o arquivo para o inicio
     rewind(file);
 
     tPaciente** pacientes = NULL;
-    int qtd = 0;
+    int qtdEncontrados = 0;
     
     while (!feof(file)) {
 
         tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
-        if (!d) break; // Caso tenha chegado no fim do arquivo
+        if (!d) break;
 
         // Se os nomes coincidirem retorna o paciente 
-        if (ComparaNome(nome, d)) {
-            qtd++;
-            pacientes = (tPaciente **) realloc(pacientes, sizeof(tPaciente *) * qtd);
-            pacientes[qtd - 1] = CriaPaciente(d);
+        if (NomeSaoIguais(nome, d)) {
+            qtdEncontrados++;
+            pacientes = (tPaciente **) realloc(pacientes, sizeof(tPaciente *) * qtdEncontrados);
+            pacientes[qtdEncontrados - 1] = CriaPaciente(d);
         }
         else DesalocaDadosPessoais(d);
 
     }
 
-    if (!qtd) return NULL;
+    if (qtdEncontrados == 0) return NULL;
 
-    // Aloca uma lista dinamicamente 
     tListaBusca* lista = (tListaBusca*) malloc(sizeof(tListaBusca));
     if (lista == NULL) {
         printf("Falha na alocacao da lista de busca\n");
@@ -78,7 +81,7 @@ tListaBusca* BuscaPessoaNomeArqv (char* nome, FILE* file) {
     }
 
     lista->pacientes = pacientes;
-    lista->qtdPacientes = qtd;
+    lista->qtdPacientes = qtdEncontrados;
 
     return lista;
 }

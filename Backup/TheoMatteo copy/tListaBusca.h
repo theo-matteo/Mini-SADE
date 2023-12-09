@@ -3,23 +3,14 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
 #include "tPaciente.h"
 #include "tDadosPessoais.h"
-#include "utils.h"
-#include "tFila.h"
 
 typedef struct tListaBusca tListaBusca;
 
+tListaBusca* BuscaPessoasArqvBinario (char* nome, FILE* file);
 
-
-/// @brief Busca pacientes pelo nome em um arquivo binario (pacientes.bin)
-/// @param nome 
-/// @param file 
-/// @return lista de busca com os pacientes encontrados
-tListaBusca* BuscaPessoaNomeArqv (char* nome, FILE* file);
-
-void BuscaPacientes (FILE* file, tFila* fila);
+tListaBusca* BuscaPacientes (FILE* file);
 
 void imprimeEmArquivoListaBusca(void *dado, char *path);
 

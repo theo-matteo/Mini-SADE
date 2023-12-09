@@ -51,31 +51,30 @@ bool ArquivoEstaVazio (FILE* file) {
     return (size == 0);
 }
 
-tUsuario* ObtemUsuariocomCredenciaisBD (char* user, char* senha, tDatabase* database) {
+tUsuario* AutenticaUsuario (char* user, char* senha, tDatabase* database) {
 
     // Seta os arquivos para o inicio do arquivo
     rewind(database->arqvSecretarios);
     rewind(database->arqvMedicos);
 
+    // Tenta obter um secretario com as credenciais fornecidas
     tSecretario* sec = ObtemSecretarioArqvBinario(user, senha, database->arqvSecretarios);
 
+    // Se o secretario for encontrado, verifica o nivel de acesso e retorna um usuario valido
     if (sec) {
-        if (EhSecretarioADMIN(sec)) {
-            return CriaUsuarioSistema(sec, TelaImpressaoSecrADMIN, DesalocaSecretario, S_ADMIN);
-        }
-        else {
-            return CriaUsuarioSistema(sec, TelaImpressaoSecrUSER, DesalocaSecretario, S_USER);
-        }
+        if (VerificaAcessoAdminSec(sec)) return CriaUsuarioSistema(sec, TelaImpressaoSecrADMIN, DesalocaSecretario, S_ADMIN);
+        else return CriaUsuarioSistema(sec, TelaImpressaoSecrUSER, DesalocaSecretario, S_USER);
     }
 
+    // Tenta encontrar um medico com as credenciais forncedias
     tMedico* med = ObtemMedicoArquivoBinario(user, senha, database->arqvMedicos);
     if (med) return CriaUsuarioSistema(med, TelaImpressaoMedico, DesalocaMedico, M);
 
-
+    // Retorna NULL para sinalizar que nao foi encontrado nenhum usuario valido
     return NULL;
 }
 
-void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo) {
+void AdicionaPessoaBD (tDatabase* d, tipoPessoa tipo) {
 
     // Verifica se o cadastro foi bem sucedido
     void* pessoa = NULL;
@@ -83,6 +82,7 @@ void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo) {
     // Obtem o arquivo de acordo com o pessoa que sera cadastrado
     FILE* file =  ObtemArquivoTipoPessoa (d, tipo);
 
+    // Obtem as funcoes (callback) de acordo com o tipo de pessoa
     ObtemCPFPessoaFunc obtemCPFfunc = ObtemFuncaoObterCPFPessoa(tipo);
     SalvaPessoaArqvFunc salvaPessoaArqv = ObtemFuncaoSalvaPessoaArqv(tipo);
     DesalocaPessoaFunc desalocaPessoaFunc = ObtemFuncaoDesalocarPessoa(tipo);
@@ -92,8 +92,8 @@ void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo) {
     else if (tipo == SECRETARIO) pessoa = CadastraSecretario();
     else pessoa = CadastraPaciente();
 
-    /* Verifica se ha um mesmo cpf cadastrado */
-    void* pessoaTemp = ObtemPessoaArquivoBinario(tipo, file, obtemCPFfunc(pessoa));
+    // Verifica se o CPF ja existe no banco de dados
+    void* pessoaTemp = BuscaPessoaPorCpf(tipo, file, obtemCPFfunc(pessoa));
     if (pessoaTemp) {
         printf("CPF JA EXISTENTE. OPERACAO NAO PERMITIDA.\n");
         desalocaPessoaFunc(pessoaTemp); // Desaloca pessoa temporaria
@@ -101,14 +101,14 @@ void CadastraNovaPessoaBD (tDatabase* d, tipoPessoa tipo) {
         return;
     }
 
+    // Salva pessoa no banco de dados e desaloca da memoria
     salvaPessoaArqv(pessoa, file);
     desalocaPessoaFunc(pessoa);
     
     /* Aguarda o usuario digitar uma tecla para retornar ao menu principal */
-    char c;
-    printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
-    scanf("%c%*c", &c);
-    printf("###############################################################\n");
+    ImprimeSucessoCadastro();
+    char c; scanf("%c%*c", &c);
+    ImprimeBarraFinalMenu();
 
 }
 
@@ -131,13 +131,13 @@ DesalocaPessoaFunc ObtemFuncaoDesalocarPessoa (tipoPessoa tipo) {
     else return DesalocaPaciente;
 }
 
-void* ObtemPessoaArquivoBinario (tipoPessoa tipo, FILE* file, char* cpf) {
+void* BuscaPessoaPorCpf (tipoPessoa tipo, FILE* file, char* cpf) {
 
     rewind(file);
 
     void* pessoa = NULL;
-    char bufferCRM[TAM_CRM];
-    char bufferNivelAcesso[TAM_MAX_NIVEL_ACESSO];
+    char bufferCRM[TAM_CRM]; // Buffer para armazenar o CRM de um medico
+    char bufferNivelAcesso[TAM_MAX_NIVEL_ACESSO]; // Buffer para armazenar Nivel de Acesso do Secretario
 
     while(!feof(file)) {
 
@@ -150,7 +150,7 @@ void* ObtemPessoaArquivoBinario (tipoPessoa tipo, FILE* file, char* cpf) {
         if (tipo == MEDICO) fread(bufferCRM, sizeof(char), TAM_CRM, file);
         else if (tipo == SECRETARIO) fread(bufferNivelAcesso, sizeof(char), TAM_MAX_NIVEL_ACESSO, file);
 
-        if (CPFsaoIguais(cpf, d)) {
+        if (ComparaCPF(cpf, d)) {
             if (tipo == MEDICO) return CriaMedico(d, c, bufferCRM);
             else if (tipo == SECRETARIO) return CriaSecretario(d, c, bufferNivelAcesso);
             else return CriaPaciente(d);
@@ -161,6 +161,7 @@ void* ObtemPessoaArquivoBinario (tipoPessoa tipo, FILE* file, char* cpf) {
         }
     }
 
+    // Retorna null caso nao encontre nenhuma pessoa com o CPF fornecido
     return NULL;
 }
 

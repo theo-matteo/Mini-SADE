@@ -72,7 +72,7 @@ tSecretario* ObtemSecretarioArqvBinario (char* user, char* senha, FILE* file) {
         fread(nivelAcesso, sizeof(char), TAM_MAX_NIVEL_ACESSO, file);
 
         // Verifica se as credenciais se coincidem, se sim cria um secretario
-        if (CrediciaisSaoIguais(user, senha, c)) {
+        if (VerificaCredenciais(user, senha, c)) {
             s = CriaSecretario(d, c, nivelAcesso);
             break;
         }
@@ -88,7 +88,7 @@ char* ObtemNivelAcessoSecretario (tSecretario* s) {
     return s->nivelAcesso;
 }
 
-int EhSecretarioADMIN (tSecretario* sec) {
+int VerificaAcessoAdminSec (tSecretario* sec) {
     return (!strcmp(ObtemNivelAcessoSecretario(sec), "ADMIN"));
 }
 

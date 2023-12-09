@@ -34,7 +34,7 @@ tCredenciais* ObtemCredenciaisArquivoBinario (FILE* file);
 /// @param senha 
 /// @param c 
 /// @return true or false
-bool CrediciaisSaoIguais (char *user, char* senha, tCredenciais* c);
+bool VerificaCredenciais (char *user, char* senha, tCredenciais* c);
 
 
 /// @brief Obtem o nome do usuario

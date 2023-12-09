@@ -29,8 +29,6 @@ tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico, char* CRM);
 
 void AdicionaLesaoConsulta (tConsulta* c, tLesao* l);
 
-void PrintTelaConsultaMedica();
-
 tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data);
 
 int ObtemQtdLesoesConsulta (tConsulta* c);

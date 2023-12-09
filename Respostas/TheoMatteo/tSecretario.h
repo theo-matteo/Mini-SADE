@@ -41,7 +41,7 @@ char* ObtemNivelAcessoSecretario (tSecretario* s);
 
 char* ObtemCPFSecretario (void* sec);
 
-int EhSecretarioADMIN (tSecretario* sec);
+int VerificaAcessoAdminSec (tSecretario* sec);
 
 /// @brief Desaloca memoria da estrutura assumindo que o ponteiro eh do tipo tSecretario
 /// @param  secretario

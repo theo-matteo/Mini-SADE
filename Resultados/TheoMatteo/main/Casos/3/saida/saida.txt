@@ -12,7 +12,7 @@ ESCOLHA UMA OPCAO:
 ###############################################################
 #################### BUSCAR PACIENTES #######################
 NOME DO PACIENTE: NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(4) REALIZAR CONSULTA
@@ -29,9 +29,9 @@ NOME DO PACIENTE: PACIENTES ENCONTRADOS:
 ESCOLHA UMA OPCAO:
 	(1) ENVIAR LISTA PARA IMPRESSAO
 	(2) RETORNAR AO MENU PRINCIPAL
-############################################################
+###############################################################
 LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
-############################################################
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(4) REALIZAR CONSULTA
@@ -48,9 +48,9 @@ NOME DO PACIENTE: PACIENTES ENCONTRADOS:
 ESCOLHA UMA OPCAO:
 	(1) ENVIAR LISTA PARA IMPRESSAO
 	(2) RETORNAR AO MENU PRINCIPAL
-############################################################
+###############################################################
 LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
-############################################################
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(4) REALIZAR CONSULTA
@@ -60,7 +60,7 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### CONSULTA MEDICA #######################
-CPF DO PACIENTE: ############################################################
+CPF DO PACIENTE: ###############################################################
 #################### CONSULTA MEDICA #######################
 CPF DO PACIENTE: 155.941.270-46
 - - -
@@ -74,10 +74,11 @@ ESCOLHA UMA OPCAO:
 	(3) SOLICITACAO DE BIOPSIA
 	(4) ENCAMINHAMENTO
 	(5) ENCERRAR CONSULTA
+###############################################################
 #################### CONSULTA MEDICA #######################
 CADASTRO DE LESAO:
 DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+###############################################################
 #################### CONSULTA MEDICA #######################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR LESAO
@@ -85,10 +86,11 @@ ESCOLHA UMA OPCAO:
 	(3) SOLICITACAO DE BIOPSIA
 	(4) ENCAMINHAMENTO
 	(5) ENCERRAR CONSULTA
+###############################################################
 #################### CONSULTA MEDICA #######################
 CADASTRO DE LESAO:
 DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+###############################################################
 #################### CONSULTA MEDICA #######################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR LESAO
@@ -96,8 +98,9 @@ ESCOLHA UMA OPCAO:
 	(3) SOLICITACAO DE BIOPSIA
 	(4) ENCAMINHAMENTO
 	(5) ENCERRAR CONSULTA
+###############################################################
 TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+###############################################################
 #################### CONSULTA MEDICA #######################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR LESAO
@@ -105,8 +108,9 @@ ESCOLHA UMA OPCAO:
 	(3) SOLICITACAO DE BIOPSIA
 	(4) ENCAMINHAMENTO
 	(5) ENCERRAR CONSULTA
+###############################################################
 TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+###############################################################
 #################### CONSULTA MEDICA #######################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR LESAO
@@ -114,9 +118,10 @@ ESCOLHA UMA OPCAO:
 	(3) SOLICITACAO DE BIOPSIA
 	(4) ENCAMINHAMENTO
 	(5) ENCERRAR CONSULTA
+###############################################################
 #################### CONSULTA MEDICA #######################
 SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+###############################################################
 #################### CONSULTA MEDICA #######################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR LESAO
@@ -124,10 +129,11 @@ ESCOLHA UMA OPCAO:
 	(3) SOLICITACAO DE BIOPSIA
 	(4) ENCAMINHAMENTO
 	(5) ENCERRAR CONSULTA
+###############################################################
 #################### CONSULTA MEDICA #######################
 ENCAMINHAMENTO:
 ESPECIALIDADE ENCAMINHADA: MOTIVO: ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+###############################################################
 #################### CONSULTA MEDICA #######################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR LESAO
@@ -135,6 +141,7 @@ ESCOLHA UMA OPCAO:
 	(3) SOLICITACAO DE BIOPSIA
 	(4) ENCAMINHAMENTO
 	(5) ENCERRAR CONSULTA
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(4) REALIZAR CONSULTA
@@ -238,7 +245,7 @@ NUMERO TOTAL DE CIRURGIAS: 3
 NUMERO TOTAL DE CRIOTERAPIA: 1
 
 PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
-############################################################
+###############################################################
 ################### FILA DE IMPRESSAO MEDICA #####################
 ESCOLHA UMA OPCAO:
 	(1) EXECUTAR FILA DE IMPRESSAO

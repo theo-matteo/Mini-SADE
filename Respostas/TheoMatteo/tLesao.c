@@ -42,7 +42,7 @@ tLesao* CadastraLesao (int numRotulo, char* cpfPaciente, char* cpfMedico, char* 
 
     tLesao* lesao = CriaLesao();
 
-    printf("#################### CONSULTA MEDICA #######################\n");
+    ImprimeBarraConsultaMedica();
     printf("CADASTRO DE LESAO:\n");
 
     sprintf(lesao->rotulo, "L%d", numRotulo);
@@ -69,7 +69,7 @@ tLesao* CadastraLesao (int numRotulo, char* cpfPaciente, char* cpfMedico, char* 
 
     printf("LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);
-    printf("############################################################\n");
+    ImprimeBarraFinalMenu();
 
     return lesao;
 }
