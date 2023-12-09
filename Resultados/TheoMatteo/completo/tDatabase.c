@@ -135,7 +135,6 @@ void* BuscaPessoaPorCpf (tipoPessoa tipo, FILE* file, char* cpf) {
 
     rewind(file);
 
-    void* pessoa = NULL;
     char bufferCRM[TAM_CRM]; // Buffer para armazenar o CRM de um medico
     char bufferNivelAcesso[TAM_MAX_NIVEL_ACESSO]; // Buffer para armazenar Nivel de Acesso do Secretario
 

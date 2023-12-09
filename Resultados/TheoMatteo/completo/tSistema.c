@@ -48,7 +48,7 @@ tSistema* CriaSistema (char* path) {
     return sistema;
 }
 
-void IniciaSistema (tSistema* s) {
+void ExecutaSistema (tSistema* s) {
     
     tDatabase* database = ObtemBDSistema(s);
     tFila* fila = ObtemFilaImprSistema(s);
@@ -89,6 +89,7 @@ void IniciaSistema (tSistema* s) {
             case 4:
                 tConsulta* consulta = RealizaConsulta(ObtemUsuario(s), database, fila);
                 if (consulta) SalvaConsultaArquivoBinario(consulta, ObtemArquivoConsultas(database));
+                DesalocaConsulta(consulta);
                 break;
             case 5:
                 BuscaPacientes(ObtemArquivoPacientes(database), ObtemFilaImprSistema(s));
@@ -200,5 +201,5 @@ void DesalocaSistema (tSistema* s) {
     DesalocaUsuarioSistema(s->user);
     desalocaFila(s->filaDocs);
     free(s);
-    
+
 }

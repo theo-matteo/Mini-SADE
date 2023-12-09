@@ -202,7 +202,7 @@ tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMe
     ImprimeBarraFinalMenu();
 
     if (nomeMedico[0] == '\0') return criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, "\0", "\0", data);
-    else criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, nomeMedico, CRM, data);
+    return criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, nomeMedico, CRM, data);
 }
 
 void AdicionaLesaoConsulta (tConsulta* c, tLesao* l) {

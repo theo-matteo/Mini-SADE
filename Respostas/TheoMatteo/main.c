@@ -10,7 +10,7 @@ int main (int argc, char* argv[]) {
     }
 
     tSistema* sistema = CriaSistema(argv[1]);
-    IniciaSistema(sistema);
+    ExecutaSistema(sistema);
     DesalocaSistema(sistema);
 
 

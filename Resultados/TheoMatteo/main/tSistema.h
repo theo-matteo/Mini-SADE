@@ -34,7 +34,7 @@ bool AcessaSistemaUsuario (tSistema* s);
 
 /// @brief Inicia o sistema, disponibilizando acoes para o usuario
 /// @param  s
-void IniciaSistema (tSistema* s);
+void ExecutaSistema (tSistema* s);
 
 
 /// @brief Obtem usuario que esta logado no sistema

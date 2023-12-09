@@ -1,27 +1,15 @@
-==103502== Memcheck, a memory error detector
-==103502== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==103502== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==103502== Command: Resultados/TheoMatteo/completo/prog Resultados/TheoMatteo/completo/Casos/4
-==103502== Parent PID: 103501
-==103502== 
-==103502== 
-==103502== HEAP SUMMARY:
-==103502==     in use at exit: 408 bytes in 4 blocks
-==103502==   total heap usage: 130 allocs, 126 frees, 79,863 bytes allocated
-==103502== 
-==103502== 408 (96 direct, 312 indirect) bytes in 1 blocks are definitely lost in loss record 3 of 3
-==103502==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==103502==    by 0x10A22A: LeInformacoesConsulta (in /home/theo/TrabII/Resultados/TheoMatteo/completo/prog)
-==103502==    by 0x109F0D: RealizaConsulta (in /home/theo/TrabII/Resultados/TheoMatteo/completo/prog)
-==103502==    by 0x10EE64: IniciaSistema (in /home/theo/TrabII/Resultados/TheoMatteo/completo/prog)
-==103502==    by 0x10949D: main (in /home/theo/TrabII/Resultados/TheoMatteo/completo/prog)
-==103502== 
-==103502== LEAK SUMMARY:
-==103502==    definitely lost: 96 bytes in 1 blocks
-==103502==    indirectly lost: 312 bytes in 3 blocks
-==103502==      possibly lost: 0 bytes in 0 blocks
-==103502==    still reachable: 0 bytes in 0 blocks
-==103502==         suppressed: 0 bytes in 0 blocks
-==103502== 
-==103502== For lists of detected and suppressed errors, rerun with: -s
-==103502== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==165292== Memcheck, a memory error detector
+==165292== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==165292== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==165292== Command: Resultados/TheoMatteo/completo/prog Resultados/TheoMatteo/completo/Casos/4
+==165292== Parent PID: 165291
+==165292== 
+==165292== 
+==165292== HEAP SUMMARY:
+==165292==     in use at exit: 0 bytes in 0 blocks
+==165292==   total heap usage: 130 allocs, 130 frees, 79,863 bytes allocated
+==165292== 
+==165292== All heap blocks were freed -- no leaks are possible
+==165292== 
+==165292== For lists of detected and suppressed errors, rerun with: -s
+==165292== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
