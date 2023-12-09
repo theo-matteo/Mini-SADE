@@ -40,24 +40,6 @@ adicionaSecretarioSade
 adicionarConsultaPaciente
 adicionarLesaoConsulta
 
-
-// Funcoes data
-calculaIdadeData
-calculaIdadePaciente
-calculaIdadePessoa
-comparaData
-
-// Funcoes compara CPF
-comparaCPFMedico
-comparaCPFPaciente
-comparaCPFPessoa
-comparaCPFSecretario
-
-// Funcoes Login
-autenticaLogin
-comparaLoginSenhaMedico
-comparaLoginSenhaSecretario
-
 // Funcoes de Criar
 criaBiopsia
 criaConsulta

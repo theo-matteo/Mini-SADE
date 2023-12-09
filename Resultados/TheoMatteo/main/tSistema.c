@@ -13,10 +13,6 @@ struct tSistema {
 
     // Banco de dados (onde ha os arquivos binarios)
     tDatabase* database;
-
-    // Consultas realizadas durante o uso do sistema
-    tConsulta** consultas;
-    int qtdConsultas;
 };
 
 tSistema* CriaSistema (char* path) {
@@ -34,10 +30,6 @@ tSistema* CriaSistema (char* path) {
     // Usuario logado no sistema inicializado com NULL
     sistema->user = NULL;
     sistema->filaDocs = criaFila();
-
-    // Inicializa informacoes de consultas realizadas
-    sistema->consultas = NULL;
-    sistema->qtdConsultas = 0;
 
     // Obtem caminho do banco de dados
     char pathDB[TAM_MAX_DIRETORIO];
@@ -96,10 +88,7 @@ void IniciaSistema (tSistema* s) {
                 break;
             case 4:
                 tConsulta* consulta = RealizaConsulta(ObtemUsuario(s), database, fila);
-                if (consulta) {
-                    SalvaConsultaArquivoBinario(consulta, ObtemArquivoConsultas(database));
-                    SalvaConsultaSistema(s, consulta);
-                }
+                if (consulta) SalvaConsultaArquivoBinario(consulta, ObtemArquivoConsultas(database));
                 break;
             case 5:
                 BuscaPacientes(ObtemArquivoPacientes(database), ObtemFilaImprSistema(s));
@@ -187,12 +176,6 @@ void ExecutaRelatorio (tSistema* s) {
     
 }
 
-void SalvaConsultaSistema(tSistema* s, tConsulta* c) {
-    s->qtdConsultas++;
-    s->consultas = (tConsulta**) realloc(s->consultas, sizeof(tConsulta*) * s->qtdConsultas);
-    s->consultas[s->qtdConsultas - 1] = c;
-}
-
 tUsuario* ObtemUsuario (tSistema* s) {
     return s->user;
 }
@@ -216,11 +199,6 @@ void DesalocaSistema (tSistema* s) {
     DesalocaBancoDados(s->database);
     DesalocaUsuarioSistema(s->user);
     desalocaFila(s->filaDocs);
-
-    for (int i = 0; i < s->qtdConsultas; i++) {
-        DesalocaConsulta(s->consultas[i]);
-    }
-    
-    free(s->consultas);
     free(s);
+    
 }

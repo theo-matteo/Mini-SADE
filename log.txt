@@ -252,7 +252,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 1:
  - Arquivo de output gerado: Resultados/TheoMatteo/completo/Casos/1/result_valgrind.txt.
- - Valgrind: Ok! allocs: 72, frees: 72, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Incorreto! allocs: 71, frees: 68, errors: 1 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -261,7 +261,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 2:
  - Arquivo de output gerado: Resultados/TheoMatteo/completo/Casos/2/result_valgrind.txt.
- - Valgrind: Ok! allocs: 116, frees: 116, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Incorreto! allocs: 115, frees: 112, errors: 1 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -270,7 +270,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 3:
  - Arquivo de output gerado: Resultados/TheoMatteo/completo/Casos/3/result_valgrind.txt.
- - Valgrind: Ok! allocs: 114, frees: 114, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Incorreto! allocs: 113, frees: 109, errors: 1 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -279,7 +279,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 4:
  - Arquivo de output gerado: Resultados/TheoMatteo/completo/Casos/4/result_valgrind.txt.
- - Valgrind: Ok! allocs: 131, frees: 131, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Incorreto! allocs: 130, frees: 126, errors: 1 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -288,7 +288,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 5:
  - Arquivo de output gerado: Resultados/TheoMatteo/completo/Casos/5/result_valgrind.txt.
- - Valgrind: Ok! allocs: 107, frees: 107, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Incorreto! allocs: 106, frees: 103, errors: 1 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -297,7 +297,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 6:
  - Arquivo de output gerado: Resultados/TheoMatteo/completo/Casos/6/result_valgrind.txt.
- - Valgrind: Ok! allocs: 124, frees: 124, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Incorreto! allocs: 123, frees: 120, errors: 1 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -306,7 +306,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 1:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/1/result_valgrind.txt.
- - Valgrind: Incorreto! allocs: 73, frees: 73, errors: 22 | Desconto do valgrind 40.00%
+ - Valgrind: Incorreto! allocs: 72, frees: 69, errors: 23 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -315,7 +315,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 2:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/2/result_valgrind.txt.
- - Valgrind: Incorreto! allocs: 117, frees: 117, errors: 22 | Desconto do valgrind 40.00%
+ - Valgrind: Incorreto! allocs: 116, frees: 113, errors: 23 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -324,7 +324,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 3:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/3/result_valgrind.txt.
- - Valgrind: Incorreto! allocs: 116, frees: 116, errors: 67 | Desconto do valgrind 40.00%
+ - Valgrind: Incorreto! allocs: 115, frees: 111, errors: 68 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -333,7 +333,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 4:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/4/result_valgrind.txt.
- - Valgrind: Incorreto! allocs: 133, frees: 133, errors: 99 | Desconto do valgrind 40.00%
+ - Valgrind: Incorreto! allocs: 132, frees: 128, errors: 100 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -342,7 +342,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 5:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/5/result_valgrind.txt.
- - Valgrind: Incorreto! allocs: 108, frees: 108, errors: 22 | Desconto do valgrind 40.00%
+ - Valgrind: Incorreto! allocs: 107, frees: 104, errors: 23 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -351,7 +351,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 6:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/6/result_valgrind.txt.
- - Valgrind: Incorreto! allocs: 125, frees: 125, errors: 50 | Desconto do valgrind 40.00%
+ - Valgrind: Incorreto! allocs: 124, frees: 121, errors: 51 | Desconto do valgrind 40.00%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -371,7 +371,7 @@ Nome 0: TheoMatteo
  - Valgrinds Corretos tFila: 6 valgrinds corretos de 6 (não teve desconto na nota)
  - Valgrinds Corretos tDocumento: 6 valgrinds corretos de 6 (não teve desconto na nota)
  - Valgrinds Corretos tReceita: 6 valgrinds corretos de 6 (não teve desconto na nota)
- - Valgrinds Corretos completo: 6 valgrinds corretos de 6 (não teve desconto na nota)
+ - Valgrinds Corretos completo: 0 valgrinds corretos de 6 (teve desconto na nota para a pasta completo, olhar detalhamento nos prints acima!)
  - Valgrinds Corretos main: 0 valgrinds corretos de 6 (teve desconto na nota para a pasta main, olhar detalhamento nos prints acima!)
  - Cômputo final das Notas:
  - Pasta tFila (peso 1.0): 30 resultados corretos de 36 / Nota 1.00

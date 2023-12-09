@@ -48,8 +48,6 @@ tUsuario* ObtemUsuario (tSistema* s);
 /// @return 
 tDatabase* ObtemBDSistema (tSistema* s);
 
-void SalvaConsultaSistema(tSistema* s, tConsulta* c);
-
 void ExecutaFiladeImpressao (tSistema* s);
 
 void ExecutaRelatorio (tSistema* s);
