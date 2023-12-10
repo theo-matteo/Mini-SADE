@@ -21,7 +21,7 @@ struct tConsulta {
     char tipoPele[TAM_MAX_TIPO_PELE];
 };
 
-tConsulta* RealizaConsulta (tUsuario* user, tDatabase* d, tFila* f) {
+tConsulta* RealizaConsulta(tUsuario* user, tDatabase* d, tFila* f, tListaDataReceita* l) {
 
     // Indica o rotulo da lesao cadastrada, eh incrementada toda vez que cadastra uma nova lesao
     int numRotulo = 0;
@@ -93,7 +93,7 @@ tConsulta* RealizaConsulta (tUsuario* user, tDatabase* d, tFila* f) {
                 break;
 
             case 2:
-                tReceita* receita = PreencheCriaReceitaMedica(nomePaciente, CRM, nomeMedico, data);
+                tReceita* receita = PreencheCriaReceitaMedica(nomePaciente, CRM, nomeMedico, data, l);
                 insereDocumentoFila(f, receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
                 break;
 
@@ -164,45 +164,28 @@ tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) 
     return consulta;
 }
 
-tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data) {
+tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data,  tListaDataReceita* l) {
 
     eTipoUso tipoUsoEnum;
-    int qtd;
-    char tipoUso[10];
-    char nomeMedicamento[MAX_TAM_NOME_MEDICAMENTO];
-    char tipoMedicamento[MAX_TAM_TIPO_MEDICAMENTO];
-    char instrucoes[TAM_INSTRUCOES];
-
-    printf("TIPO DE USO: "); // ORAL ou TOPICO
-    scanf("%s", tipoUso);
+    
+    printf("TIPO DE USO: "); 
+    char tipoUso[10]; scanf("%s", tipoUso);
     scanf("%*c");
 
     // Converte  para enum
     if (!strcmp(tipoUso, "ORAL")) tipoUsoEnum = ORAL;
     else tipoUsoEnum = TOPICO;
 
-    // Nome do Medicamento  
-    printf("NOME DO MEDICAMENTO: ");
-    scanf("%[^\n]", nomeMedicamento);
-    scanf("%*c");
-
-    // Comprimidos ou Pomada 
-    printf("TIPO DE MEDICAMENTO: "); 
-    scanf("%s", tipoMedicamento);
-
-    printf("QUANTIDADE: ");
-    scanf("%d%*c", &qtd);
-
-    printf("INSTRUCOES DE USO: ");
-    scanf("%[^\n]", instrucoes);
-    scanf("%*c");
+    // Realiza leitura dos dados da receita e aloca dinamicamente 
+    tDataReceita* d = LeDadosReceita(nomePaciente, data, nomeMedico, CRM);
+    AdicionaDataReceitaLista(l, d);  
 
     printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);
     ImprimeBarraFinalMenu();
 
-    if (nomeMedico[0] == '\0') return criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, "\0", "\0", data);
-    return criaReceita(nomePaciente, tipoUsoEnum, nomeMedicamento, tipoMedicamento, instrucoes, qtd, nomeMedico, CRM, data);
+    // Cria uma receita com dados alocados dinamicamente 
+    return criaReceita(ObtemNomePacienteReceita(d), tipoUsoEnum, ObtemNomeMedicamento(d), ObtemTipoMedicamento(d), ObtemInstrucoes(d), ObtemQtdMedicamento(d), ObtemNomeMedicoReceita(d), ObtemCRMReceita(d),  ObtemDataReceita(d));
 }
 
 void AdicionaLesaoConsulta (tConsulta* c, tLesao* l) {
@@ -240,11 +223,15 @@ void SalvaConsultaArquivoBinario (tConsulta* consulta, FILE* file) {
 
 int ObtemQuantidadeConsultasBinario (FILE* file) {
 
-    char** cpfPacientesAtendidos = NULL;
-    int qtdPacientesAtendidos = 0;
+    // Vetor que ira armazenar os cpfs de todos os pacientes atendidos
+    char** cpfPacientes = NULL;
+    int qtdPacientes = 0;
+    
+    // Buffer para armazenar as informacoes nao relevantes 
     int qtdBytesBuffer = TAM_MAX_CPF + TAM_MAX_DATA + TAM_MAX_TIPO_PELE + TAM_CRM + sizeof(int) * 4;
     char buffer[qtdBytesBuffer];
 
+    // Retorna o ponteiro do arquivo para o inicio
     rewind(file);
 
     while (!feof(file)) {
@@ -252,23 +239,38 @@ int ObtemQuantidadeConsultasBinario (FILE* file) {
         char cpf[TAM_MAX_CPF];
         if (fread(cpf, sizeof(char), TAM_MAX_CPF, file) != TAM_MAX_CPF) break;
         else  {
-            qtdPacientesAtendidos++;
-            cpfPacientesAtendidos = (char**) realloc(cpfPacientesAtendidos, sizeof(char*) * qtdPacientesAtendidos);
-            cpfPacientesAtendidos[qtdPacientesAtendidos - 1] = (char*) malloc(sizeof(char) * TAM_MAX_CPF);
-            strcpy(cpfPacientesAtendidos[qtdPacientesAtendidos - 1], cpf);
+            qtdPacientes++;
+            cpfPacientes = (char**) realloc(cpfPacientes, sizeof(char*) * qtdPacientes);
+            cpfPacientes[qtdPacientes- 1] = (char*) malloc(sizeof(char) * TAM_MAX_CPF);
+            strcpy(cpfPacientes[qtdPacientes - 1], cpf);
         }
 
         if (fread(buffer, sizeof(char), qtdBytesBuffer, file) != qtdBytesBuffer) break;
 
     }
 
+    int qtd = ObtemQtdCpfUnicos(cpfPacientes, qtdPacientes);
+
+    // Desaloca array de cpf's 
+    if (cpfPacientes) {
+        for (int i = 0; i < qtdPacientes; i++) {
+            free(cpfPacientes[i]);
+        }
+        free(cpfPacientes);
+    }
+
+    return qtd;
+}
+
+int ObtemQtdCpfUnicos (char** cpfs, int qtd) {
+
     int count = 0;
     bool flag;
 
-    for (int i = 0; i < qtdPacientesAtendidos; i++) {
+    for (int i = 0; i < qtd; i++) {
         flag = false;
         for (int j = 0; j < i; j++) {
-            if (strcmp(cpfPacientesAtendidos[i], cpfPacientesAtendidos[j]) == 0) {
+            if (strcmp(cpfs[i], cpfs[j]) == 0) {
                 flag = true;
                 break;
             }
@@ -276,16 +278,9 @@ int ObtemQuantidadeConsultasBinario (FILE* file) {
         if (!flag) count++;
     }
 
-    // Desaloca array de cpf's 
-    if (cpfPacientesAtendidos) {
-        for (int i = 0; i < qtdPacientesAtendidos; i++) {
-            free(cpfPacientesAtendidos[i]);
-        }
-        free(cpfPacientesAtendidos);
-    }
-
     return count;
 }
+
 
 char* ObtemCPFPacienteConsulta (tConsulta* c) {
     return c->cpfPaciente;

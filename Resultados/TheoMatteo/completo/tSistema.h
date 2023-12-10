@@ -9,6 +9,7 @@
 #include "tListaBusca.h"
 #include "tConsulta.h"
 #include "tRelatorio.h"
+#include "tDadosReceita.h"
 
 #include "tUsuario.h"
 #include "tDatabase.h"

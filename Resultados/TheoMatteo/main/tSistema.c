@@ -13,6 +13,9 @@ struct tSistema {
 
     // Banco de dados (onde ha os arquivos binarios)
     tDatabase* database;
+
+    // Aloca dados da receita temporariamente
+    tListaDataReceita* data_receita;
 };
 
 tSistema* CriaSistema (char* path) {
@@ -30,6 +33,9 @@ tSistema* CriaSistema (char* path) {
     // Usuario logado no sistema inicializado com NULL
     sistema->user = NULL;
     sistema->filaDocs = criaFila();
+    
+    // Aloca dados da receita temporariamente
+    sistema->data_receita = CriaListaDataReceita();
 
     // Obtem caminho do banco de dados
     char pathDB[TAM_MAX_DIRETORIO];
@@ -87,7 +93,7 @@ void ExecutaSistema (tSistema* s) {
                 AdicionaPessoaBD(database, PACIENTE);
                 break;
             case 4:
-                tConsulta* consulta = RealizaConsulta(ObtemUsuario(s), database, fila);
+                tConsulta* consulta = RealizaConsulta(ObtemUsuario(s), database, fila, s->data_receita);
                 if (consulta) SalvaConsultaArquivoBinario(consulta, ObtemArquivoConsultas(database));
                 DesalocaConsulta(consulta);
                 break;
@@ -200,6 +206,8 @@ void DesalocaSistema (tSistema* s) {
     DesalocaBancoDados(s->database);
     DesalocaUsuarioSistema(s->user);
     desalocaFila(s->filaDocs);
+    DesalocaListaDataReceita(s->data_receita);
+
     free(s);
 
 }

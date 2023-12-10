@@ -12,6 +12,7 @@
 #include "tReceita.h"
 #include "tBiopsia.h"
 #include "tEncaminhamento.h"
+#include "tDadosReceita.h"
 #include "utils.h"
 
 #define TAM_MAX_TIPO_PELE 5
@@ -23,13 +24,13 @@
 
 typedef struct tConsulta tConsulta;
 
-tConsulta* RealizaConsulta(tUsuario* user, tDatabase* d, tFila* f);
+tConsulta* RealizaConsulta(tUsuario* user, tDatabase* d, tFila* f, tListaDataReceita* l);
 
 tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico, char* CRM);
 
 void AdicionaLesaoConsulta (tConsulta* c, tLesao* l);
 
-tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data);
+tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data,  tListaDataReceita* l);
 
 int ObtemQtdLesoesConsulta (tConsulta* c);
 
@@ -42,6 +43,8 @@ char* ObtemCPFPacienteConsulta (tConsulta* c);
 void SalvaConsultaArquivoBinario (tConsulta* consulta, FILE* file);
 
 int ObtemQuantidadeConsultasBinario (FILE* file);
+
+int ObtemQtdCpfUnicos (char** cpfs, int qtd);
 
 void DesalocaConsulta (tConsulta* c);
 
