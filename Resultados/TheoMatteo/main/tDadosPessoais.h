@@ -45,14 +45,14 @@ tDadosPessoais* ObtemDadosPessoaisArquivoBinario (FILE* file);
 /// @param cpf 
 /// @param d 
 /// @return true or false
-bool ComparaCPF (char* cpf, tDadosPessoais* d);
+bool VerificaCpfIguais (char* cpf, tDadosPessoais* d);
 
 
 /// @brief Verifica se o nome eh igual ao dos dados
 /// @param nome 
 /// @param d 
 /// @return true or false
-bool ComparaNome (char* nome, tDadosPessoais* d);
+bool VerificaNomesIguais (char* nome, tDadosPessoais* d);
 
 
 /// @brief Obtem nome da pessoa

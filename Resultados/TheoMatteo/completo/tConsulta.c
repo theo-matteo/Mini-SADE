@@ -21,7 +21,7 @@ struct tConsulta {
     char tipoPele[TAM_MAX_TIPO_PELE];
 };
 
-tConsulta* RealizaConsulta(tUsuario* user, tDatabase* d, tFila* f, tListaDataReceita* l) {
+void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, tListaDataReceita* l) {
 
     // Indica o rotulo da lesao cadastrada, eh incrementada toda vez que cadastra uma nova lesao
     int numRotulo = 0;
@@ -55,12 +55,11 @@ tConsulta* RealizaConsulta(tUsuario* user, tDatabase* d, tFila* f, tListaDataRec
         printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
         char c; scanf("%c%*c", &c);
         ImprimeBarraFinalMenu();
-        return NULL;
+        return;
     }
 
     // Imprime as informacoes do paciente apos ser encontrado 
     ImprConsultaDadosPaciente(ObtemNomePaciente(paciente), ObtemCPFPaciente(paciente), ObtemDtNascPaciente(paciente));
-    
 
     // Verifica se o usuario do sistema eh umm medico e obtem informacoes do medico
     if (ObtemTipoUsuarioSistema(user) == M) {
@@ -70,7 +69,7 @@ tConsulta* RealizaConsulta(tUsuario* user, tDatabase* d, tFila* f, tListaDataRec
     }
 
     // Le informacoes clinicas
-    tConsulta* consulta = LeInformacoesConsulta(cpfPaciente, cpfMedico, CRM);  
+    tConsulta* consulta = CriaConsulta(cpfPaciente, cpfMedico, CRM);  
 
     // Obtem informacoes da consulta 
     char* data = ObtemDataConsulta(consulta);
@@ -116,11 +115,15 @@ tConsulta* RealizaConsulta(tUsuario* user, tDatabase* d, tFila* f, tListaDataRec
         if (op == 5) break;
     }
 
+   
+   // Salva consulta no banco de dados
+    SalvaConsultaArquivoBinario(consulta, ObtemArquivoConsultas(d));
     DesalocaPaciente(paciente);
-    return consulta;
+    DesalocaConsulta(consulta);
+
 }
 
-tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) {
+tConsulta* CriaConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) {
 
     tConsulta* consulta = (tConsulta*) malloc(sizeof(tConsulta));
     if (!consulta) {
@@ -131,6 +134,7 @@ tConsulta* LeInformacoesConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) 
     consulta->lesoes = NULL;
     consulta->qtdLesoes = 0;
 
+    // Inicializa as strings com zero 
     memset(consulta->data, '\0', TAM_MAX_DATA);
     memset(consulta->tipoPele, '\0', TAM_MAX_TIPO_PELE);
     memset(consulta->cpfMedico, '\0', TAM_MAX_CPF);
@@ -221,7 +225,7 @@ void SalvaConsultaArquivoBinario (tConsulta* consulta, FILE* file) {
     fwrite(&consulta->possui_HistCancer, sizeof(int), 1, file);
 }
 
-int ObtemQuantidadeConsultasBinario (FILE* file) {
+int ObtemQtdConsultasBinario (FILE* file) {
 
     // Vetor que ira armazenar os cpfs de todos os pacientes atendidos
     char** cpfPacientes = NULL;

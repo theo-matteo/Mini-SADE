@@ -5,11 +5,16 @@
 #define TAM_MAX_DATA 11
 
 struct tBiopsia {
+
+
+    // Informacoes obtidas da consulta
     char nomePaciente[TAM_MAX_NOME];
     char cpfPaciente[TAM_MAX_CPF];
     char nomeMedico[TAM_MAX_NOME];
     char CRMmedico [TAM_MAX_CRM];
     char data[TAM_MAX_DATA];
+
+    // Lesoes cirurgicas do paciente 
     tLesao** lesoes;
     int qtdLesoes;
 };
@@ -32,12 +37,12 @@ tBiopsia* AlocaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPacien
     
     biopsia->lesoes = l;
     biopsia->qtdLesoes = qtd;
+
     strcpy(biopsia->nomePaciente, nomePaciente);
     strcpy(biopsia->cpfPaciente, cpfPaciente);
     strcpy(biopsia->nomeMedico, nomeMedico);
     strcpy(biopsia->CRMmedico, CRM);
     strcpy(biopsia->data, data);
-
 
     return biopsia;
 }
@@ -46,17 +51,19 @@ tBiopsia* AlocaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPacien
 tBiopsia* SolicitaBiopsia (tLesao** lesoes, int qtdLesoes, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
 
     tLesao** lesoesCirurgicas = NULL;
-    int qtdLesoesCirurgicas = 0;
+    int qtd = 0;
 
+    // Verifica se a lesao foi encaminhada para a cirurgia e salva no vetor de lesoes cirurgicas
     for (int i = 0; i < qtdLesoes; i++) {
         if (LesaoFoiEncaminhadaPraCirurgia(lesoes[i])) {
-            qtdLesoesCirurgicas++;
-            lesoesCirurgicas = (tLesao**) realloc(lesoesCirurgicas, sizeof(tLesao *) * qtdLesoesCirurgicas);
-            lesoesCirurgicas[qtdLesoesCirurgicas - 1] = ClonaLesao(lesoes[i]);
+            qtd++;
+            lesoesCirurgicas = (tLesao**) realloc(lesoesCirurgicas, sizeof(tLesao *) * qtd);
+            lesoesCirurgicas[qtd - 1] = ClonaLesao(lesoes[i]);
         }  
     }
 
-    if (qtdLesoesCirurgicas == 0) {
+    // Caso nao encontre lesao cirurgicas, retorna NULL
+    if (!qtd) {
         ImprimeBarraConsultaMedica();
         printf("NAO E POSSIVEL SOLICITAR BIOPSIA SEM LESAO CIRURGICA. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
         char c; scanf("%c%*c", &c);
@@ -69,8 +76,9 @@ tBiopsia* SolicitaBiopsia (tLesao** lesoes, int qtdLesoes, char* nomePaciente, c
     char c; scanf("%c%*c", &c);
     ImprimeBarraFinalMenu();
 
-    tBiopsia* biopsia = AlocaBiopsia(lesoesCirurgicas, qtdLesoesCirurgicas, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
-    return biopsia;
+
+    // Retorna uma biopsia alocada dinamicamente
+    return AlocaBiopsia(lesoesCirurgicas, qtd, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
 }
 
 void imprimeNaTelaBiopsia(void *dado) {
@@ -101,7 +109,7 @@ void imprimeEmArquivoBiopsia(void *dado, char *path) {
     // Concatenacao do caminho + nome arquivo
     sprintf(pathDoc, "%s/%s", path, "biopsia.txt");
 
-    // Dados sao adicionados no fim do arquivo no modo 'a'
+    // Dados sao adicionados no fim do arquivo no modo 'append'
     FILE* file = fopen(pathDoc, "a");
 
     if (file == NULL) {

@@ -30,7 +30,7 @@ void SalvaSecretarioArquivoBinario (void* sec, FILE* file);
 /// @param senha senha
 /// @param file arquivo
 /// @return secretario
-tSecretario* ObtemSecretarioArqvBinario (char* user, char* senha, FILE* file);
+tSecretario* ObtemSecretarioBD (char* user, char* senha, FILE* file);
 
 
 /// @brief Obtem o nivel de acesso ao sistema de um usuario

@@ -55,7 +55,7 @@ void SalvaSecretarioArquivoBinario (void* sec, FILE* file) {
 }
 
 
-tSecretario* ObtemSecretarioArqvBinario (char* user, char* senha, FILE* file) {
+tSecretario* ObtemSecretarioBD (char* user, char* senha, FILE* file) {
 
     tSecretario* s = NULL;
 

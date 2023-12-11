@@ -55,7 +55,7 @@ void SalvaMedicoArquivoBinario (void* m, FILE* file) {
 
 }
 
-tMedico* ObtemMedicoArquivoBinario (char* user, char* senha, FILE* file) {
+tMedico* ObtemMedicoBD(char* user, char* senha, FILE* file) {
 
     tMedico* m = NULL;
 

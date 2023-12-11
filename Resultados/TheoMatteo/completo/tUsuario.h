@@ -22,7 +22,7 @@ typedef enum {
 /// @param telaImpr tela de impressao do menu principal
 /// @param desalocaUser desaloca memoria da estrutura do usuario
 /// @param tipoUsuario tipo de usuario (medico ou secretario)
-/// @return retorna usuario alocado
+/// @return usuario alocado
 tUsuario* CriaUsuarioSistema (void* user, telaImpressao telaImpr, DesalocaUsuario desalocaUser, tipoUsuario type);
 
 

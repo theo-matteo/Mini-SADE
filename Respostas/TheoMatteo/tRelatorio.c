@@ -39,12 +39,12 @@ tRelatorio* CriaRelatorio () {
     return r;
 }
 
-tRelatorio* GeraRelatorioCompleto(tDatabase* database) {
+tRelatorio* GeraRelatorio (tDatabase* database) {
 
     tRelatorio* r = CriaRelatorio();
 
     // Preenche informacoes do Relatorio  
-    r->totalPacientesAtendidos = ObtemQuantidadeConsultasBinario(ObtemArquivoConsultas(database));
+    r->totalPacientesAtendidos = ObtemQtdConsultasBinario(ObtemArquivoConsultas(database));
     PreencheRelatorioDadosPacientes(ObtemArquivoPacientes(database), r);
     PreencheRelatorioDadosLesoes(ObtemArquivoLesoes(database), r);
     

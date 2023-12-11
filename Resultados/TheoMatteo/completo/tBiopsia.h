@@ -9,7 +9,9 @@
 
 typedef struct tBiopsia tBiopsia;
 
-/// @brief Aloca e inicializa uma biopsia
+
+
+/// @brief Aloca uma biopsia com as informacoes passadas por parametro
 /// @param l 
 /// @param qtd 
 /// @param nomePaciente 
@@ -22,7 +24,8 @@ tBiopsia* AlocaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPacien
 
 
 
-/// @brief Solicita uma biopsia dada uma lista de lesoes e informacoes de uma consulta
+
+/// @brief Solicita uma biopsia com as informacoes passadas de uma consulta
 /// @param lesoes 
 /// @param qtdLesoes 
 /// @param nomePaciente 
@@ -34,12 +37,14 @@ tBiopsia* AlocaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPacien
 tBiopsia* SolicitaBiopsia (tLesao** lesoes, int qtdLesoes, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data);
 
 
-/// @brief Imprime uma biopsia na tela
+
+/// @brief Imprime biopsia na tela
 /// @param dado 
 void imprimeNaTelaBiopsia(void *dado);
 
 
-/// @brief Imprime em um arquivo uma biospai
+
+/// @brief Imprime biopsia em um arquivo dado um caminho
 /// @param dado 
 /// @param path 
 void imprimeEmArquivoBiopsia(void *dado, char *path);

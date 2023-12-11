@@ -24,16 +24,17 @@ typedef struct tSistema tSistema;
 
 /// @brief Aloca memoria dinamicamente para o sistema
 /// @param path caminho do diretorios dos arquivos .txt
-/// @return retorna ponteiro para estrutura tSistema
+/// @return sistema
 tSistema* CriaSistema (char* path);
+
 
 /// @brief Acessa sistema com base nas credenciais fornecidas pela entrada padrao
 /// @param  sistema
-/// @return retorna true se o login foi realizado com sucesso, senao retorna false
+/// @return true (sucesso) or false 
 bool AcessaSistemaUsuario (tSistema* s);
 
 
-/// @brief Inicia o sistema, disponibilizando acoes para o usuario
+/// @brief Executa sistema 
 /// @param  s
 void ExecutaSistema (tSistema* s);
 
@@ -44,21 +45,35 @@ void ExecutaSistema (tSistema* s);
 tUsuario* ObtemUsuario (tSistema* s);
 
 
-/// @brief 
+/// @brief Obtem banco de dados do sistema
 /// @param s 
-/// @return 
+/// @return banco de dados
 tDatabase* ObtemBDSistema (tSistema* s);
 
+
+/// @brief Executa fila de impressao de documentos
+/// @param s 
 void ExecutaFiladeImpressao (tSistema* s);
 
+
+/// @brief Executa relatorio 
+/// @param s 
 void ExecutaRelatorio (tSistema* s);
 
+
+/// @brief Obtem fila de documentos do sistema
+/// @param s 
+/// @return fila
 tFila* ObtemFilaImprSistema (tSistema* s);
 
+
+/// @brief Obtem caminho de impressao dos documentos
+/// @param s 
+/// @return caminho de impressao
 char* ObtemPathImprDocs (tSistema* s);
 
 
-/// @brief 
+/// @brief Desaloca memoria do sistema
 /// @param  
 void DesalocaSistema (tSistema*);
 

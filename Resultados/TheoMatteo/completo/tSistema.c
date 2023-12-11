@@ -93,12 +93,10 @@ void ExecutaSistema (tSistema* s) {
                 AdicionaPessoaBD(database, PACIENTE);
                 break;
             case 4:
-                tConsulta* consulta = RealizaConsulta(ObtemUsuario(s), database, fila, s->data_receita);
-                if (consulta) SalvaConsultaArquivoBinario(consulta, ObtemArquivoConsultas(database));
-                DesalocaConsulta(consulta);
+                ExecutaConsulta(ObtemUsuario(s), database, fila, s->data_receita);
                 break;
             case 5:
-                BuscaPacientes(ObtemArquivoPacientes(database), ObtemFilaImprSistema(s));
+                BuscaPacientes(ObtemArquivoPacientes(database), fila);
                 break;
             case 6:
                 ExecutaRelatorio(s);
@@ -138,10 +136,7 @@ void ExecutaFiladeImpressao (tSistema* s) {
 
     while (true) {
 
-        printf("################### FILA DE IMPRESSAO MEDICA #####################\n");
-        printf("ESCOLHA UMA OPCAO:\n");
-        printf("\t(1) EXECUTAR FILA DE IMPRESSAO\n");
-        printf("\t(2) RETORNAR AO MENU ANTERIOR\n");
+        ImprimeTelaFiladeImpressao();
         scanf("%d%*c", &op);
 
         if (op == 1) {
@@ -156,12 +151,12 @@ void ExecutaFiladeImpressao (tSistema* s) {
         else break;
     }   
 
-    printf("############################################################\n");
+    ImprimeBarraFinalMenu();
 }
 
 void ExecutaRelatorio (tSistema* s) {
 
-    tRelatorio* relatorio = GeraRelatorioCompleto(ObtemBDSistema(s));
+    tRelatorio* relatorio = GeraRelatorio(ObtemBDSistema(s));
     printf("#################### RELATORIO GERAL #######################\n");
     ImprimeRelatorioTela(relatorio);
 
@@ -179,7 +174,7 @@ void ExecutaRelatorio (tSistema* s) {
     }
         
     else DesalocaRelatorio(relatorio);
-    printf("############################################################\n");
+    ImprimeBarraFinalMenu();
     
 }
 

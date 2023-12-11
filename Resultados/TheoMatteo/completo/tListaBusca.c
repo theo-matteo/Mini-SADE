@@ -9,12 +9,12 @@ struct tListaBusca {
 void BuscaPacientes (FILE* file, tFila* fila) {
 
     char nome[TAM_MAX_NOME];
-
     TelaImprBuscaPacientes1();
+
     scanf("%[^\n]", nome);
     scanf("%*c");
 
-    tListaBusca* lista = BuscaPessoaNomeArqv(nome, file);
+    tListaBusca* lista = BuscaPacientesNomeArqvBinario (nome, file);
 
     // Caso nao encontrou nenhum paciente com o nome informado
     if (lista == NULL) {
@@ -45,11 +45,12 @@ void BuscaPacientes (FILE* file, tFila* fila) {
 
 }   
 
-tListaBusca* BuscaPessoaNomeArqv (char* nome, FILE* file) {
+tListaBusca* BuscaPacientesNomeArqvBinario (char* nome, FILE* file) {
 
     // Retorna o arquivo para o inicio
     rewind(file);
 
+    // Vetor de pacientes
     tPaciente** pacientes = NULL;
     int qtd = 0;
     
@@ -59,7 +60,7 @@ tListaBusca* BuscaPessoaNomeArqv (char* nome, FILE* file) {
         if (!d) break; // Caso tenha chegado no fim do arquivo
 
         // Se os nomes coincidirem retorna o paciente 
-        if (ComparaNome(nome, d)) {
+        if (VerificaNomesIguais(nome, d)) {
             qtd++;
             pacientes = (tPaciente **) realloc(pacientes, sizeof(tPaciente *) * qtd);
             pacientes[qtd - 1] = CriaPaciente(d);

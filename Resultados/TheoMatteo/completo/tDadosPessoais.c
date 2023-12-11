@@ -84,11 +84,11 @@ tDadosPessoais* ObtemDadosPessoaisArquivoBinario (FILE* file) {
     return CriaDadosPessoais(nome, cpf, dtNasc, tel, genero);
 }
 
-bool ComparaCPF (char* cpf, tDadosPessoais* d) {
+bool VerificaCpfIguais (char* cpf, tDadosPessoais* d) {
     return (!strcmp(cpf, ObtemCPFDadosP(d)));
 }
 
-bool ComparaNome (char* nome, tDadosPessoais* d) {
+bool VerificaNomesIguais (char* nome, tDadosPessoais* d) {
     return (!strcmp(nome, ObtemNomeDadosP(d)));
 }
 

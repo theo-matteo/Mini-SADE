@@ -58,7 +58,7 @@ tUsuario* AutenticaUsuario (char* user, char* senha, tDatabase* database) {
     rewind(database->arqvMedicos);
 
     // Tenta obter um secretario com as credenciais fornecidas
-    tSecretario* sec = ObtemSecretarioArqvBinario(user, senha, database->arqvSecretarios);
+    tSecretario* sec = ObtemSecretarioBD (user, senha, database->arqvSecretarios);
 
     // Se o secretario for encontrado, verifica o nivel de acesso e retorna um usuario valido
     if (sec) {
@@ -67,7 +67,7 @@ tUsuario* AutenticaUsuario (char* user, char* senha, tDatabase* database) {
     }
 
     // Tenta encontrar um medico com as credenciais forncedias
-    tMedico* med = ObtemMedicoArquivoBinario(user, senha, database->arqvMedicos);
+    tMedico* med = ObtemMedicoBD(user, senha, database->arqvMedicos);
     if (med) return CriaUsuarioSistema(med, TelaImpressaoMedico, DesalocaMedico, M);
 
     // Retorna NULL para sinalizar que nao foi encontrado nenhum usuario valido
@@ -133,10 +133,12 @@ DesalocaPessoaFunc ObtemFuncaoDesalocarPessoa (tipoPessoa tipo) {
 
 void* BuscaPessoaPorCpf (tipoPessoa tipo, FILE* file, char* cpf) {
 
+    // Retorna o ponteiro para o inicio do arquivo 
     rewind(file);
 
-    char bufferCRM[TAM_CRM]; // Buffer para armazenar o CRM de um medico
-    char bufferNivelAcesso[TAM_MAX_NIVEL_ACESSO]; // Buffer para armazenar Nivel de Acesso do Secretario
+    // Buffers para armazenar dados (se for necessario)
+    char bufferCRM[TAM_CRM]; 
+    char bufferNivelAcesso[TAM_MAX_NIVEL_ACESSO]; 
 
     while(!feof(file)) {
 
@@ -149,7 +151,7 @@ void* BuscaPessoaPorCpf (tipoPessoa tipo, FILE* file, char* cpf) {
         if (tipo == MEDICO) fread(bufferCRM, sizeof(char), TAM_CRM, file);
         else if (tipo == SECRETARIO) fread(bufferNivelAcesso, sizeof(char), TAM_MAX_NIVEL_ACESSO, file);
 
-        if (ComparaCPF(cpf, d)) {
+        if (VerificaCpfIguais(cpf, d)) {
             if (tipo == MEDICO) return CriaMedico(d, c, bufferCRM);
             else if (tipo == SECRETARIO) return CriaSecretario(d, c, bufferNivelAcesso);
             else return CriaPaciente(d);

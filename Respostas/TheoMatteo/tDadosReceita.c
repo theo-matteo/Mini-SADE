@@ -34,6 +34,7 @@ tListaDataReceita* CriaListaDataReceita () {
 
     l->dados = NULL;
     l->qtd = 0;
+
     return l;
 }
 
@@ -67,25 +68,17 @@ tDataReceita* AlocaDadosReceita () {
     tDataReceita* d = malloc(sizeof(tDataReceita));
     if (d == NULL) {
         printf("Erro ao alocar dados da receita\n");
-        exit(1);
+        exit(EXIT_FAILURE);
     }
 
-    d->nome_paciente = malloc(sizeof(char) * TAM_MAX_NOME);
-    d->crm = malloc(sizeof(char) * TAM_CRM);
-    d->nome_medico = malloc(sizeof(char) * TAM_MAX_NOME);
-    d->data = malloc(sizeof(char) * TAM_MAX_DATA);
-    d->nome_medicamento = malloc(sizeof(char) * MAX_TAM_NOME_MEDICAMENTO);
-    d->tipo_medicamento = malloc(sizeof(char) * MAX_TAM_TIPO_MEDICAMENTO);
-    d->instrucoes = malloc(sizeof(char) * MAX_TAM_INSTRUCOES);
-
-    memset(d->nome_paciente, '\0', TAM_MAX_NOME);
-    memset(d->crm, '\0', TAM_CRM);
-    memset(d->nome_medico, '\0', TAM_MAX_NOME);
-    memset(d->data, '\0', TAM_MAX_DATA);
-    memset(d->nome_medicamento, '\0', MAX_TAM_NOME_MEDICAMENTO);
-    memset(d->tipo_medicamento, '\0', MAX_TAM_TIPO_MEDICAMENTO);
-    memset(d->instrucoes, '\0', MAX_TAM_INSTRUCOES);
-
+    /* Aloca memoria para os dados da receita */
+    d->nome_paciente = calloc(TAM_MAX_NOME, sizeof(char));
+    d->nome_medico = calloc(TAM_MAX_NOME, sizeof(char));
+    d->crm = calloc(TAM_CRM, sizeof(char));
+    d->data = calloc(TAM_MAX_DATA, sizeof(char));
+    d->nome_medicamento = calloc(MAX_TAM_NOME_MEDICAMENTO, sizeof(char));
+    d->tipo_medicamento = calloc(MAX_TAM_TIPO_MEDICAMENTO, sizeof(char));
+    d->instrucoes = calloc(MAX_TAM_INSTRUCOES, sizeof(char));
 
     return d;
 }
@@ -115,7 +108,7 @@ tDataReceita* LeDadosReceita (char* nome_paciente, char* data, char* nome_medico
     strcpy(d->crm, crm);
     strcpy(d->nome_medico, nome_medico);
 
-    // Realiza formatacao da data 
+    // formata data
     int dia, mes, ano;
     sscanf(data, "%d/%d/%d", &dia, &mes, &ano);
     sprintf(d->data, "%d/%d/%d", dia, mes, ano);

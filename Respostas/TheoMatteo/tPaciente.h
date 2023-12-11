@@ -14,22 +14,38 @@ typedef struct tPaciente tPaciente;
 tPaciente* CadastraPaciente ();
 
 
+/// @brief Cria um paciente e seta dados pessoais
+/// @param d 
+/// @return paciente
 tPaciente* CriaPaciente (tDadosPessoais* d);
 
 
-/// @brief Salva um paciente no arquivo binario 'pacientes'
+/// @brief Salva paciente em um arquivo binario
 /// @param p 
 /// @param file 
 void SalvaPacienteArquivoBinario (void* p, FILE* file);
 
+
+/// @brief Obtem CPF de um paciente
+/// @param paciente 
+/// @return cpf paciente
 char* ObtemCPFPaciente (void* paciente);
 
+
+/// @brief Obtem nome de um paciente
+/// @param p 
+/// @return nome paciente
 char* ObtemNomePaciente (void* p);
 
+
+/// @brief Obtem data de nascimento paciente
+/// @param p 
+/// @return data nascimento paciente
 char* ObtemDtNascPaciente (void *p);
 
+
 /// @brief Desaloca memoria de um paciente
-/// @param  paciente
+/// @param p 
 void DesalocaPaciente (void* p);
 
 

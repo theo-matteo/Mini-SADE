@@ -167,7 +167,7 @@ SELECIONE UMA OPCAO:
 	(2) RETORNAR AO MENU PRINCIPAL
 RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
 PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
-############################################################
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR SECRETARIO
@@ -238,7 +238,7 @@ PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
 ESCOLHA UMA OPCAO:
 	(1) EXECUTAR FILA DE IMPRESSAO
 	(2) RETORNAR AO MENU ANTERIOR
-############################################################
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
 	(1) CADASTRAR SECRETARIO

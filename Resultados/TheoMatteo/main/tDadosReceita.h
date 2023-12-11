@@ -13,19 +13,10 @@ typedef struct tDataReceita tDataReceita;
 typedef struct tListaDataReceita tListaDataReceita;
 
 
-/// @brief Cria uma lista de dados de receitas
-/// @return lista
 tListaDataReceita* CriaListaDataReceita ();
 
-
-/// @brief Adiciona dados de receita a uma lista de dados de receita
-/// @param l 
-/// @param d 
 void AdicionaDataReceitaLista (tListaDataReceita* l, tDataReceita* d);
 
-
-/// @brief Desaloca memoria de uma lista de dados de receita
-/// @param l 
 void DesalocaListaDataReceita (tListaDataReceita* l);
 
 tDataReceita* AlocaDadosReceita ();

@@ -18,6 +18,7 @@ typedef struct tCredenciais tCredenciais;
 /// @return credenciais
 tCredenciais* CriaCredenciaisAcesso(char* user, char* senha);
 
+
 /// @brief Le credenciais de acesso de medicos e secretarios
 /// @return retorna ponteiro da estrutura com contem dados de acesso
 tCredenciais* LeCredenciaisAcesso ();
@@ -43,17 +44,16 @@ bool VerificaCredenciais (char *user, char* senha, tCredenciais* c);
 char* ObtemUserCredenciais (tCredenciais* c);
 
 
-
 /// @brief Obtem a senha do usuario
 /// @param c 
 /// @return senha do usuarioi
 char* ObtemSenhaCredenciais (tCredenciais* c);
 
 
-
 /// @brief Obtem o numero de bytes da estrutura tCredenciais
 /// @return 
 int ObtemQtdBytesCredenciais ();
+
 
 /// @brief Salva informacoes das credenciais em um arquivo binario
 /// @param  credenciais

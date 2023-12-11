@@ -110,3 +110,10 @@ void ImprimeSucessoCadastro() {
 void ImprimeBarraFinalMenu() {
     printf("###############################################################\n");
 }
+
+void ImprimeTelaFiladeImpressao() {
+    printf("################### FILA DE IMPRESSAO MEDICA #####################\n");
+    printf("ESCOLHA UMA OPCAO:\n");
+    printf("\t(1) EXECUTAR FILA DE IMPRESSAO\n");
+    printf("\t(2) RETORNAR AO MENU ANTERIOR\n");
+}
