@@ -107,6 +107,8 @@ void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, Vector* dados_rece
    
    // Salva consulta no banco de dados
     SalvaConsultaArquivoBinario(consulta, ObtemArquivoConsultas(d));
+
+    // Desaloca estruturas usadas durante a consulta
     DesalocaPaciente(paciente);
     DesalocaConsulta(consulta);
 }

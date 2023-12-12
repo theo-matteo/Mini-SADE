@@ -1,5 +1,7 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
+Caminho do banco de dados: Resultados/TheoMatteo/main/Casos/4/../../
+Caminho da pasta de saida: Resultados/TheoMatteo/main/Casos/4/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 SENHA INCORRETA OU USUARIO INEXISTENTE

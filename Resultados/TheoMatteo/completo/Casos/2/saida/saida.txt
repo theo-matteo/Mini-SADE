@@ -1,5 +1,7 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
+Caminho do banco de dados: Resultados/TheoMatteo/completo/Casos/2/../../
+Caminho da pasta de saida: Resultados/TheoMatteo/completo/Casos/2/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################
@@ -14,7 +16,8 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### CADASTRO SECRETARIO #######################
-NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: NOME DE USUARIO: SENHA: NIVEL DE ACESSO: CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: NOME DE USUARIO: SENHA: NIVEL DE ACESSO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
 ###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
@@ -28,7 +31,8 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### CADASTRO MEDICO #######################
-NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CRM: NOME DE USUARIO: SENHA: CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CRM: NOME DE USUARIO: SENHA: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
 ###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
@@ -42,7 +46,8 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### CADASTRO PACIENTE #######################
-NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
 ###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
@@ -56,7 +61,8 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### CADASTRO PACIENTE #######################
-NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
 ###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
@@ -70,7 +76,8 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### CADASTRO PACIENTE #######################
-NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
 ###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
@@ -84,7 +91,8 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### CADASTRO PACIENTE #######################
-NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
 ###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
@@ -98,7 +106,8 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### CADASTRO PACIENTE #######################
-NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
 ###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:

@@ -32,7 +32,7 @@ tEncaminhamento* CriaEncaminhamento (char* nomePac, char* cpfPac, char* nomeMed,
     strcpy(e->nomeMedico, nomeMed);
     strcpy(e->nomePaciente, nomePac);
 
-    printf("#################### CONSULTA MEDICA #######################\n");
+    ImprimeBarraConsultaMedica();
     printf("ENCAMINHAMENTO:\n");
 
     printf("ESPECIALIDADE ENCAMINHADA: ");

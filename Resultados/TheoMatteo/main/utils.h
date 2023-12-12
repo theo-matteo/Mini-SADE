@@ -7,7 +7,6 @@
 
 /* Funcoes Auxiliares do Sistema */
 
-
 /// @brief Calcula idade de uma pessoa a partir de uma data
 /// @param data 
 /// @return idade

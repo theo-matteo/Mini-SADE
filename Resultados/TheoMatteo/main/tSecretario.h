@@ -16,13 +16,18 @@ typedef struct tSecretario tSecretario;
 tSecretario* CadastraSecretario ();
 
 
+/// @brief Cria um secretario e adiciona as informacoes passadas por parametro
+/// @param d 
+/// @param c 
+/// @param nivelAcesso 
+/// @return secretario
 tSecretario* CriaSecretario (tDadosPessoais* d, tCredenciais* c, char* nivelAcesso);
+
 
 /// @brief Salva informacoes de um secretario em um arquivo binario
 /// @param  secretario
 /// @param  arquivo
 void SalvaSecretarioArquivoBinario (void* sec, FILE* file);
-
 
 
 /// @brief Obtem um secretario com as credenciais informadas, se houver retorna ponteiro, senao retorna NULL
@@ -39,9 +44,17 @@ tSecretario* ObtemSecretarioBD (char* user, char* senha, FILE* file);
 char* ObtemNivelAcessoSecretario (tSecretario* s);
 
 
+/// @brief Obtem CPF de um secretario
+/// @param sec 
+/// @return CPF secretario
 char* ObtemCPFSecretario (void* sec);
 
+
+/// @brief Verifica se o secretario eh admin
+/// @param sec 
+/// @return 1 sim e 0 nao
 int VerificaAcessoAdminSec (tSecretario* sec);
+
 
 /// @brief Desaloca memoria da estrutura assumindo que o ponteiro eh do tipo tSecretario
 /// @param  secretario

@@ -104,7 +104,7 @@ void ImprTelaConsultaMedica() {
 }
 
 void ImprimeSucessoCadastro() {
-    printf("CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+    printf("\nCADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
 }
 
 void ImprimeBarraFinalMenu() {

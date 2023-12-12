@@ -1,5 +1,7 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
+Caminho do banco de dados: Resultados/TheoMatteo/main/Casos/5/../../
+Caminho da pasta de saida: Resultados/TheoMatteo/main/Casos/5/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################
@@ -27,7 +29,8 @@ ESCOLHA UMA OPCAO:
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
 #################### CADASTRO PACIENTE #######################
-NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
 ###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:

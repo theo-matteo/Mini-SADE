@@ -27,28 +27,21 @@
 typedef struct tConsulta tConsulta;
 
 
-/// @brief Executa a consulta dado as informacoes da base da dados e o usuario
-/// @param user 
-/// @param d 
-/// @param f 
-/// @param l 
-/// @return consulta
+
+/// @brief Executa uma consulta medica de acordo com os parametros 
+/// @param user (usuario que esta logado no sistema)
+/// @param d (banco de dados do sistema)
+/// @param f (fila de impressao de documentos)
+/// @param dados_receita (dados das receitas cadastradas)
 void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, Vector* dados_receita);
 
 
-/// @brief Aloca consulta e le informacoes da entrada padrao
+/// @brief Aloca consulta, le informacoes da entrada padrao e copia informacoes passadas por parametro
 /// @param cpfPaciente 
 /// @param cpfMedico 
 /// @param CRM 
 /// @return consulta
 tConsulta* CriaConsulta(char* cpfPaciente, char* cpfMedico, char* CRM);
-
-
-/// @brief Adiciona uma nova lesao a consulta
-/// @param c 
-/// @param l 
-void AdicionaLesaoConsulta (tConsulta* c, tLesao* l);
-
 
 /// @brief Ler informacoes da receita e cria uma receita
 /// @param nomePaciente 
@@ -64,6 +57,7 @@ tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMe
 /// @param c 
 /// @return data
 char* ObtemDataConsulta (tConsulta* c);
+
 
 /// @brief Salva consulta no arquivo binario
 /// @param consulta 
@@ -83,7 +77,10 @@ int ObtemQtdConsultasBinario (FILE* file);
 /// @return qtd cpf unicos
 int ObtemQtdCpfUnicos (char** cpfs, int qtd);
 
+
+/// @brief Imprime mensagem de erro caso nao encontre um paciente para realizacao da consulta
 void ImprimeErroConsulta();
+
 
 /// @brief Desaloca memoria de uma consulta
 /// @param c 
