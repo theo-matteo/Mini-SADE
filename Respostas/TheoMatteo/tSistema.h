@@ -13,6 +13,7 @@
 
 #include "tUsuario.h"
 #include "tDatabase.h"
+#include "vector.h"
 
 #include <stdio.h>
 #include <stdbool.h>

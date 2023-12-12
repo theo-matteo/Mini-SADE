@@ -20,7 +20,7 @@ struct tConsulta {
     char tipoPele[TAM_MAX_TIPO_PELE];
 };
 
-void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, tListaDataReceita* l) {
+void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, Vector* dados_receita) {
 
     // Indica o rotulo da lesao cadastrada, eh incrementada toda vez que cadastra uma nova lesao
     int numRotulo = 0;
@@ -86,7 +86,7 @@ void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, tListaDataReceita*
                 break;
 
             case 2:
-                tReceita* receita = PreencheCriaReceitaMedica(nomePaciente, CRM, nomeMedico, data, l);
+                tReceita* receita = PreencheCriaReceitaMedica(nomePaciente, CRM, nomeMedico, data, dados_receita);
                 insereDocumentoFila(f, receita, imprimeNaTelaReceita, imprimeEmArquivoReceita, desalocaReceita);
                 break;
 
@@ -159,7 +159,7 @@ tConsulta* CriaConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) {
     return consulta;
 }
 
-tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data,  tListaDataReceita* l) {
+tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data,  Vector* dados_receita) {
 
     eTipoUso tipoUsoEnum;
     
@@ -173,7 +173,7 @@ tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMe
 
     // Realiza leitura dos dados da receita e aloca dinamicamente 
     tDataReceita* d = LeDadosReceita(nomePaciente, data, nomeMedico, CRM);
-    AdicionaDataReceitaLista(l, d);  
+    VectorPushBack(dados_receita, d); 
 
     printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);

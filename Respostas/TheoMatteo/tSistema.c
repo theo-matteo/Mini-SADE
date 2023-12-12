@@ -15,7 +15,7 @@ struct tSistema {
     tDatabase* database;
 
     // Aloca dados da receita temporariamente
-    tListaDataReceita* data_receita;
+    Vector* dados_receita;
 };
 
 tSistema* CriaSistema (char* path) {
@@ -35,7 +35,7 @@ tSistema* CriaSistema (char* path) {
     sistema->filaDocs = criaFila();
     
     // Aloca dados da receita temporariamente
-    sistema->data_receita = CriaListaDataReceita();
+    sistema->dados_receita = VectorConstruct();
 
     // Obtem caminho do banco de dados
     char pathDB[TAM_MAX_DIRETORIO];
@@ -93,7 +93,7 @@ void ExecutaSistema (tSistema* s) {
                 AdicionaPessoaBD(database, PACIENTE);
                 break;
             case 4:
-                ExecutaConsulta(ObtemUsuario(s), database, fila, s->data_receita);
+                ExecutaConsulta(ObtemUsuario(s), database, fila, s->dados_receita);
                 break;
             case 5:
                 BuscaPacientes(ObtemArquivoPacientes(database), fila);
@@ -201,7 +201,7 @@ void DesalocaSistema (tSistema* s) {
     DesalocaBancoDados(s->database);
     DesalocaUsuarioSistema(s->user);
     desalocaFila(s->filaDocs);
-    DesalocaListaDataReceita(s->data_receita);
+    VectorDestroy(s->dados_receita, DesalocaDadosReceita);
 
     free(s);
 

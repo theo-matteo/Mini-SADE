@@ -9,16 +9,6 @@
 // Estrutura que armazena os dados de uma receita
 typedef struct tDataReceita tDataReceita;
 
-// Estrutura que armazena uma lista de dados de receita
-typedef struct tListaDataReceita tListaDataReceita;
-
-
-tListaDataReceita* CriaListaDataReceita ();
-
-void AdicionaDataReceitaLista (tListaDataReceita* l, tDataReceita* d);
-
-void DesalocaListaDataReceita (tListaDataReceita* l);
-
 tDataReceita* AlocaDadosReceita ();
 
 tDataReceita* LeDadosReceita (char* nome_paciente, char* data, char* nome_medico, char* crm);

@@ -33,7 +33,7 @@ typedef struct tConsulta tConsulta;
 /// @param f 
 /// @param l 
 /// @return consulta
-void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, tListaDataReceita* l);
+void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, Vector* dados_receita);
 
 
 /// @brief Aloca consulta e le informacoes da entrada padrao
@@ -57,7 +57,7 @@ void AdicionaLesaoConsulta (tConsulta* c, tLesao* l);
 /// @param data 
 /// @param l 
 /// @return receita
-tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data,  tListaDataReceita* l);
+tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data, Vector* dados_receita);
 
 
 /// @brief Obtem data da realizacao da consulta

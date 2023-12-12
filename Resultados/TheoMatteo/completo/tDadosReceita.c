@@ -18,51 +18,6 @@ struct tDataReceita {
     int qtd;
 };
 
-struct tListaDataReceita {
-    tDataReceita** dados;
-    int qtd;
-};
-
-
-tListaDataReceita* CriaListaDataReceita () {
-    
-    tListaDataReceita* l = malloc(sizeof(tListaDataReceita));
-    if (!l) {
-        printf("Falha na Alocacao da Lista de Dados da Receita\n");
-        exit(EXIT_FAILURE);
-    }
-
-    l->dados = NULL;
-    l->qtd = 0;
-
-    return l;
-}
-
-void DesalocaListaDataReceita (tListaDataReceita* l) {
-    
-    if (l == NULL) return;
-
-    if (l->dados) {
-        for (int i = 0; i < l->qtd; i++) {
-            DesalocaDadosReceita(l->dados[i]);
-        }
-        free(l->dados);
-    }
-
-    free(l); 
-}
-
-
-void AdicionaDataReceitaLista (tListaDataReceita* l, tDataReceita* d) {
-
-    if (l == NULL || d == NULL);
-
-    l->qtd++;
-    l->dados = (tDataReceita**) realloc(l->dados, sizeof(tDataReceita*) * l->qtd);
-    l->dados[l->qtd - 1] = d;
-
-}
-
 tDataReceita* AlocaDadosReceita () {
 
     tDataReceita* d = malloc(sizeof(tDataReceita));
