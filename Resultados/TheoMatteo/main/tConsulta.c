@@ -11,8 +11,7 @@ struct tConsulta {
 
     // Informacoes obtidas durante a consulta
     char data[TAM_MAX_DATA];
-    tLesao** lesoes;
-    int qtdLesoes;
+    Vector* lesoes;
 
     int possui_diabetes;
     int eh_fumante;
@@ -30,14 +29,9 @@ void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, tListaDataReceita*
     char cpfPaciente[TAM_MAX_CPF];
 
     // Informacoes do medico inicalizadas com string vazias
-    char CRM[TAM_CRM];
-    char nomeMedico[TAM_MAX_NOME];
-    char cpfMedico[TAM_MAX_CPF];
-
-    // Inicializa as strings com '\0'
-    memset(CRM, '\0', TAM_CRM);
-    memset(nomeMedico, '\0', TAM_MAX_NOME);
-    memset(cpfMedico, '\0', TAM_MAX_CPF);
+    char CRM[TAM_CRM]; memset(CRM, '\0', TAM_CRM);
+    char nomeMedico[TAM_MAX_NOME];  memset(nomeMedico, '\0', TAM_MAX_NOME);
+    char cpfMedico[TAM_MAX_CPF]; memset(cpfMedico, '\0', TAM_MAX_CPF);
 
     // Obtem o cpf do paciente
     ImprimeBarraConsultaMedica();
@@ -87,7 +81,7 @@ void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, tListaDataReceita*
 
             case 1:
                 tLesao* lesao = CadastraLesao(++numRotulo, cpfPaciente, cpfMedico, CRM, data);
-                AdicionaLesaoConsulta(consulta, lesao);
+                VectorPushBack(consulta->lesoes, lesao);
                 SalvaLesaoArquivoBinario(lesao, ObtemArquivoLesoes(d));
                 break;
 
@@ -97,9 +91,7 @@ void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, tListaDataReceita*
                 break;
 
             case 3:
-                tLesao** lesoes = ObtemLesoesConsulta(consulta);
-                int qtdLesoes = ObtemQtdLesoesConsulta(consulta);
-                tBiopsia* biopsia = SolicitaBiopsia(lesoes, qtdLesoes, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
+                tBiopsia* biopsia = SolicitaBiopsia(consulta->lesoes, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
                 if (biopsia) insereDocumentoFila(f, biopsia, imprimeNaTelaBiopsia, imprimeEmArquivoBiopsia, DesalocaBiopsia);
                 break;
                 
@@ -131,8 +123,7 @@ tConsulta* CriaConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) {
         exit(EXIT_FAILURE);
     }
 
-    consulta->lesoes = NULL;
-    consulta->qtdLesoes = 0;
+    consulta->lesoes = VectorConstruct();
 
     // Inicializa as strings com zero 
     memset(consulta->data, '\0', TAM_MAX_DATA);
@@ -190,20 +181,6 @@ tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMe
 
     // Cria uma receita com dados alocados dinamicamente 
     return criaReceita(ObtemNomePacienteReceita(d), tipoUsoEnum, ObtemNomeMedicamento(d), ObtemTipoMedicamento(d), ObtemInstrucoes(d), ObtemQtdMedicamento(d), ObtemNomeMedicoReceita(d), ObtemCRMReceita(d),  ObtemDataReceita(d));
-}
-
-void AdicionaLesaoConsulta (tConsulta* c, tLesao* l) {
-    c->qtdLesoes++;
-    c->lesoes = (tLesao**) realloc(c->lesoes, sizeof(tLesao*) * c->qtdLesoes);
-    c->lesoes[c->qtdLesoes - 1] = l;
-}
-
-int ObtemQtdLesoesConsulta (tConsulta* c) {
-    return c->qtdLesoes;
-}
-
-tLesao** ObtemLesoesConsulta(tConsulta* c) {
-    return c->lesoes;
 }
 
 char* ObtemDataConsulta (tConsulta* c) {
@@ -291,16 +268,9 @@ char* ObtemCPFPacienteConsulta (tConsulta* c) {
 }
 
 
-void DesalocaConsulta (tConsulta* c) {
-
-    if (!c) return;
-
-    if (c->lesoes) {
-        for (int i = 0; i < c->qtdLesoes; i++) {
-            DesalocaLesao(c->lesoes[i]);
-        }
-        free(c->lesoes);
-    }
-
+void DesalocaConsulta (void* dado) {
+    if (!dado) return;
+    tConsulta* c = (tConsulta*) dado;
+    VectorDestroy(c->lesoes, DesalocaLesao);
     free(c);
 }

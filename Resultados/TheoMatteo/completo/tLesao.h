@@ -82,6 +82,6 @@ char* ObtemRotuloLesao (tLesao* l);
 
 
 /// @brief Desaloca memoria de uma lesao 
-void DesalocaLesao (tLesao*);
+void DesalocaLesao (void* dado);
 
 #endif

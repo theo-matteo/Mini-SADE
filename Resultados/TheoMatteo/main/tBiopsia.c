@@ -15,28 +15,39 @@ struct tBiopsia {
     char data[TAM_MAX_DATA];
 
     // Lesoes cirurgicas do paciente 
-    tLesao** lesoes;
-    int qtdLesoes;
+    Vector* lesoes;
 };
 
+Vector* ObtemLesoesCirurgicas (Vector* lesoes) {
 
-tBiopsia* AlocaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
+    Vector* v = VectorConstruct();
+
+    // Verifica se a lesao foi encaminhada para a cirurgia e salva no vetor de lesoes cirurgicas
+    for (int i = 0; i < VectorSize(lesoes); i++) {
+        tLesao* l = VectorGet(lesoes, i);
+        if (LesaoFoiEncaminhadaPraCirurgia(l)) {
+            VectorPushBack(v, ClonaLesao(l));
+        }  
+    }
+
+    if (VectorSize(v) == 0) {
+        VectorDestroy(v, DesalocaLesao);
+        return NULL;
+    }
+
+    return v;
+}
+
+
+tBiopsia* AlocaBiopsia (Vector* l, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
 
     tBiopsia* biopsia = (tBiopsia*) malloc(sizeof(tBiopsia));
     if (biopsia == NULL) {
         printf("Falha na Alocacao da Biopsia\n");
         exit(EXIT_FAILURE);
     }
-
-    // Inicializa strings com '\0'
-    memset(biopsia->nomePaciente, '\0', TAM_MAX_NOME);
-    memset(biopsia->cpfPaciente, '\0', TAM_MAX_CPF);
-    memset(biopsia->nomeMedico, '\0', TAM_MAX_NOME);
-    memset(biopsia->CRMmedico, '\0', TAM_MAX_CRM);
-    memset(biopsia->data, '\0', TAM_MAX_DATA);
     
     biopsia->lesoes = l;
-    biopsia->qtdLesoes = qtd;
 
     strcpy(biopsia->nomePaciente, nomePaciente);
     strcpy(biopsia->cpfPaciente, cpfPaciente);
@@ -48,22 +59,12 @@ tBiopsia* AlocaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPacien
 }
 
 
-tBiopsia* SolicitaBiopsia (tLesao** lesoes, int qtdLesoes, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
+tBiopsia* SolicitaBiopsia (Vector* lesoes, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
 
-    tLesao** lesoesCirurgicas = NULL;
-    int qtd = 0;
-
-    // Verifica se a lesao foi encaminhada para a cirurgia e salva no vetor de lesoes cirurgicas
-    for (int i = 0; i < qtdLesoes; i++) {
-        if (LesaoFoiEncaminhadaPraCirurgia(lesoes[i])) {
-            qtd++;
-            lesoesCirurgicas = (tLesao**) realloc(lesoesCirurgicas, sizeof(tLesao *) * qtd);
-            lesoesCirurgicas[qtd - 1] = ClonaLesao(lesoes[i]);
-        }  
-    }
-
+    Vector* lesoesCirurgicas = ObtemLesoesCirurgicas(lesoes);
+    
     // Caso nao encontre lesao cirurgicas, retorna NULL
-    if (!qtd) {
+    if (lesoesCirurgicas == NULL) {
         ImprimeBarraConsultaMedica();
         printf("NAO E POSSIVEL SOLICITAR BIOPSIA SEM LESAO CIRURGICA. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
         char c; scanf("%c%*c", &c);
@@ -78,7 +79,7 @@ tBiopsia* SolicitaBiopsia (tLesao** lesoes, int qtdLesoes, char* nomePaciente, c
 
 
     // Retorna uma biopsia alocada dinamicamente
-    return AlocaBiopsia(lesoesCirurgicas, qtd, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
+    return AlocaBiopsia(lesoesCirurgicas, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
 }
 
 void imprimeNaTelaBiopsia(void *dado) {
@@ -89,8 +90,8 @@ void imprimeNaTelaBiopsia(void *dado) {
     printf("CPF: %s\n\n", b->cpfPaciente);
     printf("SOLICITACAO DE BIOPSIA PARA AS LESOES:\n\n");
 
-    for (int i = 0; i < b->qtdLesoes; i++) {
-        tLesao* lesao = b->lesoes[i];
+    for (int i = 0; i < VectorSize(b->lesoes); i++) {
+        tLesao* lesao = VectorGet(b->lesoes, i);
         printf("%s - %s - %s - %dMM\n", ObtemRotuloLesao(lesao), ObtemDiagnosticoLesao(lesao), ObtemRegiaoCorpoLesao(lesao), ObtemTamanhoLesao(lesao));
     }
 
@@ -121,8 +122,8 @@ void imprimeEmArquivoBiopsia(void *dado, char *path) {
     fprintf(file, "CPF: %s\n\n", b->cpfPaciente);
     fprintf(file, "SOLICITACAO DE BIOPSIA PARA AS LESOES:\n");
 
-    for (int i = 0; i < b->qtdLesoes; i++) {
-        tLesao* lesao = b->lesoes[i];
+    for (int i = 0; i < VectorSize(b->lesoes); i++) {
+        tLesao* lesao = VectorGet(b->lesoes, i);
         fprintf(file, "%s - %s - %s - %dMM\n", ObtemRotuloLesao(lesao), ObtemDiagnosticoLesao(lesao), ObtemRegiaoCorpoLesao(lesao), ObtemTamanhoLesao(lesao));
     }
 
@@ -141,12 +142,7 @@ void DesalocaBiopsia (void* dado) {
     if (!dado) return;
 
     tBiopsia* b = (tBiopsia*) dado;
-
-    for (int i = 0; i < b->qtdLesoes; i++) {
-        DesalocaLesao(b->lesoes[i]);
-    }
-
-    free(b->lesoes);
+    VectorDestroy(b->lesoes, DesalocaLesao);
     free(b);
 }
 

@@ -177,7 +177,9 @@ tLesao* ObtemLesaoArquivoBinario (FILE* file) {
 }
 
 
-void DesalocaLesao (tLesao* l) {
+void DesalocaLesao (void* dado) {
+    if (!dado) return;
+    tLesao* l = (tLesao*) dado;
     if (l) free(l);
 }
 

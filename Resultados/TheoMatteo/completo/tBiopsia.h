@@ -4,8 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "tLesao.h"
-#include "utils.h"
 
+#include "utils.h"
+#include "vector.h"
 
 typedef struct tBiopsia tBiopsia;
 
@@ -20,8 +21,7 @@ typedef struct tBiopsia tBiopsia;
 /// @param CRM 
 /// @param data 
 /// @return biopsia
-tBiopsia* AlocaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data);
-
+tBiopsia* AlocaBiopsia (Vector* l, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data);
 
 
 
@@ -34,7 +34,7 @@ tBiopsia* AlocaBiopsia (tLesao** l, int qtd, char* nomePaciente, char* cpfPacien
 /// @param CRM 
 /// @param data 
 /// @return biopsia
-tBiopsia* SolicitaBiopsia (tLesao** lesoes, int qtdLesoes, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data);
+tBiopsia* SolicitaBiopsia (Vector* lesoes, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data);
 
 
 
