@@ -67,8 +67,12 @@ void ImprTelaConsultaMedica();
 void ImprimeTelaFiladeImpressao();
 
 
-/// @brief Imprime uma barra final do menu '####'
-void ImprimeBarraFinalMenu();
+/// @brief Imprime barra final de menu
+void ImprimeBarraFinalMenu ();
+
+
+/// @brief Imprime barra da fila de impressao
+void ImprimeBarraFilaImpr ();
 
 
 #endif

@@ -31,7 +31,7 @@ void BuscaPacientes (FILE* file, tFila* fila) {
 
     // Insere lista busca na fila de impressao (opcao 1)
     if (op == 1) {
-        printf("LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL\n");
+        printf("\nLISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL\n");
         char c; scanf("%c%*c", &c);
         ImprimeBarraFinalMenu();
         insereDocumentoFila(fila, lista, ImprimeListaBusca, imprimeEmArquivoListaBusca, DesalocaListaBusca);

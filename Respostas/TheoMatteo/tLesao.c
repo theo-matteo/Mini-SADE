@@ -67,7 +67,7 @@ tLesao* CadastraLesao (int numRotulo, char* cpfPaciente, char* cpfMedico, char* 
     printf("ENVIAR PARA CRIOTERAPIA: ");
     scanf("%d", &lesao->enviar_crioterapia);
 
-    printf("LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+    printf("\nLESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);
     ImprimeBarraFinalMenu();
 

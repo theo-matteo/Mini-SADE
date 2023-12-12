@@ -96,17 +96,17 @@ void imprimeNaTelaBiopsia(void *dado) {
 
     printf("PACIENTE: %s\n", b->nomePaciente);
     printf("CPF: %s\n\n", b->cpfPaciente);
-    printf("SOLICITACAO DE BIOPSIA PARA AS LESOES:\n\n");
+    printf("SOLICITACAO DE BIOPSIA PARA AS LESOES:\n");
 
     for (int i = 0; i < VectorSize(b->lesoes); i++) {
         tLesao* lesao = VectorGet(b->lesoes, i);
         printf("%s - %s - %s - %dMM\n", ObtemRotuloLesao(lesao), ObtemDiagnosticoLesao(lesao), ObtemRegiaoCorpoLesao(lesao), ObtemTamanhoLesao(lesao));
     }
 
-    printf("\n\n");
+    printf("\n");
     printf("%s (%s)\n", b->nomeMedico, b->CRMmedico);
     ImprimeDataTela(b->data);    
-    printf("\n\n");
+    printf("\n");
 
 }
 
@@ -138,7 +138,7 @@ void imprimeEmArquivoBiopsia(void *dado, char *path) {
     fprintf(file, "\n");
     fprintf(file, "%s (%s)\n", b->nomeMedico, b->CRMmedico);
     ImprimeDataArquivo(b->data, file);
-    fprintf(file, "\n\n");
+    fprintf(file, "\n");
 
 
     fclose(file);

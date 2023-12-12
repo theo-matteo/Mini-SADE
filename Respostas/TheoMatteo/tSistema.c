@@ -143,11 +143,13 @@ void ExecutaFiladeImpressao (tSistema* s) {
 
         ImprimeTelaFiladeImpressao();
         scanf("%d%*c", &op);
+        ImprimeBarraFinalMenu();
 
         if (op == 1) {
+            ImprimeBarraFilaImpr();
             printf("EXECUTANDO FILA DE IMPRESSAO:\n");
             imprimeFila(ObtemFilaImprSistema(s), ObtemPathImprDocs(s));
-            printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
+            printf("\nPRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
             char c; scanf("%c%*c", &c);
             ImprimeBarraFinalMenu();
             continue;
@@ -155,8 +157,6 @@ void ExecutaFiladeImpressao (tSistema* s) {
 
         else break;
     }   
-
-    ImprimeBarraFinalMenu();
 }
 
 void ExecutaRelatorio (tSistema* s) {
@@ -165,21 +165,20 @@ void ExecutaRelatorio (tSistema* s) {
     printf("#################### RELATORIO GERAL #######################\n");
     ImprimeRelatorioTela(relatorio);
 
-    int op = -1;
-    printf("SELECIONE UMA OPCAO:\n");
+
+    printf("ESCOLHA UMA OPCAO:\n");
     printf("\t(1) ENVIAR PARA IMPRESSAO\n");
     printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
-    scanf("%d%*c", &op);
+    int op = -1; scanf("%d%*c", &op);
+    ImprimeBarraFinalMenu();
 
     if (op == 1) {
         insereDocumentoFila(s->filaDocs, relatorio, ImprimeRelatorioTela, ImprimeRelatorioArquivo, DesalocaRelatorio);
-        printf("RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
-        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR\n");
+        printf("\nRELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
         char c; scanf("%c%*c", &c);
+        ImprimeBarraFinalMenu();
     }
-        
     else DesalocaRelatorio(relatorio);
-    ImprimeBarraFinalMenu();
     
 }
 

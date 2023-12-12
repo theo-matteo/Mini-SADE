@@ -38,7 +38,6 @@ void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, Vector* dados_rece
     printf("CPF DO PACIENTE: ");
     scanf("%s", cpfPaciente);
     scanf("%*c");
-    ImprimeBarraFinalMenu();
 
     // Obtem o paciente direto do arquivo binario
     tPaciente* paciente = BuscaPessoaPorCpf(PACIENTE, ObtemArquivoPacientes(d), cpfPaciente);
@@ -61,7 +60,8 @@ void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, Vector* dados_rece
 
     // Le informacoes clinicas
     tConsulta* consulta = CriaConsulta(cpfPaciente, cpfMedico, CRM);  
-
+    printf("\n"); ImprimeBarraFinalMenu();
+    
     // Obtem informacoes da consulta 
     char* data = ObtemDataConsulta(consulta);
     char* nomePaciente = ObtemNomePaciente(paciente);
@@ -140,7 +140,7 @@ tConsulta* CriaConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) {
     printf("FUMANTE: ");
     scanf("%d", &consulta->eh_fumante);
 
-    printf("ALEGIA A MEDICAMENTO: ");
+    printf("ALERGIA A MEDICAMENTO: ");
     scanf("%d", &consulta->possui_alergia);
 
     printf("HISTORICO DE CANCER: ");
@@ -161,11 +161,13 @@ tConsulta* CriaConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) {
 tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data,  Vector* dados_receita) {
 
     // Realiza leitura dos dados da receita e aloca dinamicamente 
+    ImprimeBarraConsultaMedica();
+    printf("RECEITA MEDICA:\n");
     tDataReceita* d = LeDadosReceita(nomePaciente, data, nomeMedico, CRM);
     VectorPushBack(dados_receita, d); 
 
     // Mensagem de sucesso
-    printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+    printf("\nRECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);
     ImprimeBarraFinalMenu();
 

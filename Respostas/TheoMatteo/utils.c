@@ -85,12 +85,11 @@ void ImprimeBarraConsultaMedica() {
 }
 
 void ImprConsultaDadosPaciente (char* nome, char* cpf, char* dtNasc) {
-    ImprimeBarraConsultaMedica();
-    printf("CPF DO PACIENTE: %s\n", cpf);
-    printf("- - -\n");
-    printf("- NOME: %s\n", nome);
-    printf("- DATA DE NASCIMENTO: %s\n", dtNasc);
-    printf("- - -\n");
+    printf("---\n");
+    printf("-NOME: %s\n", nome);
+    printf("-DATA DE NASCIMENTO: ");
+    ImprimeDataTela(dtNasc);
+    printf("---\n");
 }
 
 void ImprTelaConsultaMedica() {
@@ -107,13 +106,17 @@ void ImprimeSucessoCadastro() {
     printf("\nCADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
 }
 
-void ImprimeBarraFinalMenu() {
+void ImprimeBarraFinalMenu () {
     printf("###############################################################\n");
 }
 
+void ImprimeBarraFilaImpr () {
+    printf("################ FILA DE IMPRESSAO MEDICA ##################\n");
+}
+
 void ImprimeTelaFiladeImpressao() {
-    printf("################### FILA DE IMPRESSAO MEDICA #####################\n");
+    ImprimeBarraFilaImpr();
     printf("ESCOLHA UMA OPCAO:\n");
     printf("\t(1) EXECUTAR FILA DE IMPRESSAO\n");
-    printf("\t(2) RETORNAR AO MENU ANTERIOR\n");
+    printf("\t(2) RETORNAR AO MENU PRINCIPAL\n");
 }
