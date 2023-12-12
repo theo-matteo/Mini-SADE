@@ -270,7 +270,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 3:
  - Arquivo de output gerado: Resultados/TheoMatteo/completo/Casos/3/result_valgrind.txt.
- - Valgrind: Ok! allocs: 134, frees: 134, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 135, frees: 135, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -279,7 +279,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta completo / Caso 4:
  - Arquivo de output gerado: Resultados/TheoMatteo/completo/Casos/4/result_valgrind.txt.
- - Valgrind: Ok! allocs: 152, frees: 152, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 154, frees: 154, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -324,7 +324,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 3:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/3/result_valgrind.txt.
- - Valgrind: Ok! allocs: 136, frees: 136, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 137, frees: 137, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0
@@ -333,7 +333,7 @@ EXECUTANDO O VALGRIND EM CADA CASO:
  - Resultado para o saida.txt: Incorreto!
  - Pasta main / Caso 4:
  - Arquivo de output gerado: Resultados/TheoMatteo/main/Casos/4/result_valgrind.txt.
- - Valgrind: Ok! allocs: 154, frees: 154, errors: 0 | Desconto do valgrind: 0.0%
+ - Valgrind: Ok! allocs: 156, frees: 156, errors: 0 | Desconto do valgrind: 0.0%
  - Resultado para o biopsia.txt: Ok! Peso: 1.0
  - Resultado para o encaminhamento.txt: Ok! Peso: 1.0
  - Resultado para o lista_busca.txt: Ok! Peso: 3.0

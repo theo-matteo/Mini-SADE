@@ -8,9 +8,7 @@
 #include "tDadosPessoais.h"
 #include "utils.h"
 #include "tFila.h"
-
-typedef struct tListaBusca tListaBusca;
-
+#include "vector.h"
 
 /// @brief Busca pacientes no banco de dados
 /// @param file 
@@ -22,7 +20,7 @@ void BuscaPacientes (FILE* file, tFila* fila);
 /// @param nome 
 /// @param file 
 /// @return lista de busca
-tListaBusca* BuscaPacientesNomeArqvBinario (char* nome, FILE* file);
+Vector* BuscaPacientesNomeArqvBinario (char* nome, FILE* file);
 
 
 /// @brief Imprime lista de busca em um arquivo 
@@ -39,11 +37,5 @@ void ImprimeListaBusca(void* l);
 /// @brief Desaloca lista de busca
 /// @param l 
 void DesalocaListaBusca(void* l);
-
-
-/// @brief Obtem quantidade de pacientes da lista de busca
-/// @param l 
-/// @return qtd pacientes lista busca
-int ObtemQtdPacientesListaBusca (tListaBusca* l);
 
 #endif

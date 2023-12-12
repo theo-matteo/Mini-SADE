@@ -22,13 +22,13 @@ struct tConsulta {
 
 void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, Vector* dados_receita) {
 
-    // Indica o rotulo da lesao cadastrada, eh incrementada toda vez que cadastra uma nova lesao
+    // Rotulo das lesoes cadastradas, eh incrementado gradualmente
     int numRotulo = 0;
 
     // CPF do paciente
     char cpfPaciente[TAM_MAX_CPF];
 
-    // Informacoes do medico inicalizadas com string vazias
+    // Informacoes do medico inicalizadas
     char CRM[TAM_CRM]; memset(CRM, '\0', TAM_CRM);
     char nomeMedico[TAM_MAX_NOME];  memset(nomeMedico, '\0', TAM_MAX_NOME);
     char cpfMedico[TAM_MAX_CPF]; memset(cpfMedico, '\0', TAM_MAX_CPF);
@@ -45,10 +45,7 @@ void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, Vector* dados_rece
 
     // Caso o paciente nao foi encontrado, encerra consulta
     if (!paciente) {
-        printf("PACIENTE SEM CADASTRO\n\n");
-        printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
-        char c; scanf("%c%*c", &c);
-        ImprimeBarraFinalMenu();
+        ImprimeErroConsulta();
         return;
     }
 
@@ -112,7 +109,6 @@ void ExecutaConsulta (tUsuario* user, tDatabase* d, tFila* f, Vector* dados_rece
     SalvaConsultaArquivoBinario(consulta, ObtemArquivoConsultas(d));
     DesalocaPaciente(paciente);
     DesalocaConsulta(consulta);
-
 }
 
 tConsulta* CriaConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) {
@@ -123,6 +119,7 @@ tConsulta* CriaConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) {
         exit(EXIT_FAILURE);
     }
 
+    // Aloca um vetor de lesoes
     consulta->lesoes = VectorConstruct();
 
     // Inicializa as strings com zero 
@@ -161,26 +158,17 @@ tConsulta* CriaConsulta(char* cpfPaciente, char* cpfMedico, char* CRM) {
 
 tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMedico, char* data,  Vector* dados_receita) {
 
-    eTipoUso tipoUsoEnum;
-    
-    printf("TIPO DE USO: "); 
-    char tipoUso[10]; scanf("%s", tipoUso);
-    scanf("%*c");
-
-    // Converte  para enum
-    if (!strcmp(tipoUso, "ORAL")) tipoUsoEnum = ORAL;
-    else tipoUsoEnum = TOPICO;
-
     // Realiza leitura dos dados da receita e aloca dinamicamente 
     tDataReceita* d = LeDadosReceita(nomePaciente, data, nomeMedico, CRM);
     VectorPushBack(dados_receita, d); 
 
+    // Mensagem de sucesso
     printf("RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);
     ImprimeBarraFinalMenu();
 
     // Cria uma receita com dados alocados dinamicamente 
-    return criaReceita(ObtemNomePacienteReceita(d), tipoUsoEnum, ObtemNomeMedicamento(d), ObtemTipoMedicamento(d), ObtemInstrucoes(d), ObtemQtdMedicamento(d), ObtemNomeMedicoReceita(d), ObtemCRMReceita(d),  ObtemDataReceita(d));
+    return CriaReceitaDadosReceita(d);
 }
 
 char* ObtemDataConsulta (tConsulta* c) {
@@ -227,7 +215,6 @@ int ObtemQtdConsultasBinario (FILE* file) {
         }
 
         if (fread(buffer, sizeof(char), qtdBytesBuffer, file) != qtdBytesBuffer) break;
-
     }
 
     int qtd = ObtemQtdCpfUnicos(cpfPacientes, qtdPacientes);
@@ -262,11 +249,12 @@ int ObtemQtdCpfUnicos (char** cpfs, int qtd) {
     return count;
 }
 
-
-char* ObtemCPFPacienteConsulta (tConsulta* c) {
-    return c->cpfPaciente;
+void ImprimeErroConsulta() {
+    printf("PACIENTE SEM CADASTRO\n\n");
+    printf("PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL\n");
+    char c; scanf("%c%*c", &c);
+    ImprimeBarraFinalMenu();
 }
-
 
 void DesalocaConsulta (void* dado) {
     if (!dado) return;

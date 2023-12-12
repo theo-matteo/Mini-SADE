@@ -6,7 +6,6 @@
 
 struct tBiopsia {
 
-
     // Informacoes obtidas da consulta
     char nomePaciente[TAM_MAX_NOME];
     char cpfPaciente[TAM_MAX_CPF];
@@ -14,9 +13,46 @@ struct tBiopsia {
     char CRMmedico [TAM_MAX_CRM];
     char data[TAM_MAX_DATA];
 
-    // Lesoes cirurgicas do paciente 
+    // Vetor de lesoes da biopsia
     Vector* lesoes;
 };
+
+
+tBiopsia* AlocaBiopsia (Vector* l, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
+
+    tBiopsia* biopsia = (tBiopsia*) malloc(sizeof(tBiopsia));
+    if (biopsia == NULL) {
+        printf("Falha na Alocacao da Biopsia\n");
+        exit(EXIT_FAILURE);
+    }
+    
+    // Realiza atribuicao do vetor
+    biopsia->lesoes = l;
+
+    // Copia informacoes passadas por parametro 
+    strcpy(biopsia->nomePaciente, nomePaciente);
+    strcpy(biopsia->cpfPaciente, cpfPaciente);
+    strcpy(biopsia->nomeMedico, nomeMedico);
+    strcpy(biopsia->CRMmedico, CRM);
+    strcpy(biopsia->data, data);
+
+    return biopsia;
+}
+
+
+tBiopsia* SolicitaBiopsia (Vector* lesoes, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
+
+    Vector* lesoesCirurgicas = ObtemLesoesCirurgicas(lesoes);
+    
+    // Caso o vetor seja nulo, nao retorna uma biopsia valida
+    if (lesoesCirurgicas == NULL) {
+        ImprimeErroBiopsia();
+        return NULL;
+    }
+
+    ImprimeSucessoBiopsia();
+    return AlocaBiopsia(lesoesCirurgicas, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
+}
 
 Vector* ObtemLesoesCirurgicas (Vector* lesoes) {
 
@@ -38,49 +74,21 @@ Vector* ObtemLesoesCirurgicas (Vector* lesoes) {
     return v;
 }
 
-
-tBiopsia* AlocaBiopsia (Vector* l, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
-
-    tBiopsia* biopsia = (tBiopsia*) malloc(sizeof(tBiopsia));
-    if (biopsia == NULL) {
-        printf("Falha na Alocacao da Biopsia\n");
-        exit(EXIT_FAILURE);
-    }
-    
-    biopsia->lesoes = l;
-
-    strcpy(biopsia->nomePaciente, nomePaciente);
-    strcpy(biopsia->cpfPaciente, cpfPaciente);
-    strcpy(biopsia->nomeMedico, nomeMedico);
-    strcpy(biopsia->CRMmedico, CRM);
-    strcpy(biopsia->data, data);
-
-    return biopsia;
+void ImprimeErroBiopsia () {
+    ImprimeBarraConsultaMedica();
+    printf("NAO E POSSIVEL SOLICITAR BIOPSIA SEM LESAO CIRURGICA. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
+    char c; scanf("%c%*c", &c);
+    ImprimeBarraFinalMenu();
 }
 
 
-tBiopsia* SolicitaBiopsia (Vector* lesoes, char* nomePaciente, char* cpfPaciente, char* nomeMedico, char* CRM, char* data) {
-
-    Vector* lesoesCirurgicas = ObtemLesoesCirurgicas(lesoes);
-    
-    // Caso nao encontre lesao cirurgicas, retorna NULL
-    if (lesoesCirurgicas == NULL) {
-        ImprimeBarraConsultaMedica();
-        printf("NAO E POSSIVEL SOLICITAR BIOPSIA SEM LESAO CIRURGICA. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
-        char c; scanf("%c%*c", &c);
-        ImprimeBarraFinalMenu();
-        return NULL;
-    }
-
+void ImprimeSucessoBiopsia() {
     ImprimeBarraConsultaMedica();
     printf("SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
     char c; scanf("%c%*c", &c);
     ImprimeBarraFinalMenu();
-
-
-    // Retorna uma biopsia alocada dinamicamente
-    return AlocaBiopsia(lesoesCirurgicas, nomePaciente, cpfPaciente, nomeMedico, CRM, data);
 }
+
 
 void imprimeNaTelaBiopsia(void *dado) {
 
@@ -138,9 +146,7 @@ void imprimeEmArquivoBiopsia(void *dado, char *path) {
 
 
 void DesalocaBiopsia (void* dado) {
-
     if (!dado) return;
-
     tBiopsia* b = (tBiopsia*) dado;
     VectorDestroy(b->lesoes, DesalocaLesao);
     free(b);

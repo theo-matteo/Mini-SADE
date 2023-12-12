@@ -16,6 +16,7 @@ struct tDataReceita {
     char* tipo_medicamento;
     char* instrucoes;
     int qtd;
+    eTipoUso tipoUso;
 };
 
 tDataReceita* AlocaDadosReceita () {
@@ -38,9 +39,21 @@ tDataReceita* AlocaDadosReceita () {
     return d;
 }
 
+tReceita* CriaReceitaDadosReceita (tDataReceita* d) {
+    return criaReceita(ObtemNomePacienteReceita(d), ObtemTipoUsoReceita(d), ObtemNomeMedicamento(d), ObtemTipoMedicamento(d), ObtemInstrucoes(d), ObtemQtdMedicamento(d), ObtemNomeMedicoReceita(d), ObtemCRMReceita(d),  ObtemDataReceita(d));
+}
+
 tDataReceita* LeDadosReceita (char* nome_paciente, char* data, char* nome_medico, char* crm) {
 
     tDataReceita* d = AlocaDadosReceita();
+
+    printf("TIPO DE USO: "); 
+    char tipoUso[10]; scanf("%s", tipoUso);
+    scanf("%*c");
+
+    // Converte  para enum
+    if (!strcmp(tipoUso, "ORAL")) d->tipoUso = ORAL;
+    else d->tipoUso = TOPICO;
 
     // Nome do Medicamento  
     printf("NOME DO MEDICAMENTO: ");
@@ -114,6 +127,10 @@ char* ObtemNomeMedicoReceita (tDataReceita* d) {
 
 char* ObtemCRMReceita (tDataReceita* d) {
     return d->crm;
+}
+
+eTipoUso ObtemTipoUsoReceita (tDataReceita* d) {
+    return d->tipoUso;
 }
 
 char* ObtemDataReceita (tDataReceita* d) {

@@ -1,10 +1,6 @@
 #include "tListaBusca.h"
 #define TAM_MAX_NOME 100
 
-struct tListaBusca {
-    tPaciente** pacientes;
-    int qtdPacientes;
-};
 
 void BuscaPacientes (FILE* file, tFila* fila) {
 
@@ -14,10 +10,10 @@ void BuscaPacientes (FILE* file, tFila* fila) {
     scanf("%[^\n]", nome);
     scanf("%*c");
 
-    tListaBusca* lista = BuscaPacientesNomeArqvBinario (nome, file);
+    Vector* lista = BuscaPacientesNomeArqvBinario (nome, file);
 
     // Caso nao encontrou nenhum paciente com o nome informado
-    if (lista == NULL) {
+    if (!lista ) {
         printf("NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR\n");
         char c; scanf("%c%*c", &c);
         ImprimeBarraFinalMenu();
@@ -45,53 +41,42 @@ void BuscaPacientes (FILE* file, tFila* fila) {
 
 }   
 
-tListaBusca* BuscaPacientesNomeArqvBinario (char* nome, FILE* file) {
+Vector* BuscaPacientesNomeArqvBinario (char* nome, FILE* file) {
 
     // Retorna o arquivo para o inicio
     rewind(file);
 
     // Vetor de pacientes
-    tPaciente** pacientes = NULL;
-    int qtd = 0;
+    Vector* pacientes = VectorConstruct();
     
     while (!feof(file)) {
 
         tDadosPessoais* d = ObtemDadosPessoaisArquivoBinario(file);
         if (!d) break; // Caso tenha chegado no fim do arquivo
 
-        // Se os nomes coincidirem retorna o paciente 
-        if (VerificaNomesIguais(nome, d)) {
-            qtd++;
-            pacientes = (tPaciente **) realloc(pacientes, sizeof(tPaciente *) * qtd);
-            pacientes[qtd - 1] = CriaPaciente(d);
-        }
+        // Se os nomes coincidirem armazena um paciente
+        if (VerificaNomesIguais(nome, d)) VectorPushBack(pacientes, CriaPaciente(d));
         else DesalocaDadosPessoais(d);
 
     }
 
-    if (!qtd) return NULL;
-
-    // Aloca uma lista dinamicamente 
-    tListaBusca* lista = (tListaBusca*) malloc(sizeof(tListaBusca));
-    if (lista == NULL) {
-        printf("Falha na alocacao da lista de busca\n");
-        exit(EXIT_FAILURE);
+    if (VectorSize(pacientes) == 0) {
+        VectorDestroy(pacientes, DesalocaPaciente);
+        return NULL;
     }
 
-    lista->pacientes = pacientes;
-    lista->qtdPacientes = qtd;
-
-    return lista;
+    return pacientes;
 }
 
 
 void ImprimeListaBusca(void* l) {
 
-    tListaBusca* lista = (tListaBusca*) l;
+    Vector* lista = (Vector*) l;
 
-    for (int i = 0; i < ObtemQtdPacientesListaBusca(lista); i++) {
-        char* nome = ObtemNomePaciente(lista->pacientes[i]);
-        char* cpf = ObtemCPFPaciente(lista->pacientes[i]);
+    for (int i = 0; i < VectorSize(lista); i++) {
+        tPaciente* p = VectorGet(lista, i);
+        char* nome = ObtemNomePaciente(p);
+        char* cpf = ObtemCPFPaciente(p);
         printf("%d - %s (%s)\n", i + 1, nome, cpf);
     }
 
@@ -100,11 +85,9 @@ void ImprimeListaBusca(void* l) {
 
 void imprimeEmArquivoListaBusca(void *dado, char *path) {
 
-    tListaBusca* lista = (tListaBusca*) dado;
+    Vector* lista = (Vector*) dado;
     char pathDoc [strlen(path) + strlen("/lista_busca.txt") + 1];
-
     sprintf(pathDoc, "%s/%s", path, "lista_busca.txt");
-
     FILE* file = fopen(pathDoc, "a");
 
     if (file == NULL) {
@@ -112,9 +95,10 @@ void imprimeEmArquivoListaBusca(void *dado, char *path) {
         exit(EXIT_FAILURE);
     }
 
-    for (int i = 0; i < ObtemQtdPacientesListaBusca(lista); i++) {
-        char* nome = ObtemNomePaciente(lista->pacientes[i]);
-        char* cpf = ObtemCPFPaciente(lista->pacientes[i]);
+    for (int i = 0; i < VectorSize(lista); i++) {
+        tPaciente* p = VectorGet(lista, i);
+        char* nome = ObtemNomePaciente(p);
+        char* cpf = ObtemCPFPaciente(p);
         fprintf(file, "%d - %s (%s)\n", i + 1, nome, cpf);
     }
 
@@ -122,24 +106,10 @@ void imprimeEmArquivoListaBusca(void *dado, char *path) {
     fclose(file);
 }
 
-int ObtemQtdPacientesListaBusca (tListaBusca* l) {
-    return l->qtdPacientes;
-}
-
 void DesalocaListaBusca(void* l) {
-
     if (l == NULL) return;
-
-    tListaBusca* lista = (tListaBusca*) l;
-
-    if (lista->pacientes != NULL) {
-        for (int i = 0; i < ObtemQtdPacientesListaBusca(l); i++) {
-            DesalocaPaciente(lista->pacientes[i]);
-        }
-        free(lista->pacientes);
-    }
-
-    free(lista);
+    Vector* lista = (Vector*) l;
+    VectorDestroy(lista, DesalocaPaciente);
 }
 
 

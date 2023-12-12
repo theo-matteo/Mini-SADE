@@ -65,13 +65,6 @@ tReceita* PreencheCriaReceitaMedica (char* nomePaciente, char* CRM, char* nomeMe
 /// @return data
 char* ObtemDataConsulta (tConsulta* c);
 
-
-/// @brief Obtem CPF do paciente
-/// @param c 
-/// @return CPF do paciente 
-char* ObtemCPFPacienteConsulta (tConsulta* c);
-
-
 /// @brief Salva consulta no arquivo binario
 /// @param consulta 
 /// @param file 
@@ -90,6 +83,7 @@ int ObtemQtdConsultasBinario (FILE* file);
 /// @return qtd cpf unicos
 int ObtemQtdCpfUnicos (char** cpfs, int qtd);
 
+void ImprimeErroConsulta();
 
 /// @brief Desaloca memoria de uma consulta
 /// @param c 
