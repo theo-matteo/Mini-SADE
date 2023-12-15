@@ -1,0 +1,8 @@
+/usr/bin/ld: Resultados/Fulano/tDocumento/tFila.o: in function `desalocaFila':
+tFila.c:(.text+0x71): undefined reference to `desalocaDocumento'
+/usr/bin/ld: Resultados/Fulano/tDocumento/tFila.o: in function `insereDocumentoFila':
+tFila.c:(.text+0xe3): undefined reference to `criaDocumento'
+/usr/bin/ld: Resultados/Fulano/tDocumento/tFila.o: in function `imprimeFila':
+tFila.c:(.text+0x197): undefined reference to `imprimeNaTelaDocumento'
+/usr/bin/ld: tFila.c:(.text+0x1bd): undefined reference to `imprimeEmArquivoDocumento'
+collect2: error: ld returned 1 exit status

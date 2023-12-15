@@ -1,0 +1,304 @@
+################################################
+DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
+Caminho do banco de dados: Casos/10/../07/
+Caminho da pasta de saida: Casos/10/saida
+######################## ACESSO MINI-SADE ######################
+DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: PACIENTES ENCONTRADOS:
+1 - ROMEO (370.980.820-07)
+
+#################### BUSCAR PACIENTES #######################
+ESCOLHA UMA OPCAO:
+	(1) ENVIAR LISTA PARA IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################
+
+LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### BUSCAR PACIENTES #######################
+NOME DO PACIENTE: PACIENTES ENCONTRADOS:
+1 - MARIA DE LA VEGA (123.254.564-63)
+
+#################### BUSCAR PACIENTES #######################
+ESCOLHA UMA OPCAO:
+	(1) ENVIAR LISTA PARA IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################
+
+LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU PRINCIPAL
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CONSULTA MEDICA #######################
+CPF DO PACIENTE: ---
+-NOME: MARIA DE LA VEGA
+-DATA DE NASCIMENTO: 1/12/1990
+---
+DATA DA CONSULTA: POSSUI DIABETES: FUMANTE: ALERGIA A MEDICAMENTO: HISTORICO DE CANCER: TIPO DE PELE: 
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+CADASTRO DE LESAO:
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: 
+LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+CADASTRO DE LESAO:
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: 
+LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+CADASTRO DE LESAO:
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: 
+LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+CADASTRO DE LESAO:
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: 
+LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+CADASTRO DE LESAO:
+DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: 
+LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: 
+RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+ENCAMINHAMENTO:
+ESPECIALIDADE ENCAMINHADA: MOTIVO: 
+ENCAMINHAMENTO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: 
+RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### RELATORIO GERAL #######################
+NUMERO TOTAL DE PACIENTES ATENDIDOS: 4
+IDADE MEDIA: 39
+DISTRIBUICAO POR GENERO:
+- FEMININO: 3
+- MASCULINO: 1
+- OUTROS: 1
+TAMANHO MEDIO DAS LESOES: 20
+NUMERO TOTAL DE LESOES: 10
+NUMERO TOTAL DE CIRURGIAS: 8
+NUMERO TOTAL DE CRIOTERAPIA: 2
+
+ESCOLHA UMA OPCAO:
+	(1) ENVIAR PARA IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################
+
+RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+################ FILA DE IMPRESSAO MEDICA ##################
+ESCOLHA UMA OPCAO:
+	(1) EXECUTAR FILA DE IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################
+################ FILA DE IMPRESSAO MEDICA ##################
+EXECUTANDO FILA DE IMPRESSAO:
+1 - ROMEO (370.980.820-07)
+
+1 - MARIA DE LA VEGA (123.254.564-63)
+
+RECEITUARIO
+NOME: MARIA DE LA VEGA
+
+USO TOPICO
+
+ACTIVASE
+4 POMADA
+
+USAR 4X AO DIA
+
+JULIETA MAGNA (CRM-1111)
+9/12/2023
+
+PACIENTE: MARIA DE LA VEGA
+CPF: 123.254.564-63
+
+SOLICITACAO DE BIOPSIA PARA AS LESOES:
+L1 - NEVO - PEITORAL - 12MM
+L2 - NEVO - PEITORAL - 10MM
+L3 - NEVO - PEITORAL - 15MM
+L5 - NEVO - PEITORAL - 18MM
+
+JULIETA MAGNA (CRM-1111)
+9/12/2023
+
+PACIENTE: MARIA DE LA VEGA
+CPF: 123.254.564-63
+
+ESPECIALIDADE ENCAMINHADA: CIRURGIA
+MOTIVO: PACIENTE PRECISA REALIZAR MULTIPLAS CIRURGIAS
+
+JULIETA MAGNA (CRM-1111)
+9/12/2023
+
+RECEITUARIO
+NOME: MARIA DE LA VEGA
+
+USO TOPICO
+
+AMOXIL
+10 POMADA
+
+USAR 1X AO DIA DEPOIS DE ACORDAR
+
+JULIETA MAGNA (CRM-1111)
+9/12/2023
+
+NUMERO TOTAL DE PACIENTES ATENDIDOS: 4
+IDADE MEDIA: 39
+DISTRIBUICAO POR GENERO:
+- FEMININO: 3
+- MASCULINO: 1
+- OUTROS: 1
+TAMANHO MEDIO DAS LESOES: 20
+NUMERO TOTAL DE LESOES: 10
+NUMERO TOTAL DE CIRURGIAS: 8
+NUMERO TOTAL DE CRIOTERAPIA: 2
+
+
+PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
+############################################################
+################ FILA DE IMPRESSAO MEDICA ##################
+ESCOLHA UMA OPCAO:
+	(1) EXECUTAR FILA DE IMPRESSAO
+	(2) RETORNAR AO MENU PRINCIPAL
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
