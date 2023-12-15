@@ -1,7 +1,0 @@
-/usr/bin/ld: Resultados/Fulano/tReceita/main.o: in function `executaConsultaMedica':
-main.c:(.text+0x15ca): undefined reference to `desalocaReceita'
-/usr/bin/ld: main.c:(.text+0x15d4): undefined reference to `imprimeEmArquivoReceita'
-/usr/bin/ld: main.c:(.text+0x15de): undefined reference to `imprimeNaTelaReceita'
-/usr/bin/ld: Resultados/Fulano/tReceita/main.o: in function `TelaGerarReceitaMedica':
-main.c:(.text+0x38d3): undefined reference to `criaReceita'
-collect2: error: ld returned 1 exit status
