@@ -1,1 +1,1 @@
-Trabalho Prático II da Disciplina de Programção II
+Trabalho Prático II da Disciplina de Programação II
