@@ -1,14 +1,6 @@
-../../
-HEIMERDINGER
-456.987.123-96
-20/10/1945
-(90)99876-1234
-MASCULINO
-heimer
-science!
-ADMIN
-heimer
-science!
+./
+aurelio
+solaris
 2
 DR. MUNDO
 564.587.965-85

@@ -1,6 +1,6 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
-Caminho do banco de dados: Casos/02/../../
+Caminho do banco de dados: Casos/02/../01/
 Caminho da pasta de saida: Casos/02/saida
 ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################

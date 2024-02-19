@@ -1,23 +1,105 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
-Caminho do banco de dados: Casos/03/../../
+Caminho do banco de dados: Casos/03/./
 Caminho da pasta de saida: Casos/03/saida
-######################## ACESSO MINI-SADE ######################
+#################### CADASTRO SECRETARIO #######################
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: NOME DE USUARIO: SENHA: NIVEL DE ACESSO: ######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
 	(4) REALIZAR CONSULTA
 	(5) BUSCAR PACIENTES
 	(6) RELATORIO GERAL
 	(7) FILA DE IMPRESSAO
 	(8) FINALIZAR O PROGRAMA
 ###############################################################
-#################### BUSCAR PACIENTES #######################
-NOME DO PACIENTE: 
-NENHUM PACIENTE FOI ENCONTRADO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
+#################### CADASTRO MEDICO #######################
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CRM: NOME DE USUARIO: SENHA: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CADASTRO MEDICO #######################
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: CRM: NOME DE USUARIO: SENHA: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CADASTRO PACIENTE #######################
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CADASTRO PACIENTE #######################
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CADASTRO PACIENTE #######################
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CADASTRO PACIENTE #######################
+NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: 
+CADASTRO REALIZADO COM SUCESSO. PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU INICIAL
+###############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
 	(4) REALIZAR CONSULTA
 	(5) BUSCAR PACIENTES
 	(6) RELATORIO GERAL
@@ -26,7 +108,7 @@ ESCOLHA UMA OPCAO:
 ###############################################################
 #################### BUSCAR PACIENTES #######################
 NOME DO PACIENTE: PACIENTES ENCONTRADOS:
-1 - VARUS (555.333.270-46)
+1 - ROMEO (370.980.820-07)
 
 #################### BUSCAR PACIENTES #######################
 ESCOLHA UMA OPCAO:
@@ -38,6 +120,9 @@ LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO 
 ############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
 	(4) REALIZAR CONSULTA
 	(5) BUSCAR PACIENTES
 	(6) RELATORIO GERAL
@@ -46,7 +131,7 @@ ESCOLHA UMA OPCAO:
 ###############################################################
 #################### BUSCAR PACIENTES #######################
 NOME DO PACIENTE: PACIENTES ENCONTRADOS:
-1 - SYNDRA (155.941.270-46)
+1 - JOANA GROTZ (012.324.054-85)
 
 #################### BUSCAR PACIENTES #######################
 ESCOLHA UMA OPCAO:
@@ -58,6 +143,9 @@ LISTA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO 
 ############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
 	(4) REALIZAR CONSULTA
 	(5) BUSCAR PACIENTES
 	(6) RELATORIO GERAL
@@ -66,8 +154,8 @@ ESCOLHA UMA OPCAO:
 ###############################################################
 #################### CONSULTA MEDICA #######################
 CPF DO PACIENTE: ---
--NOME: SYNDRA
--DATA DE NASCIMENTO: 6/4/1985
+-NOME: ROMEO
+-DATA DE NASCIMENTO: 6/5/1992
 ---
 DATA DA CONSULTA: POSSUI DIABETES: FUMANTE: ALERGIA A MEDICAMENTO: HISTORICO DE CANCER: TIPO DE PELE: 
 ############################################################
@@ -93,46 +181,20 @@ ESCOLHA UMA OPCAO:
 	(5) ENCERRAR CONSULTA
 ############################################################
 #################### CONSULTA MEDICA #######################
-CADASTRO DE LESAO:
-DIAGNOSTICO CLINICO: REGIAO DO CORPO: TAMANHO: ENVIAR PARA CIRURGIA: ENVIAR PARA CRIOTERAPIA: 
-LESAO REGISTRADA COM SUCESSO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
-#################### CONSULTA MEDICA #######################
-ESCOLHA UMA OPCAO:
-	(1) CADASTRAR LESAO
-	(2) GERAR RECEITA MEDICA
-	(3) SOLICITACAO DE BIOPSIA
-	(4) ENCAMINHAMENTO
-	(5) ENCERRAR CONSULTA
-############################################################
-#################### CONSULTA MEDICA #######################
-RECEITA MEDICA:
-TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: 
-RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
-#################### CONSULTA MEDICA #######################
-ESCOLHA UMA OPCAO:
-	(1) CADASTRAR LESAO
-	(2) GERAR RECEITA MEDICA
-	(3) SOLICITACAO DE BIOPSIA
-	(4) ENCAMINHAMENTO
-	(5) ENCERRAR CONSULTA
-############################################################
-#################### CONSULTA MEDICA #######################
-RECEITA MEDICA:
-TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: 
-RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
-############################################################
-#################### CONSULTA MEDICA #######################
-ESCOLHA UMA OPCAO:
-	(1) CADASTRAR LESAO
-	(2) GERAR RECEITA MEDICA
-	(3) SOLICITACAO DE BIOPSIA
-	(4) ENCAMINHAMENTO
-	(5) ENCERRAR CONSULTA
-############################################################
-#################### CONSULTA MEDICA #######################
 SOLICITACAO DE BIOPSIA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: 
+RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
 ############################################################
 #################### CONSULTA MEDICA #######################
 ESCOLHA UMA OPCAO:
@@ -157,6 +219,48 @@ ESCOLHA UMA OPCAO:
 ############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
+	(4) REALIZAR CONSULTA
+	(5) BUSCAR PACIENTES
+	(6) RELATORIO GERAL
+	(7) FILA DE IMPRESSAO
+	(8) FINALIZAR O PROGRAMA
+###############################################################
+#################### CONSULTA MEDICA #######################
+CPF DO PACIENTE: ---
+-NOME: ALBERTO GOMES
+-DATA DE NASCIMENTO: 16/12/1995
+---
+DATA DA CONSULTA: POSSUI DIABETES: FUMANTE: ALERGIA A MEDICAMENTO: HISTORICO DE CANCER: TIPO DE PELE: 
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+#################### CONSULTA MEDICA #######################
+RECEITA MEDICA:
+TIPO DE USO: NOME DO MEDICAMENTO: TIPO DE MEDICAMENTO: QUANTIDADE: INSTRUCOES DE USO: 
+RECEITA ENVIADA PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNAR AO MENU ANTERIOR
+############################################################
+#################### CONSULTA MEDICA #######################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR LESAO
+	(2) GERAR RECEITA MEDICA
+	(3) SOLICITACAO DE BIOPSIA
+	(4) ENCAMINHAMENTO
+	(5) ENCERRAR CONSULTA
+############################################################
+####################### MENU PRINCIPAL #########################
+ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
 	(4) REALIZAR CONSULTA
 	(5) BUSCAR PACIENTES
 	(6) RELATORIO GERAL
@@ -165,15 +269,15 @@ ESCOLHA UMA OPCAO:
 ###############################################################
 #################### RELATORIO GERAL #######################
 NUMERO TOTAL DE PACIENTES ATENDIDOS: 2
-IDADE MEDIA: 42
+IDADE MEDIA: 40
 DISTRIBUICAO POR GENERO:
 - FEMININO: 2
-- MASCULINO: 2
-- OUTROS: 3
-TAMANHO MEDIO DAS LESOES: 15
-NUMERO TOTAL DE LESOES: 4
-NUMERO TOTAL DE CIRURGIAS: 3
-NUMERO TOTAL DE CRIOTERAPIA: 1
+- MASCULINO: 1
+- OUTROS: 1
+TAMANHO MEDIO DAS LESOES: 20
+NUMERO TOTAL DE LESOES: 1
+NUMERO TOTAL DE CIRURGIAS: 1
+NUMERO TOTAL DE CRIOTERAPIA: 0
 
 ESCOLHA UMA OPCAO:
 	(1) ENVIAR PARA IMPRESSAO
@@ -184,6 +288,9 @@ RELATÓRIO ENVIADO PARA FILA DE IMPRESSAO. PRESSIONE QUALQUER TECLA PARA RETORNA
 ############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
 	(4) REALIZAR CONSULTA
 	(5) BUSCAR PACIENTES
 	(6) RELATORIO GERAL
@@ -197,64 +304,64 @@ ESCOLHA UMA OPCAO:
 ############################################################
 ################ FILA DE IMPRESSAO MEDICA ##################
 EXECUTANDO FILA DE IMPRESSAO:
-1 - VARUS (555.333.270-46)
+1 - ROMEO (370.980.820-07)
 
-1 - SYNDRA (155.941.270-46)
+1 - JOANA GROTZ (012.324.054-85)
 
-RECEITUARIO
-NOME: SYNDRA
-
-USO TOPICO
-
-BEPANTOL DERM
-4 POMADA
-
-USAR 4X AOS DIA
-
-SORAKA ESTRELA (CRM-2454)
-1/12/2023
-
-RECEITUARIO
-NOME: SYNDRA
-
-USO TOPICO
-
-EFURIX
-10 POMADA
-
-USAR 1X AO DIA ANTES DE DORMIR
-
-SORAKA ESTRELA (CRM-2454)
-1/12/2023
-
-PACIENTE: SYNDRA
-CPF: 155.941.270-46
+PACIENTE: ROMEO
+CPF: 370.980.820-07
 
 SOLICITACAO DE BIOPSIA PARA AS LESOES:
-L1 - MELANOMA - PEITORAL - 12MM
+L1 - MELANOMA - FACE - 20MM
 
-SORAKA ESTRELA (CRM-2454)
-1/12/2023
+ ()
+8/12/2023
 
-PACIENTE: SYNDRA
-CPF: 155.941.270-46
+RECEITUARIO
+NOME: ROMEO
 
-ESPECIALIDADE ENCAMINHADA: CARDIOLOGIA/ANESTESISTA
-MOTIVO: AVALIACAO DE RISCO CIRURGICO
+USO ORAL
 
-SORAKA ESTRELA (CRM-2454)
-1/12/2023
+PARACETAMOL
+1 COMPRIMIDO
+
+TOMAR DE 8h em 8h
+
+ ()
+8/12/2023
+
+PACIENTE: ROMEO
+CPF: 370.980.820-07
+
+ESPECIALIDADE ENCAMINHADA: CIRURGIA
+MOTIVO: PACIENTE PRECISA SER OPERADO
+
+ ()
+8/12/2023
+
+RECEITUARIO
+NOME: ALBERTO GOMES
+
+USO TOPICO
+
+PROTETOR SOLAR 80
+1 CREME
+
+USAR SEMPRE QUE SAIR DE CASA
+
+ ()
+8/12/2023
 
 NUMERO TOTAL DE PACIENTES ATENDIDOS: 2
-IDADE MEDIA: 42
+IDADE MEDIA: 40
 DISTRIBUICAO POR GENERO:
 - FEMININO: 2
-- MASCULINO: 2
-- OUTROS: 3
-TAMANHO MEDIO DAS LESOES: 15
-NUMERO TOTAL DE LESOES: 4
-NUMERO TOTAL DE CIRURGIAS: 3
-NUMERO TOTAL DE CRIOTERAPIA: 1
+- MASCULINO: 1
+- OUTROS: 1
+TAMANHO MEDIO DAS LESOES: 20
+NUMERO TOTAL DE LESOES: 1
+NUMERO TOTAL DE CIRURGIAS: 1
+NUMERO TOTAL DE CRIOTERAPIA: 0
 
 
 PRESSIONE QUALQUER TECLA PARA VOLTAR PARA O MENU ANTERIOR
@@ -266,6 +373,9 @@ ESCOLHA UMA OPCAO:
 ############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
+	(1) CADASTRAR SECRETARIO
+	(2) CADASTRAR MEDICO
+	(3) CADASTRAR PACIENTE
 	(4) REALIZAR CONSULTA
 	(5) BUSCAR PACIENTES
 	(6) RELATORIO GERAL

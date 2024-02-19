@@ -1,9 +1,8 @@
 ################################################
 DIGITE O CAMINHO DO BANCO DE DADOS: ################################################
-Caminho do banco de dados: Casos/01/../../
+Caminho do banco de dados: Casos/01/./
 Caminho da pasta de saida: Casos/01/saida
-#################### CADASTRO SECRETARIO #######################
-NOME COMPLETO: CPF: DATA DE NASCIMENTO: TELEFONE: GENERO: NOME DE USUARIO: SENHA: NIVEL DE ACESSO: ######################## ACESSO MINI-SADE ######################
+######################## ACESSO MINI-SADE ######################
 DIGITE SEU LOGIN: DIGITE SUA SENHA: ###############################################################
 ####################### MENU PRINCIPAL #########################
 ESCOLHA UMA OPCAO:
